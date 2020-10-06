@@ -1,0 +1,26 @@
+200512 220435.261|CONFIG|main|setFileHandlers|Now logging to E:\CODE\C++\pc2Client - Copy\bin\logs directory.
+200512 220435.264|INFO|main|info|
+200512 220435.271|INFO|main|info|Version 9.6.0 20190102 (Wednesday, January 2nd 2019 01:20 UTC) Java ver 13.0.2 build 5102 Windows 10 10.0 (amd64) 
+200512 220435.271|INFO|main|startLog|Working directory is E:\CODE\C++\pc2Client - Copy\bin
+200512 220435.313|INFO|main|startLog|Process id is 13404@Admin
+200512 220435.314|INFO|main|start|Starting ConnectionManager...
+200512 220435.514|INFO|main|start|Started ConnectionManager
+200512 220435.516|INFO|main|setClientServerAndPort|INIFile File location: file:/E:/CODE/C++/pc2Client%20-%20Copy/bin/pc2v9.ini
+200512 220435.517|WARNING|main|start|Exception setting remote host and port 
+|java.lang.NumberFormatException: For input string: "51002 "
+|    at java.lang.NumberFormatException.forInputString (NumberFormatException.java:68)
+|    at java.lang.Integer.parseInt (Integer.java:658)
+|    at java.lang.Integer.parseInt (Integer.java:776)
+|    at edu.csus.ecs.pc2.core.InternalController.setClientServerAndPort (InternalController.java:1218)
+|    at edu.csus.ecs.pc2.core.InternalController.start (InternalController.java:2843)
+|    at edu.csus.ecs.pc2.Starter.main (Starter.java:49)
+200512 220435.524|INFO|main|connectToMyServer|Connecting to :0
+200512 220435.666|INFO|main|<init>|IO Exception:
+200512 220435.667|INFO|main|connectToMyServer|Could not ConnectToMyServer()
+200512 220435.667|INFO|main|start|Exception contacting my server 
+|edu.csus.ecs.pc2.core.transport.TransportException: Cannot assign requested address: connect
+|    at edu.csus.ecs.pc2.core.transport.TransportManager.connectToMyServer (TransportManager.java:197)
+|    at edu.csus.ecs.pc2.core.transport.connection.ConnectionManager.connectToMyServer (ConnectionManager.java:99)
+|    at edu.csus.ecs.pc2.core.InternalController.start (InternalController.java:2853)
+|    at edu.csus.ecs.pc2.Starter.main (Starter.java:49)
+200512 220435.667|INFO|main|info|Unable to contact server at 203.162.88.119:51002 :0 Cannot assign requested address: connect

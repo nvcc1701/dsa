@@ -1,0 +1,24 @@
+200517 212519.244|CONFIG|AWT-EventQueue-0|setFileHandlers|Now logging to E:\CODE\C++\pc2Client - Copy\bin\logs directory.
+200517 212519.244|INFO|AWT-EventQueue-0|info|
+200517 212519.245|INFO|AWT-EventQueue-0|info|Version 9.6.0 20190102 (Wednesday, January 2nd 2019 01:20 UTC) Java ver 13.0.2 build 5102 Windows 10 10.0 (amd64) 
+200517 212519.245|INFO|AWT-EventQueue-0|info|Login: 360 (aka team360)
+200517 212519.245|INFO|AWT-EventQueue-0|startLog|Working directory is E:\CODE\C++\pc2Client - Copy\bin
+200517 212519.246|INFO|AWT-EventQueue-0|startLog|Process id is 10796@Admin
+200517 212519.246|INFO|AWT-EventQueue-0|info|Contacting server at 203.162.88.119:51002 as TEAM360 @ site 0
+200517 212519.249|INFO|AWT-EventQueue-0|info|sendLoginRequest start - sending from TEAM360 @ site 0
+200517 212519.251|INFO|AWT-EventQueue-0|sendToLocalServer|Sending packet to server Packet[LOGIN_REQUEST] #1 TEAM360 @ site 0 -> SERVER0 @ site 0
+200517 212519.253|INFO|Thread-1|run|send(Serializable)
+200517 212519.254|INFO|AWT-EventQueue-0|sendToLocalServer|Sent    packet to server Packet[LOGIN_REQUEST] #1 TEAM360 @ site 0 -> SERVER0 @ site 0
+200517 212519.256|INFO|AWT-EventQueue-0|info|sendLoginRequest end - packet sent.
+200517 212519.441|INFO|Thread-0|receive|public void receive(SealedObject TransportPacket, ConnectionHandlerID connectionHandlerID)
+200517 212519.443|INFO|Thread-2|info| receiveObject(S) start got Packet[LOGIN_FAILED] #168372 SERVER0 @ site 1 -> TEAM360 @ site 0
+200517 212519.444|INFO|Thread-2|dumpPacket|Packet LOGIN_FAILED (Seq #168372, o#168372 ) recieveObject
+200517 212519.444|INFO|Thread-2|dumpPacket|  From: SERVER0 @ site 1, oSERVER0 @ site 1 (CNTT1-ACM1 @ 10.99.3.97) (Contest Id: Default-189234830985629705)
+200517 212519.445|INFO|Thread-2|dumpPacket|    To: TEAM360 @ site 0
+200517 212519.445|INFO|Thread-2|dumpPacket|   key: MESSAGE_STRING is: java.lang.String Invalid password
+200517 212519.445|INFO|Thread-2|info|handlePacket start Packet[LOGIN_FAILED] #168372 SERVER0 @ site 1 -> TEAM360 @ site 0
+200517 212519.446|INFO|Thread-2|dumpPacket|Packet LOGIN_FAILED (Seq #168372, o#168372 ) handlePacket
+200517 212519.446|INFO|Thread-2|dumpPacket|  From: SERVER0 @ site 1, oSERVER0 @ site 1 (CNTT1-ACM1 @ 10.99.3.97) (Contest Id: Default-189234830985629705)
+200517 212519.446|INFO|Thread-2|dumpPacket|    To: TEAM360 @ site 0
+200517 212519.446|INFO|Thread-2|dumpPacket|   key: MESSAGE_STRING is: java.lang.String Invalid password
+200517 212520.193|INFO|Thread-2|info| receiveObject(S) end   got Packet[LOGIN_FAILED] #168372 SERVER0 @ site 1 -> TEAM360 @ site 0

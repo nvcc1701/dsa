@@ -1,0 +1,68 @@
+200617 155213.271|CONFIG|main|setFileHandlers|Now logging to E:\CODE\DSA-PTIT\pc2Client - Copy\bin\logs directory.
+200617 155213.274|INFO|main|info|
+200617 155213.282|INFO|main|info|Version 9.6.0 20190102 (Wednesday, January 2nd 2019 01:20 UTC) Java ver 13.0.2 build 5102 Windows 10 10.0 (amd64) 
+200617 155213.283|INFO|main|startLog|Working directory is E:\CODE\DSA-PTIT\pc2Client - Copy\bin
+200617 155213.318|INFO|main|startLog|Process id is 7624@Admin
+200617 155213.318|INFO|main|start|Starting ConnectionManager...
+200617 155213.592|INFO|main|start|Started ConnectionManager
+200617 155213.628|INFO|main|setClientServerAndPort|INIFile File location: file:/E:/CODE/DSA-PTIT/pc2Client%20-%20Copy/bin/pc2v9.ini
+200617 155213.628|INFO|main|setClientServerAndPort|setClientServerAndPort 203.162.88.119 parsed as 203.162.88.119 port 50002
+200617 155213.629|INFO|main|info|Contacting server at 203.162.88.119:50002
+200617 155213.629|INFO|main|connectToMyServer|Connecting to 203.162.88.119:50002
+200617 155213.787|INFO|Thread-0|receiveUnencrypted|receiveUnencrypted(TransportWrapper, ConnectionHandlerID=Socket[addr=/203.162.88.119,port=50002,localport=53702]--7952623321590381698)
+200617 155213.808|INFO|Thread-0|receiveUnencrypted|receiveUnencrypted Made a secret key for Socket[addr=/203.162.88.119,port=50002,localport=53702]--7952623321590381698 key is com.sun.crypto.provider.DESKey@fffe799c
+200617 155213.808|INFO|Thread-0|getPublicKeyPacket|Generating Unencrypted Public Key Packet
+200617 155213.809|INFO|Thread-0|getPublicKeyPacket|checking key:= SunJCE Diffie-Hellman Public Key:
+y:
+    f2e7a675 ed716c92 90258e2e ffb5ee6d 82914049 6b33e8f1 f1a2ee66 2fe006ef
+    dba4e84b 314f63d6 a69e88e1 bab32293 65d9e963 4e58dbae 52f10ecb 2506cc5f
+    a00eabfd 4bbf871e ebf77cac 6c3e6522 40e1263d 22c1bf8a 66bfafd6 fd9a29ec
+    e97ac9b3 4859f406 2aaf0a9e 99e41b30 93844fc0 72342b96 49efef33 c3d07762
+p:
+    f488fd58 4e49dbcd 20b49de4 9107366b 336c380d 451d0f7c 88b31c7c 5b2d8ef6
+    f3c923c0 43f0a55b 188d8ebb 558cb85d 38d334fd 7c175743 a31d186c de33212c
+    b52aff3c e1b12940 18118d7c 84a70a72 d686c403 19c80729 7aca950c d9969fab
+    d00a509b 0246d308 3d66a45d 419f9c7c bd894b22 1926baab a25ec355 e92f78c7
+g:
+    02
+l:
+    512
+200617 155213.810|INFO|Thread-0|getPublicKeyPacket|packet:= edu.csus.ecs.pc2.core.transport.TransportWrapper@7fc32a74
+200617 194356.260|INFO|Thread-0|receive|SocketException in receive for Socket[addr=/203.162.88.119,port=50002,localport=53702]--7952623321590381698
+|java.net.SocketException: A socket operation was attempted to an unreachable network
+|    at sun.nio.ch.NioSocketImpl.implRead (NioSocketImpl.java:326)
+|    at sun.nio.ch.NioSocketImpl.read (NioSocketImpl.java:351)
+|    at sun.nio.ch.NioSocketImpl$1.read (NioSocketImpl.java:802)
+|    at java.net.Socket$SocketInputStream.read (Socket.java:937)
+|    at java.net.Socket$SocketInputStream.read (Socket.java:932)
+|    at java.io.ObjectInputStream$PeekInputStream.peek (ObjectInputStream.java:2778)
+|    at java.io.ObjectInputStream$BlockDataInputStream.peek (ObjectInputStream.java:3105)
+|    at java.io.ObjectInputStream$BlockDataInputStream.peekByte (ObjectInputStream.java:3115)
+|    at java.io.ObjectInputStream.readObject0 (ObjectInputStream.java:1597)
+|    at java.io.ObjectInputStream.readObject (ObjectInputStream.java:464)
+|    at java.io.ObjectInputStream.readObject (ObjectInputStream.java:422)
+|    at edu.csus.ecs.pc2.core.transport.ConnectionHandlerThread.receive (ConnectionHandlerThread.java:151)
+|    at edu.csus.ecs.pc2.core.transport.ConnectionHandlerClientThread.run (ConnectionHandlerClientThread.java:65)
+200617 194356.263|FINER|Thread-0|run|THROW
+|edu.csus.ecs.pc2.core.transport.TransportException: A socket operation was attempted to an unreachable network
+|    at edu.csus.ecs.pc2.core.transport.ConnectionHandlerThread.receive (ConnectionHandlerThread.java:155)
+|    at edu.csus.ecs.pc2.core.transport.ConnectionHandlerClientThread.run (ConnectionHandlerClientThread.java:65)
+200617 194356.263|INFO|Thread-0|receive|SocketException in receive for Socket[addr=/203.162.88.119,port=50002,localport=53702]--7952623321590381698
+|java.net.SocketException: Connection reset
+|    at sun.nio.ch.NioSocketImpl.implRead (NioSocketImpl.java:324)
+|    at sun.nio.ch.NioSocketImpl.read (NioSocketImpl.java:351)
+|    at sun.nio.ch.NioSocketImpl$1.read (NioSocketImpl.java:802)
+|    at java.net.Socket$SocketInputStream.read (Socket.java:937)
+|    at java.net.Socket$SocketInputStream.read (Socket.java:932)
+|    at java.io.ObjectInputStream$PeekInputStream.peek (ObjectInputStream.java:2778)
+|    at java.io.ObjectInputStream$BlockDataInputStream.peek (ObjectInputStream.java:3105)
+|    at java.io.ObjectInputStream$BlockDataInputStream.peekByte (ObjectInputStream.java:3115)
+|    at java.io.ObjectInputStream.readObject0 (ObjectInputStream.java:1597)
+|    at java.io.ObjectInputStream.readObject (ObjectInputStream.java:464)
+|    at java.io.ObjectInputStream.readObject (ObjectInputStream.java:422)
+|    at edu.csus.ecs.pc2.core.transport.ConnectionHandlerThread.receive (ConnectionHandlerThread.java:151)
+|    at edu.csus.ecs.pc2.core.transport.ConnectionHandlerClientThread.run (ConnectionHandlerClientThread.java:65)
+200617 194356.264|FINER|Thread-0|run|THROW
+|edu.csus.ecs.pc2.core.transport.TransportException: Connection reset
+|    at edu.csus.ecs.pc2.core.transport.ConnectionHandlerThread.receive (ConnectionHandlerThread.java:155)
+|    at edu.csus.ecs.pc2.core.transport.ConnectionHandlerClientThread.run (ConnectionHandlerClientThread.java:65)

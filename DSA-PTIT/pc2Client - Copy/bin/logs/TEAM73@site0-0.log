@@ -1,0 +1,24 @@
+200603 180959.677|CONFIG|AWT-EventQueue-0|setFileHandlers|Now logging to E:\CODE\C++\pc2Client\bin\logs directory.
+200603 180959.678|INFO|AWT-EventQueue-0|info|
+200603 180959.678|INFO|AWT-EventQueue-0|info|Version 9.6.0 20190102 (Wednesday, January 2nd 2019 01:20 UTC) Java ver 13.0.2 build 5102 Windows 10 10.0 (amd64) 
+200603 180959.678|INFO|AWT-EventQueue-0|info|Login: 73 (aka team73)
+200603 180959.679|INFO|AWT-EventQueue-0|startLog|Working directory is E:\CODE\C++\pc2Client\bin
+200603 180959.680|INFO|AWT-EventQueue-0|startLog|Process id is 13332@Admin
+200603 180959.681|INFO|AWT-EventQueue-0|info|Contacting server at 203.162.10.117:50002 as TEAM73 @ site 0
+200603 180959.681|INFO|AWT-EventQueue-0|info|sendLoginRequest start - sending from TEAM73 @ site 0
+200603 180959.686|INFO|AWT-EventQueue-0|sendToLocalServer|Sending packet to server Packet[LOGIN_REQUEST] #1 TEAM73 @ site 0 -> SERVER0 @ site 0
+200603 180959.688|INFO|Thread-1|run|send(Serializable)
+200603 180959.689|INFO|AWT-EventQueue-0|sendToLocalServer|Sent    packet to server Packet[LOGIN_REQUEST] #1 TEAM73 @ site 0 -> SERVER0 @ site 0
+200603 180959.691|INFO|AWT-EventQueue-0|info|sendLoginRequest end - packet sent.
+200603 180959.974|INFO|Thread-0|receive|public void receive(SealedObject TransportPacket, ConnectionHandlerID connectionHandlerID)
+200603 180959.977|INFO|Thread-2|info| receiveObject(S) start got Packet[LOGIN_FAILED] #327 SERVER0 @ site 1 -> TEAM73 @ site 0
+200603 180959.977|INFO|Thread-2|dumpPacket|Packet LOGIN_FAILED (Seq #327, o#327 ) recieveObject
+200603 180959.977|INFO|Thread-2|dumpPacket|  From: SERVER0 @ site 1, oSERVER0 @ site 1 (CNTT1-CNPM @ 10.170.100.147) (Contest Id: Default-3103216194707311729)
+200603 180959.978|INFO|Thread-2|dumpPacket|    To: TEAM73 @ site 0
+200603 180959.978|INFO|Thread-2|dumpPacket|   key: MESSAGE_STRING is: java.lang.String Invalid password
+200603 180959.978|INFO|Thread-2|info|handlePacket start Packet[LOGIN_FAILED] #327 SERVER0 @ site 1 -> TEAM73 @ site 0
+200603 180959.979|INFO|Thread-2|dumpPacket|Packet LOGIN_FAILED (Seq #327, o#327 ) handlePacket
+200603 180959.979|INFO|Thread-2|dumpPacket|  From: SERVER0 @ site 1, oSERVER0 @ site 1 (CNTT1-CNPM @ 10.170.100.147) (Contest Id: Default-3103216194707311729)
+200603 180959.979|INFO|Thread-2|dumpPacket|    To: TEAM73 @ site 0
+200603 180959.979|INFO|Thread-2|dumpPacket|   key: MESSAGE_STRING is: java.lang.String Invalid password
+200603 181001.013|INFO|Thread-2|info| receiveObject(S) end   got Packet[LOGIN_FAILED] #327 SERVER0 @ site 1 -> TEAM73 @ site 0

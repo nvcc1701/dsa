@@ -1,0 +1,30 @@
+200512 220528.527|CONFIG|main|setFileHandlers|Now logging to E:\CODE\C++\pc2Client - Copy\bin\logs directory.
+200512 220528.529|INFO|main|info|
+200512 220528.532|INFO|main|info|Version 9.6.0 20190102 (Wednesday, January 2nd 2019 01:20 UTC) Java ver 13.0.2 build 5102 Windows 10 10.0 (amd64) 
+200512 220528.532|INFO|main|startLog|Working directory is E:\CODE\C++\pc2Client - Copy\bin
+200512 220528.564|INFO|main|startLog|Process id is 13920@Admin
+200512 220528.564|INFO|main|start|Starting ConnectionManager...
+200512 220528.777|INFO|main|start|Started ConnectionManager
+200512 220528.795|INFO|main|setClientServerAndPort|INIFile File location: file:/E:/CODE/C++/pc2Client%20-%20Copy/bin/pc2v9.ini
+200512 220528.796|INFO|main|setClientServerAndPort|setClientServerAndPort 203.162.88.119 parsed as 203.162.88.119 port 51002
+200512 220528.796|INFO|main|info|Contacting server at 203.162.88.119:51002
+200512 220528.797|INFO|main|connectToMyServer|Connecting to 203.162.88.119:51002
+200512 220528.861|INFO|Thread-0|receiveUnencrypted|receiveUnencrypted(TransportWrapper, ConnectionHandlerID=Socket[addr=/203.162.88.119,port=51002,localport=63148]-2789322018994077397)
+200512 220528.875|INFO|Thread-0|receiveUnencrypted|receiveUnencrypted Made a secret key for Socket[addr=/203.162.88.119,port=51002,localport=63148]-2789322018994077397 key is com.sun.crypto.provider.DESKey@fffe7f02
+200512 220528.876|INFO|Thread-0|getPublicKeyPacket|Generating Unencrypted Public Key Packet
+200512 220528.877|INFO|Thread-0|getPublicKeyPacket|checking key:= SunJCE Diffie-Hellman Public Key:
+y:
+    19c0fbe3 922ee11c d1a6e50b 22ca55b9 acf8af4a 1654cadf 15560791 73e53499
+    5b706bba d089b8b7 8e970352 5d772704 c7e0e320 62e48742 856770e7 552cb2d3
+    e5ea571c a09bf67c ef2ef1f0 bd2e1837 0aaff75d 039f1bac cef9e8d3 23a15bbc
+    793047dc 3c446728 2f0df6a7 ab14f9fb 03377d6c 14f6ed26 5f3cf957 c32667de
+p:
+    f488fd58 4e49dbcd 20b49de4 9107366b 336c380d 451d0f7c 88b31c7c 5b2d8ef6
+    f3c923c0 43f0a55b 188d8ebb 558cb85d 38d334fd 7c175743 a31d186c de33212c
+    b52aff3c e1b12940 18118d7c 84a70a72 d686c403 19c80729 7aca950c d9969fab
+    d00a509b 0246d308 3d66a45d 419f9c7c bd894b22 1926baab a25ec355 e92f78c7
+g:
+    02
+l:
+    512
+200512 220528.877|INFO|Thread-0|getPublicKeyPacket|packet:= edu.csus.ecs.pc2.core.transport.TransportWrapper@1981c3ad
