@@ -1,4 +1,4 @@
-# PROGRAMING EXERCISE FROM PTIT
+# programming exercise from PTIT
 
  programing from ptit
 
