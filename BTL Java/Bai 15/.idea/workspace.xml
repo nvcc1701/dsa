@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f9a31d27-e2cd-4dd8-be77-da496697bd24" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1jSxaoEX8GxnNTcvylpFb0kDPdB" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/data" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Desktop\BTL Java\Bai 15\data" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main" />
+      <module name="Bai 15" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f9a31d27-e2cd-4dd8-be77-da496697bd24" name="Default Changelist" comment="" />
+      <created>1603811359827</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603811359827</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="836" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603811784238">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="836" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1603811784238" />
+    <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1603892452122">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="538" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1603892452122" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1603811541761">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603811541761" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1604033319730">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1604033319730" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1604033319730">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1604033319730" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1604033319730">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1604033319730" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1604033319730">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1604033319730" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1603911407411">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603911407411" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1603911407411">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1603911407411" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1603911407411">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1603911407411" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1603911407411">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1603911407411" />
+    <state x="473" y="109" key="SettingsEditor" timestamp="1603811624250">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="473" y="109" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1603811624250" />
+    <state x="418" y="65" key="new project wizard" timestamp="1603811767395">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="418" y="65" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1603811767395" />
+  </component>
+</project>
