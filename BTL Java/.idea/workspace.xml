@@ -1,13 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9f3ec65-bc20-4af0-91c9-cbffa729468b" name="Default Changelist" comment="" />
+    <list default="true" id="61026ca4-0c04-4d09-9394-d79ea3127b21" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/BTL Java.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/Bai 15_1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/SAPXEP.OUT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/SV.OUT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/out/production/Bai 15/SinhVien.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/out/production/Bai 15/SinhVienIO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/out/production/Bai 15/main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/out/production/Bai 15_1/Bai15.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/out/production/Bai 15_1/DanhSachSinhVienPTIT.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/out/production/Bai 15_1/IOFileSinhVienPTIT.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/out/production/Bai 15_1/SinhVienPTIT.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/out/production/Bai 15_1/SinhVienPTITException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/out/production/Bai 15_1/sv.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/src/Bai15.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/src/DanhSachSinhVienPTIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/src/IOFileSinhVienPTIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/src/SinhVienPTIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/src/SinhVienPTITException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 15_1/src/sv.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEST/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEST/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEST/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEST/TEST.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEST/out/production/TEST/SinhVien.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEST/out/production/TEST/main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEST/out/production/TEST/sv.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEST/src/SinhVien.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEST/src/main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TEST/src/sv.inp" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectId" id="1ixC4HNJecjSyvI2dxcCmHWBPVf" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1jhAHhLkxzx1Zit5BkdJsI1MGx4" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -15,11 +55,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Bai 7" />
-    <property name="project.structure.last.edited" value="SDKs" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -38,42 +77,22 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a9f3ec65-bc20-4af0-91c9-cbffa729468b" name="Default Changelist" comment="" />
-      <created>1602839662830</created>
+      <changelist id="61026ca4-0c04-4d09-9394-d79ea3127b21" name="Default Changelist" comment="" />
+      <created>1604245863301</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1602839662830</updated>
+      <updated>1604245863301</updated>
     </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="70" key="#Project_Structure" timestamp="1602840502737">
+    <state x="449" y="82" key="#Project_Structure" timestamp="1604245878831">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="70" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1602840502737" />
-    <state x="265" y="78" width="1090" height="746" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602840482739">
+    <state x="449" y="82" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1604245878831" />
+    <state x="361" y="32" key="new project wizard" timestamp="1604246009861">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="265" y="78" width="1090" height="746" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1602840482739" />
-    <state x="582" y="237" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602839869487">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="582" y="237" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1602839869487" />
-    <state x="661" y="323" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1602839843893">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="661" y="323" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.824@0.0.1536.824" timestamp="1602839843893" />
-    <state x="592" y="175" key="FileChooserDialogImpl" timestamp="1602840711676">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="592" y="175" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1602840711676" />
-    <state x="320" y="0" key="SettingsEditor" timestamp="1602840289712">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="320" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1602840289712" />
-    <state x="468" y="200" key="run.anything.popup" timestamp="1602840133631">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="468" y="200" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1602840133631" />
+    <state x="361" y="32" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1604246009861" />
   </component>
 </project>

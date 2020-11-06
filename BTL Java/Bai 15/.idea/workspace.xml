@@ -1,7 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f9a31d27-e2cd-4dd8-be77-da496697bd24" name="Default Changelist" comment="" />
+    <list default="true" id="f9a31d27-e2cd-4dd8-be77-da496697bd24" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Bai 16/data/mh.inp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Bai 16/src/IOMatHang.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Bai 16/src/ListMH.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Bai 16/src/MatHang.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Bai 16/src/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/BTL Java.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/Bai 15_1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/SAPXEP.OUT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/SV.OUT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/out/production/Bai 15/SinhVien.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/out/production/Bai 15/SinhVienIO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/out/production/Bai 15/main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/out/production/Bai 15_1/Bai15.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/out/production/Bai 15_1/DanhSachSinhVienPTIT.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/out/production/Bai 15_1/IOFileSinhVienPTIT.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/out/production/Bai 15_1/SinhVienPTIT.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/out/production/Bai 15_1/SinhVienPTITException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/out/production/Bai 15_1/sv.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/src/Bai15.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/src/DanhSachSinhVienPTIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/src/IOFileSinhVienPTIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/src/SinhVienPTIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/src/SinhVienPTITException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Bai 15_1/src/sv.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TEST/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TEST/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TEST/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TEST/TEST.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TEST/out/production/TEST/SinhVien.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TEST/out/production/TEST/main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TEST/out/production/TEST/sv.inp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TEST/src/SinhVien.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TEST/src/main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TEST/src/sv.inp" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +57,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
   <component name="ProjectId" id="1jSxaoEX8GxnNTcvylpFb0kDPdB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,7 +69,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/data" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
