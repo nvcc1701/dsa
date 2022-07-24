@@ -1,3 +1,5 @@
+package bai4;
+
 
 import java.util.Scanner;
 
