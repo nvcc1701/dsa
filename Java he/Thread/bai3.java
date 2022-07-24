@@ -7,19 +7,19 @@ public class bai3 {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
 
-        // new Thread() {
-        // public void run() {
-        // for (int i = n; i >= 1; i--) {
-        // System.out.println("thread1: " + i);
+        new Thread() {
+            public void run() {
+                for (int i = n; i >= 1; i--) {
+                    System.out.println("thread1: " + i);
 
-        // try {
-        // sleep(1000);
-        // } catch (Exception e) {
-        // // TODO: handle exception
-        // }
-        // }
-        // }
-        // }.start();
+                    try {
+                        sleep(1000);
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                }
+            }
+        }.start();
 
         new Thread() {
             public void run() {
@@ -40,11 +40,11 @@ public class bai3 {
                         }
                     }
 
-                    // try {
-                    // sleep(1000);
-                    // } catch (Exception e) {
-                    // // TODO: handle exception
-                    // }
+                    try {
+                        sleep(1000);
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
                 }
             }
         }.start();
