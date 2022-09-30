@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
  *
  * @author anhnguyen
  */
-public class J07052_DanhSachTrungTuyen {
+public class J04013_BaiToanTuyenSinh {
 
     public static class ThiSinh {
 
@@ -28,6 +28,7 @@ public class J07052_DanhSachTrungTuyen {
         private double diemhoa;
         private double diemuutien;
         private double diemxettuyen;
+        private double tongdiem;
         private String trangthai;
 
         public ThiSinh(String ma, String hoten, double diemtoan, double diemly, double diemhoa) {
@@ -58,81 +59,33 @@ public class J07052_DanhSachTrungTuyen {
                 this.diemuutien = 2.5;
             }
 
-            this.diemxettuyen = this.diemhoa + this.diemtoan + this.diemly + this.diemuutien;
-        }
+            this.tongdiem = this.diemhoa + this.diemtoan + this.diemly;
 
-        public void updateTrangthai(double diemchuan) {
-            if (this.diemxettuyen >= diemchuan) {
+            this.diemxettuyen = this.diemhoa + this.diemtoan + this.diemly + this.diemuutien;
+
+            if (this.diemxettuyen >= 24) {
                 this.trangthai = "TRUNG TUYEN";
             } else {
                 this.trangthai = "TRUOT";
             }
         }
 
-        public void setTrangthai(String trangthai) {
-            this.trangthai = trangthai;
-        }
-
         @Override
         public String toString() {
             String s = "";
             DecimalFormat df = new DecimalFormat("0.#");
-            String diemxettuyen = df.format(this.diemxettuyen);
+            String tongdiem = df.format(this.tongdiem);
             String diemuutien = df.format(this.diemuutien);
-            s += this.ma + " " + this.hoten + " " + diemuutien + " " + diemxettuyen + " " + this.trangthai;
+            s += this.ma + " " + this.hoten + " " + diemuutien + " " + tongdiem + " " + this.trangthai;
             return s;
         }
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("THISINH.in");
-        Scanner sc = new Scanner(file);
-        ArrayList<ThiSinh> lst = new ArrayList<>();
+//        Scanner sc = new Scanner(new File("DATA.in"));
+        Scanner sc = new Scanner(System.in);
 
-        int t = Integer.parseInt(sc.nextLine());
-        int tongthisinh = t;
-        while (t-- > 0) {
-            ThiSinh ts = new ThiSinh(sc.nextLine(), sc.nextLine(), Double.parseDouble(sc.nextLine()), Double.parseDouble(sc.nextLine()), Double.parseDouble(sc.nextLine()));
-            lst.add(ts);
-        }
-        int chitieu = Integer.parseInt(sc.nextLine());
-        Collections.sort(lst, new Comparator<ThiSinh>() {
-            @Override
-            public int compare(ThiSinh o1, ThiSinh o2) {
-                if (o2.diemxettuyen == o1.diemxettuyen) {
-                    return o1.ma.compareToIgnoreCase(o2.ma);
-                } else {
-                    return Double.compare(o2.diemxettuyen, o1.diemxettuyen);
-                }
-            }
-        });
-
-        double diemchuan = 0;
-        if (tongthisinh > chitieu) {
-            for (int i = 0; i < chitieu; i++) {
-                diemchuan += lst.get(i).diemxettuyen;
-            }
-            diemchuan /= chitieu;
-            System.out.println(diemchuan);
-
-            for (ThiSinh x : lst) {
-                x.updateTrangthai(diemchuan);
-                System.out.println(x.toString());
-            }
-        } else {
-            diemchuan = Collections.min(lst, new Comparator<ThiSinh>() {
-                @Override
-                public int compare(ThiSinh o1, ThiSinh o2) {
-                    return Double.compare(o1.diemxettuyen, o2.diemxettuyen);
-                }
-            }).diemxettuyen;
-
-            System.out.println(diemchuan);
-
-            for (ThiSinh x : lst) {
-                x.setTrangthai("TRUNG TUYEN");
-                System.out.println(x.toString());
-            }
-        }
+        ThiSinh ts = new ThiSinh(sc.nextLine(), sc.nextLine(), Double.parseDouble(sc.nextLine()), Double.parseDouble(sc.nextLine()), Double.parseDouble(sc.nextLine()));
+        System.out.println(ts.toString());
     }
 }
