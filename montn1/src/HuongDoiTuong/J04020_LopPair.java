@@ -22,26 +22,32 @@ public class J04020_LopPair {
             this.n2 = n2;
         }
 
-        public static boolean isPrime() {
-            return false;
+        public boolean isPrime() {
+            if (!(n1 instanceof Integer) || !(n2 instanceof Integer)) {
+                return false;
+            } else {
+                int x1 = Integer.parseInt(n1.toString());
+                int x2 = Integer.parseInt(n2.toString());
+
+                for (int i = 2; i <= Math.sqrt(x1); i++) {
+                    if (x1 % i == 0) {
+                        return false;
+                    }
+                }
+
+                for (int i = 2; i <= Math.sqrt(x2); i++) {
+                    if (x2 % i == 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
         }
 
-        public T0 getN1() {
-            return n1;
+        @Override
+        public String toString() {
+            return n1 + " " + n2;
         }
-
-        public void setN1(T0 n1) {
-            this.n1 = n1;
-        }
-
-        public T1 getN2() {
-            return n2;
-        }
-
-        public void setN2(T1 n2) {
-            this.n2 = n2;
-        }
-
     }
 
     public static void main(String[] args) {
