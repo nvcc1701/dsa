@@ -13,7 +13,7 @@ import java.util.Stack;
  *
  * @author anhnguyen
  */
-public class T214_BienDoiTienToHauTo {
+public class T216_TinhGiaTriBieuThucHauTo {
 
     public static void main(String[] args) throws FileNotFoundException {
 //        Scanner sc = new Scanner(new File("DATA.in"));
@@ -22,19 +22,27 @@ public class T214_BienDoiTienToHauTo {
 
         while (t-- > 0) {
             String s = sc.nextLine();
-            Stack<String> stk = new Stack<>();
-            for (int i = s.length() - 1; i >= 0; i--) {
+            Stack<Integer> stk = new Stack<>();
+            for (int i = 0; i < s.length(); i++) {
                 if (s.charAt(i) == '+' || s.charAt(i) == '-' || s.charAt(i) == '*' || s.charAt(i) == '/') {
-                    String a = stk.pop();
-                    String b = stk.pop();
-                    String ss = a + b + s.charAt(i);
-                    stk.push(ss);
+                    stk.push(caculate(stk.pop(), stk.pop(), s.charAt(i)));
                 } else {
-                    stk.push(s.charAt(i) + "");
+                    stk.push(Integer.parseInt(String.valueOf(s.charAt(i))));
                 }
             }
-
             System.out.println(stk.peek());
+        }
+    }
+
+    public static int caculate(int b, int a, Character c) {
+        if (c == '+') {
+            return a + b;
+        } else if (c == '-') {
+            return a - b;
+        } else if (c == '*') {
+            return a * b;
+        } else {
+            return a / b;
         }
     }
 }
