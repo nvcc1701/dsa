@@ -11,12 +11,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 /**
  *
  * @author anhnguyen
  */
-public class J05058_SapXepKetQuaTuyenSinh {
+public class J05058_SapXepKetQuaTuyenSInh {
 
     public static class ThiSinh {
 
@@ -29,15 +30,26 @@ public class J05058_SapXepKetQuaTuyenSinh {
         private double diemxettuyen;
         private String trangthai;
 
-        public ThiSinh(String ma, String hoten, String diemtoan, String diemly, String diemhoa) {
+        public ThiSinh(String ma, String hoten, double diemtoan, double diemly, double diemhoa) {
             this.ma = ma;
-            this.hoten = hoten;
-            this.diemtoan = Double.parseDouble(diemtoan);
-            this.diemly = Double.parseDouble(diemly);
-            this.diemhoa = Double.parseDouble(diemhoa);
+
+            StringTokenizer st = new StringTokenizer(hoten);
+            StringBuilder sb = new StringBuilder();
+            while (st.hasMoreTokens()) {
+                String s = st.nextToken().toLowerCase();
+                sb.append(Character.toUpperCase(s.charAt(0)));
+                for (int i = 1; i < s.length(); i++) {
+                    sb.append(s.charAt(i));
+                }
+                sb.append(" ");
+            }
+
+            this.hoten = sb.toString().trim();
+            this.diemtoan = diemtoan * 2;
+            this.diemly = diemly;
+            this.diemhoa = diemhoa;
 
             String uutien = ma.substring(0, 3);
-
             if (uutien.equalsIgnoreCase("KV1")) {
                 this.diemuutien = 0.5;
             } else if (uutien.equalsIgnoreCase("KV2")) {
@@ -46,13 +58,19 @@ public class J05058_SapXepKetQuaTuyenSinh {
                 this.diemuutien = 2.5;
             }
 
-            this.diemxettuyen = this.diemtoan * 2 + this.diemly + this.diemhoa + this.diemuutien;
+            this.diemxettuyen = this.diemhoa + this.diemtoan + this.diemly + this.diemuutien;
+        }
 
-            if (this.diemxettuyen >= 24) {
+        public void updateTrangthai(double diemchuan) {
+            if (this.diemxettuyen >= diemchuan) {
                 this.trangthai = "TRUNG TUYEN";
             } else {
                 this.trangthai = "TRUOT";
             }
+        }
+
+        public void setTrangthai(String trangthai) {
+            this.trangthai = trangthai;
         }
 
         @Override
@@ -67,38 +85,54 @@ public class J05058_SapXepKetQuaTuyenSinh {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-//        Scanner sc = new Scanner(System.in);
-        Scanner sc = new Scanner(new File("DATA.in"));
+        File file = new File("THISINH.in");
+        Scanner sc = new Scanner(file);
         ArrayList<ThiSinh> lst = new ArrayList<>();
 
         int t = Integer.parseInt(sc.nextLine());
-
+        int tongthisinh = t;
         while (t-- > 0) {
-            ThiSinh ts = new ThiSinh(sc.nextLine(), sc.nextLine(), sc.nextLine(), sc.nextLine(), sc.nextLine());
+            ThiSinh ts = new ThiSinh(sc.nextLine(), sc.nextLine(), Double.parseDouble(sc.nextLine()), Double.parseDouble(sc.nextLine()), Double.parseDouble(sc.nextLine()));
             lst.add(ts);
         }
-
+        int chitieu = Integer.parseInt(sc.nextLine());
         Collections.sort(lst, new Comparator<ThiSinh>() {
             @Override
             public int compare(ThiSinh o1, ThiSinh o2) {
-                if (o1.diemxettuyen == o2.diemxettuyen) {
-//                    String makv1 = o1.ma.substring(0, 3);
-//                    String makv2 = o2.ma.substring(0, 3);
-//                    String machucai1 = o1.ma.substring(3, 4);
-//                    String machucai2 = o2.ma.substring(3, 4);
-//                    String mats1 = o1.ma.substring(5);
-//                    String mats2 = o2.ma.substring(5);
-
-//                    System.out.println(makv1 + " " + machucai1 + " " + mats1);
-
-                    return o1.ma.compareToIgnoreCase(o2.ma);
+                if (o2.diemxettuyen == o1.diemxettuyen) {
+                    return o2.ma.compareToIgnoreCase(o1.ma);
+                } else {
+                    return Double.compare(o2.diemxettuyen, o1.diemxettuyen);
                 }
-                return Double.compare(o2.diemxettuyen, o1.diemxettuyen);
             }
         });
 
-        for (ThiSinh x : lst) {
-            System.out.println(x);
+        double diemchuan = 0;
+        if (tongthisinh > chitieu) {
+            for (int i = 0; i < chitieu; i++) {
+                diemchuan += lst.get(i).diemxettuyen;
+            }
+            diemchuan /= chitieu;
+            System.out.println(diemchuan);
+
+            for (ThiSinh x : lst) {
+                x.updateTrangthai(diemchuan);
+                System.out.println(x.toString());
+            }
+        } else {
+            diemchuan = Collections.min(lst, new Comparator<ThiSinh>() {
+                @Override
+                public int compare(ThiSinh o1, ThiSinh o2) {
+                    return Double.compare(o1.diemxettuyen, o2.diemxettuyen);
+                }
+            }).diemxettuyen;
+
+            System.out.println(diemchuan);
+
+            for (ThiSinh x : lst) {
+                x.setTrangthai("TRUNG TUYEN");
+                System.out.println(x.toString());
+            }
         }
     }
 }
