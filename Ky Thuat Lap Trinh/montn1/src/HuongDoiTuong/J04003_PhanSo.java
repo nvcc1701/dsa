@@ -1,11 +1,7 @@
-package HuongDoiTuong;
-
 import java.util.Scanner;
 
 public class J04003_PhanSo {
-
     public static class PhanSo {
-
         private long tuso;
         private long mauso;
 
@@ -35,9 +31,8 @@ public class J04003_PhanSo {
     }
 
     public static long gcd(long a, long b) {
-        if (b == 0) {
+        if (b == 0)
             return a;
-        }
         return gcd(b, a % b);
     }
 }
