@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
  *
  * @author anhnguyen
  */
-public class J07052_DanhSachTrungTuyen {
+public class J05058_SapXepKetQuaTuyenSInh {
 
     public static class ThiSinh {
 
