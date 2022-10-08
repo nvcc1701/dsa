@@ -18,27 +18,26 @@ public class SoLuongDauNgoacVuongLonNhat {
     public static void main(String[] args) throws FileNotFoundException {
 //        Scanner sc = new Scanner(System.in);
         Scanner sc = new Scanner(new File("DATA.in"));
-        int t = Integer.parseInt(sc.nextLine());
-        while (t-- > 0) {
-            String s = sc.nextLine();
-            Stack<Character> stack = new Stack<>();
-            int count = 0;
+        String s = sc.nextLine();
+        Stack<Character> stack = new Stack<>();
+        int count = 0;
 
-            for (int i = 0; i < s.length(); i++) {
-                if (s.charAt(i) == '(' || s.charAt(i) == '[') {
-                    stack.push(s.charAt(i));
-                } else {
-                    if (!stack.isEmpty()) {
-                        if (stack.peek() == '(' && s.charAt(i) == ')') {
-                            stack.pop();
-                        } else if (s.charAt(i) == ']' && stack.peek() == '[') {
-                            stack.pop();
-                            count++;
-                        }
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(' || s.charAt(i) == '[') {
+                stack.push(s.charAt(i));
+            } else {
+                if (!stack.isEmpty()) {
+                    if (stack.peek() == '(' && s.charAt(i) == ')') {
+                        stack.pop();
+                    } else if (s.charAt(i) == ']' && stack.peek() == '[') {
+                        System.out.println("");
+                        stack.pop();
+                        count++;
                     }
                 }
             }
-            System.out.println(count);
         }
+        System.out.println(count);
+        //[(]] )
     }
 }
