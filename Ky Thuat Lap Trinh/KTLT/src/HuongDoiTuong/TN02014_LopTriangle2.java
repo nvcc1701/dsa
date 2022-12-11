@@ -7,6 +7,7 @@ package HuongDoiTuong;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -30,20 +31,45 @@ public class TN02014_LopTriangle2 {
         private Dot a;
         private Dot b;
         private Dot c;
+        private Double canh_a;
+        private Double canh_b;
+        private Double canh_c;
 
-        public Triangle(Scanner sc) {
+        public Triangle(String s) {
+            StringTokenizer st = new StringTokenizer(s);
 
-            this.a = new Dot(sc.next(), sc.next());
-            this.b = new Dot(sc.next(), sc.next());
-            this.c = new Dot(sc.next(), sc.next());
+            while (st.hasMoreTokens()) {
+                a = new Dot(st.nextToken(), st.nextToken());
+                b = new Dot(st.nextToken(), st.nextToken());
+                c = new Dot(st.nextToken(), st.nextToken());
+            }
         }
 
+        public boolean valid() {
+            canh_a = Math.sqrt(Math.pow(Math.abs(a.x - b.x), 2) + Math.pow(Math.abs(a.y - b.y), 2));
+            canh_b = Math.sqrt(Math.pow(Math.abs(b.x - c.x), 2) + Math.pow(Math.abs(b.y - c.y), 2));
+            canh_c = Math.sqrt(Math.pow(Math.abs(c.x - a.x), 2) + Math.pow(Math.abs(c.y - a.y), 2));
+
+//            System.out.println(canh_a + " " + canh_b + " " + canh_c);
+            if (canh_a + canh_b <= canh_c) {
+                return false;
+            } else if (canh_b + canh_c <= canh_a) {
+                return false;
+            } else if (canh_c + canh_a <= canh_b) {
+                return false;
+            }
+
+            return true;
+        }
+
+        public String getPerimeter() {
+            Double cv = canh_a + canh_b + canh_c;
+            return String.format("%.03f", cv);
+        }
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-//        Scanner sc = new Scanner(System.in);
-        Scanner sc = new Scanner(new File("DATA.in"));
-
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         int t = Integer.parseInt(sc.nextLine());
         while (t-- > 0) {
             Triangle a = new Triangle(sc.nextLine());

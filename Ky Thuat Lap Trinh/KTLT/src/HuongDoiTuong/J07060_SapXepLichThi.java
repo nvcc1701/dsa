@@ -6,15 +6,22 @@ package HuongDoiTuong;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 /**
  *
  * @author anhnguyen
  */
 public class J07060_SapXepLichThi {
+
+    public static HashMap<String, MonHoc> mMonHoc = new HashMap<>();
+    public static HashMap<String, CaThi> mCaThi = new HashMap<>();
 
     public static class MonHoc {
 
@@ -35,15 +42,16 @@ public class J07060_SapXepLichThi {
         }
     }
 
-    public static class CaThi {
+    public static class CaThi implements Serializable {
 
         private String ma;
         private String ngay;
         private String gio;
         private String phong;
+        private static int sma = 1;
 
-        public CaThi(String ma, String ngay, String gio, String phong) {
-            this.ma = ma;
+        public CaThi(String ngay, String gio, String phong) {
+            this.ma = String.format("C%03d", sma++);
             this.ngay = ngay;
             this.gio = gio;
             this.phong = phong;
@@ -63,9 +71,9 @@ public class J07060_SapXepLichThi {
         private String nhom;
         private String soSv;
 
-        public LichThi(CaThi caThi, MonHoc monHoc, String nhom, String soSv) {
-            this.caThi = caThi;
-            this.monHoc = monHoc;
+        public LichThi(String caThi, String monHoc, String nhom, String soSv) {
+            this.caThi = mCaThi.get(caThi);
+            this.monHoc = mMonHoc.get(monHoc);
             this.nhom = nhom;
             this.soSv = soSv;
         }
@@ -83,8 +91,6 @@ public class J07060_SapXepLichThi {
         Scanner sc2 = new Scanner(new File("CATHI.in"));
         Scanner sc3 = new Scanner(new File("LICHTHI.in"));
 
-        HashMap<String, MonHoc> mMonHoc = new HashMap<>();
-        HashMap<String, CaThi> mCaThi = new HashMap<>();
         ArrayList<LichThi> lst = new ArrayList<>();
 
         int t1 = Integer.parseInt(sc1.nextLine());
@@ -97,14 +103,29 @@ public class J07060_SapXepLichThi {
         }
 
         while (t2-- > 0) {
-            CaThi ct = new CaThi(sc2.nextLine(), sc2.nextLine(), sc2.nextLine(), sc2.nextLine());
+            CaThi ct = new CaThi(sc2.nextLine(), sc2.nextLine(), sc2.nextLine());
             mCaThi.put(ct.ma, ct);
         }
 
         while (t3-- > 0) {
-            LichThi lt = new LichThi(mCaThi.get(sc3.nextLine()), mMonHoc.get(sc3.nextLine()), sc3.nextLine(), sc3.nextLine());
+            StringTokenizer st = new StringTokenizer(sc3.nextLine());
+            LichThi lt = new LichThi(st.nextToken(), st.nextToken(), st.nextToken(), st.nextToken());
             lst.add(lt);
         }
+
+        Collections.sort(lst, new Comparator<LichThi>() {
+            @Override
+            public int compare(LichThi o1, LichThi o2) {
+                if (o1.caThi.ngay.compareTo(o2.caThi.ngay) == 0) {
+                    if (o1.caThi.gio.compareTo(o2.caThi.gio) == 0) {
+                        return o1.caThi.ma.compareToIgnoreCase(o2.caThi.ma);
+                    }
+
+                    return o1.caThi.gio.compareTo(o2.caThi.gio);
+                }
+                return o1.caThi.ngay.compareTo(o2.caThi.ngay);
+            }
+        });
 
         for (LichThi lt : lst) {
             System.out.println(lt.toString());
