@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool xet[1005];
+vector<int> ke[1005];
+int truoc[1005];
+void BFS(int u, int v){
+	queue<int> q;
+	q.push(u);
+	while(q.size()>0){
+		int top = q.front();
+		q.pop();
+		xet[top] = true;
+		if(top==v) return;
+		for(int i=0; i<ke[top].size(); i++){
+			if( ! xet[ke[top][i]]){
+				xet[ke[top][i]] = true;
+				truoc[ke[top][i]] = top;
+				q.push(ke[top][i]);
+			}
+		}
+	}
+}
+void duyet(int u, int v){
+	if(!xet[v]){
+		cout<<-1;
+		return ;
+	}
+	vector<int> a;
+	while(u!=v){
+		if(u==0){
+			cout<<-1;
+			return;
+		}
+		a.push_back(u);
+		u = truoc[u];
+	}
+	a.push_back(v);
+	reverse(a.begin(), a.end());
+	for(int i=0; i<a.size(); i++){
+		cout<<a[i]<<" ";
+	}
+}
+main(){
+	int t; cin>>t;
+	while(t--){
+		for(int i=0; i<1005; i++)
+			ke[i].clear();
+		memset(xet, false, sizeof(xet));
+		memset(truoc, 0, sizeof(truoc));
+		int a, b, nguon, dich;
+		cin>>a>>b>>nguon>>dich;
+		for(int i=0; i<b; i++){
+			int u, v;
+			cin>>u>>v;
+			ke[u].push_back(v);
+		}
+		BFS(nguon, dich);
+		duyet(dich, nguon);
+		cout<<endl;
+	}
+}
