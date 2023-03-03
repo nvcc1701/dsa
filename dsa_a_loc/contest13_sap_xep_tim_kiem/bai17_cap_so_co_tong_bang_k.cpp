@@ -7,7 +7,7 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int main()
+int main() 
 {
 #ifndef ONLINE_JUDGE
     freopen("../input.txt ", "r", stdin);
