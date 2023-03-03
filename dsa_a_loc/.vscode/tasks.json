@@ -99,6 +99,66 @@
       ],
       "group": "build",
       "detail": "compiler: C:\\Users\\anhnguyen\\scoop\\apps\\mingw\\current\\bin\\cpp.exe"
+    },
+    {
+      "type": "cppbuild",
+      "label": "C/C++: cpp.exe build active file",
+      "command": "C:\\Users\\anhnguyen\\scoop\\apps\\mingw\\current\\bin\\cpp.exe",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": "build",
+      "detail": "compiler: C:\\Users\\anhnguyen\\scoop\\apps\\mingw\\current\\bin\\cpp.exe"
+    },
+    {
+      "type": "cppbuild",
+      "label": "C/C++: cpp.exe build active file",
+      "command": "C:\\Users\\anhnguyen\\scoop\\apps\\mingw\\current\\bin\\cpp.exe",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": "build",
+      "detail": "compiler: C:\\Users\\anhnguyen\\scoop\\apps\\mingw\\current\\bin\\cpp.exe"
+    },
+    {
+      "type": "cppbuild",
+      "label": "C/C++: cpp.exe build active file",
+      "command": "C:\\Users\\anhnguyen\\scoop\\apps\\mingw\\current\\bin\\cpp.exe",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": "build",
+      "detail": "compiler: C:\\Users\\anhnguyen\\scoop\\apps\\mingw\\current\\bin\\cpp.exe"
     }
   ]
 }
