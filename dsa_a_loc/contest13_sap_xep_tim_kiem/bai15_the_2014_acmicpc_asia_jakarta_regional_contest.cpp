@@ -23,18 +23,15 @@ int main()
     for (int &x : a)
         cin >> x;
     sort(a, a + n);
-    for (auto x : a)
-        cout << x << " ";
-    // int l, res = 0;
-    // for (int r = 0; r < n; r++)
-    // {
-    //     l = r + 1;
-    //     int x = abs(a[r] - a[l]);
-    //     while (x <= k)
-    //     {
 
-    //     }
-    // }
+    int cnt = 1;
+    for (int i = 0; i < n - 1; i++)
+    {
+        if (a[i + 1] - a[i] > k)
+            cnt++;
+    }
+
+    cout << cnt;
 
     return 0;
 }

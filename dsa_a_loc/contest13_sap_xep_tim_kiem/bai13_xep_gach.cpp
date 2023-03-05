@@ -8,7 +8,6 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
 int n;
-int a[MAX];
 int main()
 {
 #ifndef ONLINE_JUDGE
@@ -19,9 +18,17 @@ int main()
     cin.tie(nullptr);
 
     cin >> n;
+    int a[n];
     for (int &x : a)
         cin >> x;
 
-    cout << n;
+    sort(a, a + n, greater<int>());
+    int Min = a[0], cnt = 0;
+    for (int i = 0; i < n && Min > 0; i++)
+    {
+        cnt++;
+        Min = min(Min - 1, a[i]);
+    }
+    cout << cnt;
     return 0;
 }

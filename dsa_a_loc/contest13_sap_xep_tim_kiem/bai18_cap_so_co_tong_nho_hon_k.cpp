@@ -11,23 +11,29 @@ int n, k;
 int a[MAX];
 ll res = 0;
 
-void binarySearch(int i, int x)
+void binarySearch(int i, int k)
 {
     int l = i + 1, r = n - 1;
     int m;
-    ll pos = 0;
+    ll cnt = -1;
     while (l <= r)
     {
         m = (l + r) / 2;
-        if (a[m] < x)
+        if (a[m] < k)
         {
-            pos = m;
             l = m + 1;
+            cnt = m;
         }
         else
+        {
             r = m - 1;
+        }
     }
-    res += pos - 1;
+
+    cout << m << " " << i << endl;
+
+    if (cnt != -1)
+        res += (m - i);
 }
 
 int main()
@@ -44,9 +50,12 @@ int main()
         cin >> a[i];
 
     sort(a, a + n);
-
     for (int i = 0; i < n - 1; i++)
+    {
         binarySearch(i, k - a[i]);
+    }
+
     cout << res;
+
     return 0;
 }

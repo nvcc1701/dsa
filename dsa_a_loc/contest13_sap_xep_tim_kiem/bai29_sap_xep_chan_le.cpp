@@ -18,31 +18,26 @@ int main()
 
     int n;
     cin >> n;
-    int a[n];
-    for (int &x : a)
+    vector<pair<int, int>> v;
+    int x;
+    for (int i = 0; i < n; i++)
+    {
         cin >> x;
+        v.push_back({i+1, x});
+    }
 
-    sort(a, a + n, [](int a, int b) {
-        if (a % 2 == 0 && b % 2 == 0)
-        {
-            return a < b;
-        }
-        if (a % 2 == 1 && b % 2 == 1)
-        {
-            return a > b;
-        }
-        if (a % 2 == 0 && b % 2 == 1)
-        {
-            return false;
-        }
-        if (a % 2 == 1 && b % 2 == 0)
-        {
+    sort(v.begin(), v.end(), [](pair<int, int> a, pair<int, int> b) {
+        int an = a.first;
+        int bn = b.first;
+
+        if (bn % 2 == 0)
             return true;
-        }
+        else if (bn % 2 == 1)
+            return false;
     });
 
-    for (auto x : a)
-        cout << x << " ";
+    for (auto x : v)
+        cout << x.second << " ";
 
     return 0;
 }
