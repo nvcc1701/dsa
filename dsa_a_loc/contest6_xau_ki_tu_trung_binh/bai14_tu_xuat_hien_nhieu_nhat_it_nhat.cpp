@@ -1,38 +1,45 @@
-#include <iostream>
-#include <sstream>
-#include <vector>
-#include <map>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
+using ll = long long;
 
-bool cmp(pair<string, int> a, pair<string, int> b)
-{
-    if (a.second == b.second)
-        return a.first < b.first;
-    return a.second > b.second;
-}
+const ll LINF = 1e18 + 5;
+const int INF = 1e9;
+const int MOD = 1e9 + 7;
+const int MAX = 1e6 + 5;
 
 int main()
 {
+#ifndef ONLINE_JUDGE
+    freopen("../input.txt ", "r", stdin);
+    freopen("../output.txt ", "w", stdout);
+#endif
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     string s;
     getline(cin, s);
-    vector<pair<string, int>> v;
-    map<string, int> mp;
     stringstream ss(s);
+    map<string, int> mp;
     while (ss >> s)
         mp[s]++;
 
-    for (auto it : mp)
-    {
-        pair<string, int> p;
-        p.first = it.first;
-        p.second = it.second;
-        v.push_back(p);
-    }
+    vector<pair<string, int>> v;
+    for (auto x : mp)
+        v.push_back(x);
 
-    sort(begin(v), end(v), cmp);
+    sort(v.begin(), v.end(), [](pair<string, int> a, pair<string, int> b) {
+        if (a.second == b.second)
+            return a.first < b.first;
+        return a.second < b.second;
+    });
+    cout << v.rbegin()->first << " " << v.rbegin()->second << endl;
+    
+    sort(v.begin(), v.end(), [](pair<string, int> a, pair<string, int> b) {
+        if (a.second == b.second)
+            return a.first > b.first;
+        return a.second < b.second;
+    });
+    cout << v.begin()->first << " " << v.begin()->second << endl;
 
-    cout << v[0].first << " " << v[0].second << endl;
-    cout << v[v.size() - 1].first << " " << v[v.size() - 1].second;
     return 0;
 }
