@@ -1,2 +1,1 @@
-aabcacbdaa
-cacb
+a
