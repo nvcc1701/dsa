@@ -20,31 +20,36 @@ int main()
     cin.tie(nullptr);
 
     string s;
-    string date;
-    vector<string> name;
-    while (cin >> s)
-    {
-        if (isdigit(s[0]))
-            date = s;
-        else
-            name.push_back(s);
-    }
+    vector<string> v;
 
-    for (string &x : name)
+    while (cin >> s)
+        v.push_back(s);
+
+    for (auto &x : v)
     {
         x[0] = toupper(x[0]);
         for (int i = 1; i < x.size(); i++)
             x[i] = tolower(x[i]);
     }
 
-    if (date[2] != '/')
-        date = "0" + date;
-    if (date[5] != '/')
-        date.insert(3, "0");
+    for (auto &x : v.back())
+        x = toupper(x);
 
-    for (auto x : name)
-        cout << x << " ";
-    cout << endl;
-    cout << date;
+    // output 1
+    for (int i = 0; i < v.size(); i++)
+    {
+        if (i == v.size() - 2)
+            cout << v[i] << ", ";
+        else if (i == v.size() - 1)
+            cout << v[v.size() - 1] << endl;
+        else
+            cout << v[i] << " ";
+    }
+
+    // output 2
+    cout << v[v.size() - 1] << ", ";
+    for (int i = 0; i < v.size() - 1; i++)
+        cout << v[i] << " ";
+
     return 0;
 }
