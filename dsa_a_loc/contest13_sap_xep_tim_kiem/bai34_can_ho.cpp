@@ -7,7 +7,7 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n, l;
+ll n, m, k;
 int a[MAX];
 
 int main()
@@ -19,24 +19,34 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    cin >> n >> l;
+    cin >> n >> m >> k;
     for (int i = 0; i < n; i++)
         cin >> a[i];
 
-    sort(a, a + n);
-    double Max = -1;
-    for (int i = 0; i < n - 1; i++)
+    ll x;
+    multiset<ll> se;
+    for (int i = 0; i < m; i++)
     {
-        double x = (a[i + 1] - a[i]);
-        Max = max(Max, x);
+        cin >> x;
+        se.insert(x);
     }
 
-    double x = (l - a[n - 1]);
-    Max = max(Max, x);
-    x = (a[0]);
-    Max = max(Max, x);
+    sort(a, a + n);
 
-    cout << fixed << setprecision(10) << Max / 2;
+    int cnt = 0;
+    for (int i = 0; (i < n) && (se.size() > 0); i++)
+    {
+        auto it = se.upper_bound(a[i] + k);
+        it--;
+
+        if ((a[i] - k) <= *it && *it <= (a[i] + k))
+        {
+            cnt++;
+            se.erase(it);
+        }
+    }
+
+    cout << cnt;
 
     return 0;
 }

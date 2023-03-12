@@ -8,6 +8,7 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
 map<int, int> mp;
+int pos[MAX];
 int main()
 {
 #ifndef ONLINE_JUDGE
@@ -26,6 +27,8 @@ int main()
         cin >> a[i];
         mp[a[i]]++;
         b[i] = a[i];
+        if (mp[a[i]] == 1)
+            pos[a[i]] = i;
     }
 
     sort(a, a + n, [](int a, int b) {
@@ -38,7 +41,11 @@ int main()
         cout << x << " ";
     cout << endl;
 
-    stable_sort(b, b + n, [](int a, int b) { return mp[a] > mp[b]; });
+    sort(b, b + n, [](int a, int b) {
+        if (mp[a] == mp[b])
+            return pos[a] < pos[b];
+        return mp[a] > mp[b];
+    });
     for (auto x : b)
         cout << x << " ";
 
