@@ -1,56 +1,50 @@
-#include <iostream>
-#include <sstream>
-#include <map>
-#include <algorithm>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
+using ll = long long;
 
-// sort by value
-bool cmp(pair<char, int> a, pair<char, int> b)
-{
-    if (a.second == b.second)
-        return a.first < b.first;
-    return a.second < b.second;
-}
-
-bool cmp2(pair<char, int> a, pair<char, int> b)
-{
-    if (a.second == b.second)
-        return a.first < b.first;
-    return a.second > b.second;
-}
-
-void sort(map<char, int> m)
-{
-    vector<pair<char, int>> v;
-    for (auto it : m)
-        v.push_back(it);
-
-    sort(v.begin(), v.end(), cmp);
-    for (auto it : v)
-    {
-        cout << it.first << " " << it.second << endl;
-    }
-
-    cout << endl;
-
-    sort(v.begin(), v.end(), cmp2);
-    for (auto it : v)
-    {
-        cout << it.first << " " << it.second << endl;
-    }
-}
+const ll LINF = 1e18 + 5;
+const int INF = 1e9;
+const int MOD = 1e9 + 7;
+const int MAX = 1e6 + 5;
 
 int main()
 {
+
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     string s;
     getline(cin, s);
 
-    map<char, int> m;
+    map<char, int> mp;
+    vector<pair<char, int>> v;
+    vector<char> v2;
 
     for (int i = 0; i < s.size(); i++)
-        m[s[i]]++;
+    {
+        mp[s[i]]++;
+        v2.push_back(s[i]);
+    }
 
-    sort(m);
+    for (auto x : mp)
+    {
+        v.push_back(x);
+    }
+
+    sort(v.begin(), v.end(), [](pair<char, int> a, pair<char, int> b) { return a.first < b.first; });
+
+    for (auto x : v)
+        cout << x.first << " " << x.second << endl;
+    cout << endl;
+
+    for (auto x : v2)
+    {
+        if (mp[x] != 0)
+        {
+            cout << x << " " << mp[x] << endl;
+            mp[x] = 0;
+        }
+    }
+
     return 0;
 }

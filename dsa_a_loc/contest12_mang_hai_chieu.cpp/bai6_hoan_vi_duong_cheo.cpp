@@ -18,26 +18,30 @@ int main()
 
     int n;
     cin >> n;
-    vector<pair<int, int>> v;
-    int x;
+    int a[n][n];
     for (int i = 0; i < n; i++)
     {
-        cin >> x;
-        v.push_back({i+1, x});
+        for (int j = 0; j < n; j++)
+        {
+            cin >> a[i][j];
+        }
     }
 
-    sort(v.begin(), v.end(), [](pair<int, int> a, pair<int, int> b) {
-        int an = a.first;
-        int bn = b.first;
+    //[0][n-1] [0][0]
+    //[1][n-1 -1] [1][1]
+    for (int i = 0; i < n; i++)
+    {
+        swap(a[i][i], a[i][n - 1 - i]);
+    }
 
-        if (bn % 2 == 0)
-            return true;
-        else if (bn % 2 == 1)
-            return false;
-    });
-
-    for (auto x : v)
-        cout << x.second << " ";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    }
 
     return 0;
 }

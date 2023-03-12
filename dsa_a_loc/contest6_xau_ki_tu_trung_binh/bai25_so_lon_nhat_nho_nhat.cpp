@@ -7,7 +7,6 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n;
 int main()
 {
 #ifndef ONLINE_JUDGE
@@ -17,18 +16,24 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    cin >> n;
-    int a[n];
-    for (int &x : a)
-        cin >> x;
-
-    sort(a, a + n, greater<int>());
-    int Min = a[0], cnt = 0;
-    for (int i = 0; i < n && Min > 0; i++)
+    int m, s;
+    cin >> m >> s;
+    vector<int> v;
+    int i = 9;
+    while (i > 0 && s > 0)
     {
-        cnt++;
-        Min = min(Min - 1, a[i]);
+        
+        int t = s / i;
+        s = s % i;
+        while (t > 0)
+        {
+            v.push_back(i);
+            t--;
+        }
+        i--;
     }
-    cout << cnt;
+
+    for (auto x : v)
+        cout << x << " ";
     return 0;
 }

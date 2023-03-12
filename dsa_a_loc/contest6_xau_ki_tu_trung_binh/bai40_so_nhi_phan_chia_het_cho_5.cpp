@@ -7,7 +7,6 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n;
 int main()
 {
 #ifndef ONLINE_JUDGE
@@ -17,18 +16,23 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
+    string n;
     cin >> n;
-    int a[n];
-    for (int &x : a)
-        cin >> x;
-
-    sort(a, a + n, greater<int>());
-    int Min = a[0], cnt = 0;
-    for (int i = 0; i < n && Min > 0; i++)
+    ll sum = 0;
+    ll power = 1;
+    for (int i = n.size() - 1; i >= 0; i--)
     {
-        cnt++;
-        Min = min(Min - 1, a[i]);
+        int bit = n[i] - '0';
+        sum += bit * power;
+        cout << bit * power << endl;
+        power *= 2;
     }
-    cout << cnt;
+
+
+    if (sum % 5 == 0)
+        cout << "YES";
+    else
+        cout << "NO";
+
     return 0;
 }

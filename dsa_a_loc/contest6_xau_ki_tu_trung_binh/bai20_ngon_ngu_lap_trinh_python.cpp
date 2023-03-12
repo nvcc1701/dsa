@@ -2,6 +2,9 @@
 using namespace std;
 using ll = long long;
 
+#define fi first
+#define se second
+
 const ll LINF = 1e18 + 5;
 const int INF = 1e9;
 const int MOD = 1e9 + 7;
@@ -16,31 +19,23 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    string s, t;
-    getline(cin, s);
-    cin.ignore(1);
-    getline(cin, t);
-
-    for (int i = 0; i < s.size() - t.size() + 1; i++)
+    string s;
+    cin >> s;
+    string tmp = "python";
+       
+    int j = 0;
+    for (int i = 0; i < s.size(); i++)
     {
-        int j = 0;
-        if (s[i] == t[j])
+        if (s[i] == 'p' || s[i] == 'y' || s[i] == 't' || s[i] == 'h' || s[i] == 'o' || s[i] == 'n')
         {
-            int tmp = i;
-            while (j < t.size())
+            if (s[i] == tmp[j])
             {
-                if (s[tmp] != t[j])
-                {
-                    break;
-                }
-                tmp++;
                 j++;
-            }
-
-            if (tmp - i == t.size())
-            {
-                cout << "YES";
-                return 0;
+                if (j == tmp.size())
+                {
+                    cout << "YES";
+                    return 0;
+                }
             }
         }
     }

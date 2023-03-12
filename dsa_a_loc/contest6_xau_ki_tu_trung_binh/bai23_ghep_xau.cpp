@@ -18,26 +18,17 @@ int main()
 
     int n;
     cin >> n;
-    vector<pair<int, int>> v;
-    int x;
-    for (int i = 0; i < n; i++)
+    string s;
+    vector<string> v;
+    while (cin >> s)
     {
-        cin >> x;
-        v.push_back({i+1, x});
+        v.push_back(s);
     }
 
-    sort(v.begin(), v.end(), [](pair<int, int> a, pair<int, int> b) {
-        int an = a.first;
-        int bn = b.first;
-
-        if (bn % 2 == 0)
-            return true;
-        else if (bn % 2 == 1)
-            return false;
-    });
+    sort(v.begin(), v.end(), [](string a, string b) { return a > b; });
 
     for (auto x : v)
-        cout << x.second << " ";
+        cout << x;
 
     return 0;
 }

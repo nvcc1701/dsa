@@ -1,53 +1,50 @@
-#include <iostream>
-#include <vector>
-#include <sstream>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
+using ll = long long;
 
-bool cmp(pair<string, int> a, pair<string, int> b)
-{
-    if (a.first.size() == b.first.size())
-        return a.second > b.second;
-    return a.first.size() < b.first.size();
-}
+const ll LINF = 1e18 + 5;
+const int INF = 1e9;
+const int MOD = 1e9 + 7;
+const int MAX = 1e6 + 5;
 
-int isReverable(string s)
+bool isPalin(string s)
 {
-    int l = 0;
-    int r = s.size() - 1;
-    while (l < r)
+    int i = 0, j = s.size() - 1;
+    while (i < j)
     {
-        if (s[l] != s[r])
-            return 0;
-        l++;
-        r--;
+        if (s[i] != s[j])
+            return false;
+        i++;
+        j--;
     }
-
-    return 1;
+    return true;
 }
 
 int main()
 {
+#ifndef ONLINE_JUDGE
+    freopen("../input.txt ", "r", stdin);
+    freopen("../output.txt ", "w", stdout);
+#endif
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     string s;
-    getline(cin, s);
-
-    stringstream ss(s);
-
-    vector<pair<string, int>> v;
-    int i = 0;
-    while (ss >> s)
+    vector<string> v;
+    set<string> se;
+    while (cin >> s)
     {
-        if (isReverable(s))
+        if (isPalin(s) && !se.count(s))
         {
-            pair<string, int> p;
-            p.first = s;
-            p.second = i++;
-            v.push_back(p);
+            v.push_back(s);
+            se.insert(s);
         }
     }
 
-    sort(begin(v), end(v), cmp);
-    for (auto it : v)
-        cout << it.first << " ";
+    stable_sort(v.begin(), v.end(), [](string a, string b) { return a.size() < b.size(); });
+
+    for (auto x : v)
+        cout << x << " ";
+
     return 0;
 }

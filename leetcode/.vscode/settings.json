@@ -64,7 +64,6 @@
         "*.tcc": "cpp",
         "deque": "cpp",
         "unordered_map": "cpp",
-        "random": "cpp",
-        "valarray": "cpp"
+        "random": "cpp"
     }
 }

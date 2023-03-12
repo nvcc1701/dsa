@@ -8,7 +8,6 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
 int n, a[MAX], x;
-int cnt = 0;
 int first_colide()
 {
     int l = 0, r = n - 1;
@@ -20,15 +19,17 @@ int first_colide()
         {
             res = mid;
             r = mid - 1;
-            cnt++;
         }
         else if (a[mid] < x)
             l = mid + 1;
         else
             r = mid - 1;
     }
-  
-    return (res >= 0) ? res : -1;
+
+    if (res >= 0)
+        return res;
+    else
+        return -1;
 }
 
 int last_colide()
@@ -42,7 +43,6 @@ int last_colide()
         {
             res = mid;
             l = mid + 1;
-            cnt++;
         }
         else if (a[mid] < x)
             l = mid + 1;
@@ -50,7 +50,10 @@ int last_colide()
             r = mid - 1;
     }
 
-    return (res >= 0) ? res : -1;
+    if (res >= 0)
+        return res;
+    else
+        return -1;
 }
 
 int first_equal_or_greater_colide()
@@ -65,13 +68,14 @@ int first_equal_or_greater_colide()
             res = mid;
             r = mid - 1;
         }
-        else if (a[mid] < x)
-            l = mid + 1;
         else
-            r = mid - 1;
+            l = mid + 1;
     }
 
-    return (res >= 0) ? res : -1;
+    if (res >= 0)
+        return res;
+    else
+        return -1;
 }
 
 int first_greater_colide()
@@ -86,13 +90,14 @@ int first_greater_colide()
             res = mid;
             r = mid - 1;
         }
-        else if (a[mid] < x)
-            l = mid + 1;
         else
-            r = mid - 1;
+            l = mid + 1;
     }
 
-    return (res >= 0) ? res : -1;
+    if (res >= 0)
+        return res;
+    else
+        return -1;
 }
 
 int main()
@@ -108,15 +113,18 @@ int main()
     for (int i = 0; i < n; i++)
         cin >> a[i];
 
-    cout << first_colide() << endl;
-    cout << last_colide() << endl;
+    int t1 = first_colide();
+    int t2 = last_colide();
+
+    cout << t1 << endl;
+    cout << t2 << endl;
     cout << first_equal_or_greater_colide() << endl;
     cout << first_greater_colide() << endl;
 
-    if (cnt == 0)
+    if (t1 == -1)
         cout << 0;
     else
-        cout << cnt - 1;
+        cout << (t2 - t1) + 1;
 
     return 0;
 }
