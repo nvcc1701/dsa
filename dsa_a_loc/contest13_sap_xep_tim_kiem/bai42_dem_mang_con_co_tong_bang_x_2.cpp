@@ -16,28 +16,32 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    ll n, s, x;
-    cin >> n >> s;
-    vector<pair<int, int>> v(n);
-    for (int i = 0; i < n; i++)
-        cin >> v[i].first >> v[i].second;
+    ll n, m;
+    cin >> n >> m;
 
-    sort(v.begin(), v.end());
+    ll a[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+
+    ll cnt = 0;
+    ll sum = 0;
+    map<ll, ll> mp;
 
     for (int i = 0; i < n; i++)
     {
-        if (s > v[i].first)
+        sum += a[i];
+        if (sum == m)
+            cnt++;
+        if (mp.count(sum - m))
         {
-            s += v[i].second;
+            cout << sum - m << " " << mp[sum - m] << endl;
+            cnt += mp[sum - m];
         }
-        else
-        {
-            cout << "NO";
-            return 0;
-        }
+        mp[sum]++;
     }
 
-    cout << "YES";
-
+    cout << cnt;
     return 0;
 }

@@ -39,17 +39,10 @@ int main()
             j++;
             cnt++;
         }
+        else if (b[j] > a[i])
+            i++;
         else
-        {
-            if (a[j] > a[i])
-            {
-                i++;
-            }
-            else
-            {
-                j++;
-            }
-        }
+            j++;
     }
 
     cout << cnt;

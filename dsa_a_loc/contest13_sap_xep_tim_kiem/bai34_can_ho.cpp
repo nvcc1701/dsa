@@ -9,6 +9,7 @@ const int MAX = 1e6 + 5;
 
 ll n, m, k;
 int a[MAX];
+int b[MAX];
 
 int main()
 {
@@ -22,28 +23,27 @@ int main()
     cin >> n >> m >> k;
     for (int i = 0; i < n; i++)
         cin >> a[i];
-
-    ll x;
-    multiset<ll> se;
     for (int i = 0; i < m; i++)
-    {
-        cin >> x;
-        se.insert(x);
-    }
+        cin >> b[i];
 
     sort(a, a + n);
+    sort(b, b + m);
 
-    int cnt = 0;
-    for (int i = 0; (i < n) && (se.size() > 0); i++)
+    int i = 0, j = 0, cnt = 0;
+
+    while (i < n && j < m)
     {
-        auto it = se.upper_bound(a[i] + k);
-        it--;
-
-        if ((a[i] - k) <= *it && *it <= (a[i] + k))
+        int x = abs(a[i] - b[j]);
+        if (x <= k)
         {
-            cnt++;
-            se.erase(it);
+            ++cnt;
+            ++i;
+            ++j;
         }
+        else if (a[i] > b[j])
+            j++;
+        else
+            i++;
     }
 
     cout << cnt;

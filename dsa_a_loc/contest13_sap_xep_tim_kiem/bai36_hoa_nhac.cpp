@@ -16,28 +16,29 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    ll n, s, x;
-    cin >> n >> s;
-    vector<pair<int, int>> v(n);
-    for (int i = 0; i < n; i++)
-        cin >> v[i].first >> v[i].second;
-
-    sort(v.begin(), v.end());
-
+    int x, n, m;
+    cin >> n;
+    cin >> m;
+    multiset<int> se;
     for (int i = 0; i < n; i++)
     {
-        if (s > v[i].first)
-        {
-            s += v[i].second;
-        }
-        else
-        {
-            cout << "NO";
-            return 0;
-        }
+        cin >> x;
+        se.insert(x);
     }
 
-    cout << "YES";
+    while (m--)
+    {
+        cin >> x;
+        auto it = se.upper_bound(x);
+        if (it == se.begin())
+            cout << -1 << endl;
+        else
+        {
+            it--;
+            cout << *it << endl;
+            se.erase(it);
+        }
+    }
 
     return 0;
 }
