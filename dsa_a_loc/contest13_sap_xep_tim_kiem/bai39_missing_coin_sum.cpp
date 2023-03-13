@@ -16,28 +16,33 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    ll n, s, x;
-    cin >> n >> s;
-    vector<pair<int, int>> v(n);
+    int n;
+    cin >> n;
+    ll a[n];
     for (int i = 0; i < n; i++)
-        cin >> v[i].first >> v[i].second;
+        cin >> a[i];
 
-    sort(v.begin(), v.end());
-
+    sort(a, a + n);
+    ll res = 1;
     for (int i = 0; i < n; i++)
     {
-        if (s > v[i].first)
+        if (res < a[i])
         {
-            s += v[i].second;
-        }
-        else
-        {
-            cout << "NO";
+            cout << res;
             return 0;
         }
+        res += a[i];
     }
 
-    cout << "YES";
+    cout << res;
 
     return 0;
 }
+
+// 1 2 2 7 9
+// res = 1
+// 1+1 =2 +2 =4 +2 = 6 +
+
+// 1 2 3 8
+//  1 2 3 4 5 6
+//  if res + a[i] < a[a+1] -> cannot generate

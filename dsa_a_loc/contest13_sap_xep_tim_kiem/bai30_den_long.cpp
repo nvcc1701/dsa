@@ -24,19 +24,15 @@ int main()
         cin >> a[i];
 
     sort(a, a + n);
-    double Max = -1;
+    int ans = 0;
     for (int i = 0; i < n - 1; i++)
     {
-        double x = (a[i + 1] - a[i]);
-        Max = max(Max, x);
+        int x = (a[i + 1] - a[i]);
+        ans = max(ans, x);
     }
 
-    double x = (l - a[n - 1]);
-    Max = max(Max, x);
-    x = (a[0]);
-    Max = max(Max, x);
-
-    cout << fixed << setprecision(10) << Max / 2;
+    ans = max({ans, 2 * a[0], 2 * (l - a[n - 1])});
+    cout << fixed << setprecision(10) << (double)ans / 2 << endl;
 
     return 0;
 }

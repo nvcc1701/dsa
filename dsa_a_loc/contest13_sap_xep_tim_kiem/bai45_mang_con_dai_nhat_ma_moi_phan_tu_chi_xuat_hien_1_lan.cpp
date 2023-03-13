@@ -16,7 +16,29 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    
+    int n;
+    cin >> n;
+    int a[n];
+    for (auto &x : a)
+        cin >> x;
+
+    ll l = 0, res = 0;
+    map<ll, ll> mp;
+
+    for (ll r = 0; r < n; r++)
+    {
+        mp[a[r]]++;
+        while (mp[a[r]] > 1)
+        {
+            mp[a[l]]--;
+            if (mp[a[l]] == 0)
+                mp.erase(mp[a[l]]);
+            l++;
+        }
+        res = max(res, (r - l + 1));
+    }
+
+    cout << res;
 
     return 0;
 }

@@ -16,28 +16,29 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    ll n, s, x;
-    cin >> n >> s;
-    vector<pair<int, int>> v(n);
-    for (int i = 0; i < n; i++)
-        cin >> v[i].first >> v[i].second;
+    int n;
+    cin >> n;
 
-    sort(v.begin(), v.end());
-
+    vector<pair<int, int>> v;
     for (int i = 0; i < n; i++)
     {
-        if (s > v[i].first)
-        {
-            s += v[i].second;
-        }
-        else
-        {
-            cout << "NO";
-            return 0;
-        }
+        int x, y;
+        cin >> x >> y;
+        v.push_back({x, 1});
+        v.push_back({y, -1});
     }
 
-    cout << "YES";
+    sort(v.begin(), v.end());
+    int cnt = v[0].second;
+    int res = cnt;
+
+    for (int i = 1; i < v.size(); i++)
+    {
+        cnt += v[i].second;
+        res = max(res, cnt);
+    }
+
+    cout << res;
 
     return 0;
 }

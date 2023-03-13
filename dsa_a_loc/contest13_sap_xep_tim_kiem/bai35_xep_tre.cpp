@@ -19,32 +19,30 @@ int main()
     ll n, x;
     cin >> n >> x;
     ll a[n];
+    for (auto &x : a)
+        cin >> x;
 
-    ll tmp;
-    multiset<ll> se;
-    multiset<ll> se2;
+    sort(a, a + n);
 
-    for (int i = 0; i < n; i++)
+    int i = 0, j = n - 1, cnt = 0;
+    while (i <= j)
     {
-        cin >> tmp;
-        se.insert(tmp);
-        se2.insert(tmp);
-    }
-
-    int cnt = 0;
-    for (auto it = se.begin(); it != se.end() && se2.count(*it); it++)
-    {
-        auto it2 = se.lower_bound(x - *it);
-        it2--;
-        if (it2 != se.end() && se2.count(*it2))
+        ll tmp = a[i] + a[j];
+        if (tmp <= x)
         {
-            se2.erase(*it);
-            se2.erase(*it2);
+            ++i;
+            --j;
+            ++cnt;
         }
-        cnt++;
+        else
+        {
+            --j;
+            ++cnt;
+        }
     }
-
     cout << cnt;
 
     return 0;
 }
+
+//2 3 7 9

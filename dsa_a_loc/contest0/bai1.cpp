@@ -16,7 +16,27 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
+    ll n, m, x;
+    cin >> n >> m;
 
+    ll a[n + 1] = {0};
+    map<ll, ll> mp;
+    ll cnt = 0;
+
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> x;
+        a[i] = a[i - 1] + x;
+        mp[a[i]]++;
+        cnt += mp[a[i - 1] + m];
+    }
+
+    // for (int i = 0; i <= n; i++)
+    // {
+    //     cout << mp[a[i] + m] << " " << a[i] + m << endl;
+    // }
+
+    cout << cnt;
 
     return 0;
 }
