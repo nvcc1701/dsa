@@ -1,42 +1,48 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 using ll = long long;
+
+#define endl '\n';
 
 const ll LINF = 1e18 + 5;
 const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+void run_case()
+{
+    freopen(s, "r", stdin);
+    freopen("../output.txt ", "w", stdout);
+}
+
 int main()
 {
-#ifndef ONLINE_JUDGE
+
+#define LOCAL
+
+#ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
     freopen("../output.txt ", "w", stdout);
+    auto start = chrono::high_resolution_clock::now();
 #endif
+
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    ll n, m, x;
-    cin >> n >> m;
-
-    ll a[n + 1] = {0};
-    map<ll, ll> mp;
-    ll cnt = 0;
-
-    for (int i = 1; i <= n; i++)
+    int Test = 1;
+    // cin >> Test;
+    for (int test = 1; test <= Test; test++)
     {
-        cin >> x;
-        a[i] = a[i - 1] + x;
-        mp[a[i]]++;
-        cnt += mp[a[i - 1] + m];
+        run_case();
     }
 
-    // for (int i = 0; i <= n; i++)
-    // {
-    //     cout << mp[a[i] + m] << " " << a[i] + m << endl;
-    // }
-
-    cout << cnt;
+#ifdef LOCAL
+    auto end = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
+    auto startT = chrono::system_clock::to_time_t(start);
+    cout << "\n\n" << ctime(&startT) << (double)duration.count() / 1000 << " seconds\n";
+#endif
 
     return 0;
 }

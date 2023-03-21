@@ -1,43 +1,75 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 using ll = long long;
+
+#define endl '\n';
 
 const ll LINF = 1e18 + 5;
 const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n;
-int a[101];
+int n, m;
+string s;
+
+void run_case()
+{
+    cin >> s;
+    n = s.size();
+
+    vector<string> v;
+
+    queue<string> q;
+    for (int i = 0; i < n; i++)
+    {
+        string ss;
+        ss.push_back(s[i]);
+
+        q.push(ss);
+    }
+
+    while (!q.empty())
+    {
+        string x = q.front();
+        q.pop();
+
+        if (x.size() > n)
+            break;
+
+        v.push_back(x);
+
+        for (auto x1 : s)
+        {
+            string ss;
+            ss.push_back(x1);
+            string y = x + ss;
+            q.push(y);
+        }
+    }
+
+    for (auto x : v)
+        cout << x << endl;
+}
+
 int main()
 {
-#ifndef ONLINE_JUDGE
+
+#define LOCAL
+
+#ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
     freopen("../output.txt ", "w", stdout);
 #endif
+
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int t;
-    cin >> t;
-    while (t--)
+    int Test = 1;
+    // cin >> Test;
+    for (int test = 1; test <= Test; test++)
     {
-        cin >> n;
-        vector<int> duong;
-        vector<int> am;
-
-        for (int i = 0; i < n; i++)
-        {
-            cin >> a[i];
-            if (a[i] > 0)
-                duong.push_back(a[i]);
-            else
-                am.push_back(a[i]);
-        }
-
-        sort(duong.begin(), duong.end());
-        sort(am.begin(), am.end());
-		
+        run_case();
     }
 
     return 0;

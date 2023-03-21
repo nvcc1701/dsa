@@ -12,12 +12,34 @@ const int MAX = 1e6 + 5;
 
 int n;
 
+bool check(string s)
+{
+    //()
+    // 01
+    stack<char> st;
+    for (int i = 0; i < s.size(); i++)
+    {
+        if (s[i] == '0')
+            st.push(s[i]);
+        else if (s[i] == '1')
+        {
+            if (st.size() > 0)
+                st.pop();
+            else
+                return false;
+        }
+    }
+
+    return st.size() == 0;
+}
+
 void run_case()
 {
     cin >> n;
 
     queue<string> q;
-    q.push("()");
+    q.push("0");
+    q.push("1");
     vector<string> v;
 
     while (!q.empty())
@@ -29,14 +51,32 @@ void run_case()
         if (x.size() == n)
             v.push_back(x);
 
-        string sx = "(" + x + ")";
+        string sx = x + "0";
         q.push(sx);
-        sx = x + "()";
+        sx = x + "1";
         q.push(sx);
     }
 
+    bool nf = true;
+
     for (auto x : v)
-        cout << x << endl;
+    {
+        if (check(x))
+        {
+            nf = false;
+            for (auto x1 : x)
+            {
+                if (x1 == '0')
+                    cout << '(';
+                else
+                    cout << ')';
+            }
+            cout << endl;
+        }
+    }
+
+    if (nf)
+        cout << "NOT FOUND";
 }
 
 int main()

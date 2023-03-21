@@ -37,26 +37,31 @@ void generate()
 
 bool check(string s)
 {
+
+    bool A = 1, E = 1;
+
+    // neu tim thay a || e o vi tri 0 hoac n.size()-1
     for (int i = 0; i < s.size(); i++)
     {
-        if (s[i] == 'A' || s[i] == 'E')
+        if (s[i] == 'A')
         {
-            if (i == 0)
-            {
-                continue;
-            }
-            else if (i == s.size() - 1)
-            {
-                continue;
-            }
-            else
-            {
-                if (s[i - 1] != 'A' && s[i + 1] != 'E')
-                    return false;
-            }
+            if ((i != 0) && (i != s.size() - 1))
+                A = 0;
+        }
+
+        if (s[i] == 'E')
+        {
+            if (i != 0 && i != s.size() - 1)
+                E = 0;
         }
     }
-    return true;
+
+    bool AE = 0;
+    if (s.find("AE") != string::npos)
+        AE = 1;
+    if (s.find("EA") != string::npos)
+        AE = 1;
+    return ((A && E) || AE);
 }
 
 void run_case()
@@ -77,9 +82,6 @@ void run_case()
 
     for (auto x : v)
     {
-        // if (x == "AECBD")
-        //     cout << " ";
-
         if (check(x))
             cout << x << endl;
     }
