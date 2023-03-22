@@ -25,14 +25,13 @@ int main()
         v.push_back(x);
     }
 
-    sort(v.begin(), v.end(), [](int a, int b)
-         {
-        int aa = abs(a-x);
-        int bb = abs(b-x);
-        if(aa == bb){
-            return a<b;
+    sort(v.begin(), v.end(), [](int a, int b) {
+        if (abs(a - x) == abs(b - x))
+        {
+            return a < b;
         }
-        return aa<bb; });
+        return abs(a - x) < abs(b - x);
+    });
 
     for (auto it : v)
     {
@@ -40,14 +39,23 @@ int main()
     }
     cout << endl;
 
-    sort(v.begin(), v.end(), [](int a, int b)
-         {
-             if (a % 2 == 0 && b % 2 != 0)
-                 return -1;
-            else if(a%2 == 0 && b%2==0){
-                return b-a;
-            }
-            else return  a-b; });
+    sort(v.begin(), v.end(), [](int a, int b) {
+        if (a % 2 == 0 && b % 2 != 0)
+        {
+            return true;
+        }
+
+        if (a % 2 != 0 && b % 2 == 0)
+        {
+            return false;
+        }
+
+        if (a % 2 == 0 && b % 2 == 0)
+            return a < b;
+
+        if (a % 2 != 0 && b % 2 != 0)
+            return a > b;
+    });
     for (auto it : v)
     {
         cout << it << " ";

@@ -1,66 +1,87 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 using ll = long long;
+
+#define endl '\n';
 
 const ll LINF = 1e18 + 5;
 const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int cntEven(int n)
+void run_case()
 {
-    int cnt = 0;
-    while (n > 0)
-    {
-        int x = n % 10;
-        n /= 10;
-        if (x % 2 == 0)
-            cnt++;
-    }
-    return cnt;
-}
+    int n;
+    cin >> n;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
 
-int cntOdd(int n)
-{
-    int cnt = 0;
-    while (n > 0)
-    {
-        int x = n % 10;
-        n /= 10;
-        if (x % 2 != 0)
-            cnt++;
-    }
-    return cnt;
+    sort(v.begin(), v.end(), [](int a, int b) {
+        if (a % 2 == 0 && b % 2 == 0)
+        {
+            return a < b;
+        }
+        else if (a % 2 == 0)
+        {
+            return false;
+        }
+        else if (b % 2 == 0)
+            return true;
+        return a < b;
+    });
+
+    for (auto x : v)
+        cout << x << " ";
+
+    cout << endl;
+
+    sort(v.begin(), v.end(), [](int a, int b) {
+        if (a % 2 != 0 && b % 2 != 0)
+        {
+            return a < b;
+        }
+        else if (a % 2 != 0)
+        {
+            return false;
+        }
+        else if (b % 2 != 0)
+            return true;
+        return a < b;
+    });
+
+    for (auto x : v)
+        cout << x << " ";
 }
 
 int main()
 {
-#ifndef ONLINE_JUDGE
+
+#define LOCAL
+
+#ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
     freopen("../output.txt ", "w", stdout);
+    auto start = chrono::high_resolution_clock::now();
 #endif
+
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int n;
-    cin >> n;
-    int a[n];
-    for (int &x : a)
+
+    int Test = 1;
+    // cin >> Test;
+    for (int test = 1; test <= Test; test++)
     {
-        cin >> x;
+        run_case();
     }
 
-    sort(a, a + n, [](int a, int b) -> bool {
-        if (cntEven(a) == cntEven(b))
-            return a < b;
-        return cntEven(a) < cntEven(b);
-    });
+#ifdef LOCAL
+    auto end = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
+    auto startT = chrono::system_clock::to_time_t(start);
+    cout << "\n\n" << ctime(&startT) << (double)duration.count() / 1000 << " seconds\n";
+#endif
 
-    for (auto x : a)
-        cout << x << " ";
-    cout << endl;
-
-    stable_sort(a, a + n, [](int a, int b) -> bool { return cntOdd(a) < cntOdd(b); });
-    for (auto x : a)
-        cout << x << " ";
     return 0;
 }
