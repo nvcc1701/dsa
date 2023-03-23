@@ -10,46 +10,28 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n, m;
-string s;
+int n, x;
+int a[21];
+vector<int> v;
+// ll sum = 0;
+
+void init()
+{
+    cin >> n >> x;
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
+
+    sort(a, a + n + 1);
+
+    for (auto xx : a)
+        cout << xx << " ";
+}
+
+int i = 0;
 
 void run_case()
 {
-    cin >> s;
-    n = s.size();
-
-    vector<string> v;
-
-    queue<string> q;
-    for (int i = 0; i < n; i++)
-    {
-        string ss;
-        ss.push_back(s[i]);
-
-        q.push(ss);
-    }
-
-    while (!q.empty())
-    {
-        string x = q.front();
-        q.pop();
-
-        if (x.size() > n)
-            break;
-
-        v.push_back(x);
-
-        for (auto x1 : s)
-        {
-            string ss;
-            ss.push_back(x1);
-            string y = x + ss;
-            q.push(y);
-        }
-    }
-
-    for (auto x : v)
-        cout << x << endl;
+    init();
 }
 
 int main()
@@ -60,6 +42,7 @@ int main()
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
     freopen("../output.txt ", "w", stdout);
+    auto start = chrono::high_resolution_clock::now();
 #endif
 
     ios::sync_with_stdio(false);
@@ -71,6 +54,13 @@ int main()
     {
         run_case();
     }
+
+#ifdef LOCAL
+    auto end = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
+    auto startT = chrono::system_clock::to_time_t(start);
+    cout << "\n\n" << ctime(&startT) << (double)duration.count() / 1000 << " seconds\n";
+#endif
 
     return 0;
 }
