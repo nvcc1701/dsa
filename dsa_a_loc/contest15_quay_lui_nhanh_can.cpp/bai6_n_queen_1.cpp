@@ -11,14 +11,45 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
 int n;
+int cot[100], cheo1[100], cheo2[100];
+int x[100]; // con hau thu i nam o cot nao
 
 void init()
 {
     cin >> n;
 }
 
+ll cnt = 0;
+void Try(int i)
+{
+    for (int j = 1; j <= n; j++)
+    {
+        if (cot[j] == 0 && cheo1[i - j + n] == 0 && cheo2[i + j - 1] == 0)
+        {
+            x[i] = j;
+            cot[j] = 1;
+            cheo1[i - j + n] = 1;
+            cheo2[i + j - 1] = 1;
+            if (i == n)
+            {
+                ++cnt;
+            }
+            else
+            {
+                Try(i + 1);
+            }
+            cot[j] = 0;
+            cheo1[i - j + n] = 0;
+            cheo2[i + j - 1] = 0;
+        }
+    }
+}
+
 void run_case()
 {
+    init();
+    Try(1);
+    cout << cnt;
 }
 
 int main()

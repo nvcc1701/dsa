@@ -10,55 +10,39 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n, s;
+ll n, s;
 int t[31];
-int a[31];
+bool ok = false;
 
 void init()
 {
     cin >> n >> s;
     for (int i = 1; i <= n; i++)
+    {
         cin >> t[i];
-}
-
-int res = MAX;
-bool ok = false;
-void check()
-{
-    ll sum = 0;
-    int cnt = 0;
-    for (int i = 1; i <= n; i++)
-    {
-        if (a[i])
-        {
-            sum += t[i];
-            cnt++;
-        }
-    }
-
-    if (sum == s)
-    {
-        ok = true;
-        res = min(res, cnt);
     }
 }
 
+vector<int> tmp;
 ll sum = 0;
-void Try(int i)
+ll res = INF;
+void Try(int cnt)
 {
-    for (int j = 0; j <= 1; j++)
+    for (int j = cnt; j <= n; j++)
     {
-        a[i] = j;
-        sum += j * t[i];
-        if (i == n)
+        tmp.push_back(t[j]);
+        sum += t[j];
+        if (sum == s)
         {
-            check();
+            ok = true;
+            res = min(res, (ll)tmp.size());
         }
         else if (sum < s)
         {
-            Try(i + 1);
+            Try(j + 1);
         }
-        sum -= j * t[i];
+        tmp.pop_back();
+        sum -= t[j];
     }
 }
 
@@ -66,13 +50,10 @@ void run_case()
 {
     init();
     Try(1);
-
-    if (!ok)
-    {
+    if (ok)
+        cout << res;
+    else
         cout << -1;
-        return;
-    }
-    cout << res;
 }
 
 int main()

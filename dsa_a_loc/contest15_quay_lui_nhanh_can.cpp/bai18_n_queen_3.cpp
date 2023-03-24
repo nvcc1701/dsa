@@ -11,48 +11,59 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
 int n;
-int b[16][16];
-int x[100]; // o buoc thu i chon thanh pho thu j
-int c[100];
-int Min = MAX;
+int x[50]; // luu con hau hang i o vi tri j
+int cot[50];
+int check1[50];
+int check2[50];
 
 void init()
 {
     cin >> n;
+}
+
+void print()
+{
     for (int i = 1; i <= n; i++)
     {
         for (int j = 1; j <= n; j++)
         {
-            cin >> b[i][j];
-            Min = min(Min, b[i][j]);
+            if (x[i] == j)
+            {
+                cout << 'Q';
+            }
+            else
+            {
+                cout << '.';
+            }
         }
+        cout << endl;
     }
-    x[1] = 1;
-    c[1] = 1;
+    cout << endl;
 }
 
-ll sum = 0;
-ll res = INF;
 void Try(int i)
 {
     for (int j = 1; j <= n; j++)
     {
-        if (c[j] == 0)
+        if (cot[j] == 0 && check1[i - j + n] == 0 && check2[i + j - 1] == 0)
         {
             x[i] = j;
-            c[j] = 1;
-            sum += b[x[i - 1]][x[i]];
+            cot[j] = 1;
+            check1[i - j + n] = 1;
+            check2[i + j - 1] = 1;
 
             if (i == n)
             {
-                res = min(res, sum + b[x[i]][1]);
+                print();
             }
-            else if (sum + (n - i + 1) * Min < res)
+            else
             {
                 Try(i + 1);
             }
-            c[j] = 0;
-            sum -= b[x[i - 1]][x[i]];
+
+            cot[j] = 0;
+            check1[i - j + n] = 0;
+            check2[i + j - 1] = 0;
         }
     }
 }
@@ -60,8 +71,7 @@ void Try(int i)
 void run_case()
 {
     init();
-    Try(2);
-    cout << res;
+    Try(1);
 }
 
 int main()

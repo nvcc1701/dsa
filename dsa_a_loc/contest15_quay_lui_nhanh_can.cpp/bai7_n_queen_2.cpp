@@ -11,48 +11,53 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
 int n;
-int b[16][16];
-int x[100]; // o buoc thu i chon thanh pho thu j
-int c[100];
-int Min = MAX;
+int a[9][9];
+int cot[9], x[9];
+int cheo1[16], cheo2[16];
 
 void init()
 {
-    cin >> n;
+    n = 8;
     for (int i = 1; i <= n; i++)
     {
         for (int j = 1; j <= n; j++)
-        {
-            cin >> b[i][j];
-            Min = min(Min, b[i][j]);
-        }
+            cin >> a[i][j];
     }
-    x[1] = 1;
-    c[1] = 1;
 }
 
-ll sum = 0;
-ll res = INF;
+ll res = -INF;
+void check()
+{
+    ll sum = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        sum += a[i][x[i]];
+    }
+
+    res = max(res, sum);
+}
+
 void Try(int i)
 {
     for (int j = 1; j <= n; j++)
     {
-        if (c[j] == 0)
+        if (cot[j] == 0 && cheo1[i - j + n] == 0 && cheo2[i + j - 1] == 0)
         {
             x[i] = j;
-            c[j] = 1;
-            sum += b[x[i - 1]][x[i]];
-
+            cot[j] = 1;
+            cheo1[i - j + n] = 1;
+            cheo2[i + j - 1] = 1;
             if (i == n)
             {
-                res = min(res, sum + b[x[i]][1]);
+                check();
             }
-            else if (sum + (n - i + 1) * Min < res)
+            else
             {
                 Try(i + 1);
             }
-            c[j] = 0;
-            sum -= b[x[i - 1]][x[i]];
+            cot[j] = 0;
+            cheo1[i - j + n] = 0;
+            cheo2[i + j - 1] = 0;
         }
     }
 }
@@ -60,7 +65,7 @@ void Try(int i)
 void run_case()
 {
     init();
-    Try(2);
+    Try(1);
     cout << res;
 }
 

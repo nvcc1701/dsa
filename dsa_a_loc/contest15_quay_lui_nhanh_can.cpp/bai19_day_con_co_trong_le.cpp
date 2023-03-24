@@ -11,48 +11,33 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
 int n;
-int b[16][16];
-int x[100]; // o buoc thu i chon thanh pho thu j
-int c[100];
-int Min = MAX;
-
+int a[16];
 void init()
 {
     cin >> n;
     for (int i = 1; i <= n; i++)
-    {
-        for (int j = 1; j <= n; j++)
-        {
-            cin >> b[i][j];
-            Min = min(Min, b[i][j]);
-        }
-    }
-    x[1] = 1;
-    c[1] = 1;
+        cin >> a[i];
 }
 
 ll sum = 0;
-ll res = INF;
-void Try(int i)
+vector<int> tmp;
+vector<vector<int>> res;
+void Try(int i, int cnt)
 {
-    for (int j = 1; j <= n; j++)
+    for (int j = cnt; j <= n; j++)
     {
-        if (c[j] == 0)
+        sum += a[j];
+        tmp.push_back(a[j]);
+        if (sum % 2 != 0)
         {
-            x[i] = j;
-            c[j] = 1;
-            sum += b[x[i - 1]][x[i]];
-
-            if (i == n)
-            {
-                res = min(res, sum + b[x[i]][1]);
-            }
-            else if (sum + (n - i + 1) * Min < res)
-            {
-                Try(i + 1);
-            }
-            c[j] = 0;
-            sum -= b[x[i - 1]][x[i]];
+            res.push_back(tmp);
+            Try(i, j + 1);
+            
+        }
+        else
+        {
+            cnt = i;
+            Try(i + 1, cnt);
         }
     }
 }
@@ -60,8 +45,15 @@ void Try(int i)
 void run_case()
 {
     init();
-    Try(2);
-    cout << res;
+    Try(1, 1);
+
+    sort(res.begin(), res.end());
+    for (auto x : res)
+    {
+        for (auto x1 : x)
+            cout << x1 << " ";
+        cout << endl;
+    }
 }
 
 int main()
