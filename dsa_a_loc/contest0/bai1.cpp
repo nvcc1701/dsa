@@ -10,10 +10,25 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+int a, b;
+
+bool isPrime(int n)
+{
+    for (int i = 2; i <= sqrt(n); i++)
+    {
+        if (n % i == 0)
+            return false;
+    }
+    return n > 1;
+}
 void run_case()
 {
-    freopen(s, "r", stdin);
-    freopen("../output.txt ", "w", stdout);
+    cin >> a >> b;
+    for (int i = a; i <= b; i++)
+    {
+        if (isPrime(i))
+            cout << i << endl;
+    }
 }
 
 int main()
