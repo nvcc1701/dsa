@@ -10,52 +10,53 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n;
-int c[21];
-int a[21];
+int n, k;
 
-vector<string> res;
-void print(int i)
-{
-    string s = "";
-    for (int k = 1; k <= i; k++)
-    {
-        if (k != i)
-            s += to_string(a[k]) + " ";
-        else
-            s += to_string(a[k]);
-    }
-    res.push_back(s);
-}
+vector<vector<int>> res;
+vector<int> tmp;
+ll sum = 0;
 
-void Try(int i, int start)
+void Try(int start)
 {
-    for (int j = start; j <= n; j++)
+    for (int j = start; j <= 9; j++)
     {
-        if (c[j] > a[i - 1])
+        tmp.push_back(j);
+        sum += j;
+        if (tmp.size() == k)
         {
-            a[i] = c[j];
-            if (i >= 2)
-            {
-                print(i);
-            }
-            Try(i + 1, j + 1);
+            if (sum == n)
+                res.push_back(tmp);
         }
+        else
+        {
+            Try(j + 1);
+        }
+        tmp.pop_back();
+        sum -= j;
     }
 }
 
 void run_case()
 {
-    cin >> n;
-    for (int i = 1; i <= n; i++)
-        cin >> c[i];
+    cin >> n >> k;
+    Try(1);
 
-    Try(1, 1);
-    sort(res.begin(), res.end());
+    if (res.size() == 0)
+    {
+        cout << "NOT FOUND";
+        return;
+    }
+
     for (auto x : res)
     {
-
-        cout << x << endl;
+        for (int i = 0; i < x.size(); i++)
+        {
+            if (i != x.size() - 1)
+                cout << x[i] << " + ";
+            else
+                cout << x[i];
+        }
+        cout << endl;
     }
 }
 

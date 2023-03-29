@@ -10,50 +10,24 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n;
-int a[16];
-void init()
-{
-    cin >> n;
-    for (int i = 1; i <= n; i++)
-        cin >> a[i];
-}
-
-ll sum = 0;
-vector<int> tmp;
-vector<vector<int>> res;
-void Try(int i, int cnt)
-{
-    for (int j = cnt; j <= n; j++)
-    {
-        sum += a[j];
-        tmp.push_back(a[j]);
-        if (sum % 2 != 0)
-        {
-            res.push_back(tmp);
-            Try(i, j + 1);
-            
-        }
-        else
-        {
-            cnt = i;
-            Try(i + 1, cnt);
-        }
-    }
-}
-
+int n, k;
+int a[1001];
 void run_case()
 {
-    init();
-    Try(1, 1);
+    cin >> n >> k;
 
-    sort(res.begin(), res.end());
-    for (auto x : res)
+    if (k > n)
     {
-        for (auto x1 : x)
-            cout << x1 << " ";
-        cout << endl;
+        k %= n;
     }
+
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+
+    for (int i = k; i < n; i++)
+        cout << a[i] << " ";
+    for (int i = 0; i < k; i++)
+        cout << a[i] << " ";
 }
 
 int main()

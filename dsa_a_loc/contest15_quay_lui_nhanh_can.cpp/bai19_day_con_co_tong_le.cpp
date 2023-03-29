@@ -11,36 +11,24 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
 int n;
-int c[21];
-int a[21];
+int a[100];
 
-vector<string> res;
-void print(int i)
-{
-    string s = "";
-    for (int k = 1; k <= i; k++)
-    {
-        if (k != i)
-            s += to_string(a[k]) + " ";
-        else
-            s += to_string(a[k]);
-    }
-    res.push_back(s);
-}
-
-void Try(int i, int start)
+vector<int> tmp;
+vector<vector<int>> res;
+ll sum = 0;
+void Try(int start)
 {
     for (int j = start; j <= n; j++)
     {
-        if (c[j] > a[i - 1])
+        sum += a[j];
+        tmp.push_back(a[j]);
+        if ((sum) % 2 == 1)
         {
-            a[i] = c[j];
-            if (i >= 2)
-            {
-                print(i);
-            }
-            Try(i + 1, j + 1);
+            res.push_back(tmp);
         }
+        Try(j + 1);
+        sum -= a[j];
+        tmp.pop_back();
     }
 }
 
@@ -48,14 +36,21 @@ void run_case()
 {
     cin >> n;
     for (int i = 1; i <= n; i++)
-        cin >> c[i];
+        cin >> a[i];
+    Try(1);
 
-    Try(1, 1);
+    if (res.size() == 0)
+    {
+        cout << "NOT FOUND";
+        return;
+    }
+    
     sort(res.begin(), res.end());
     for (auto x : res)
     {
-
-        cout << x << endl;
+        for (auto x1 : x)
+            cout << x1 << " ";
+        cout << endl;
     }
 }
 

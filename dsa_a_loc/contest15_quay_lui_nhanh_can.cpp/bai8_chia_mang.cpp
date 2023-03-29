@@ -10,78 +10,65 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n, k;
-int a[101];
-int b[101];
-bool ok = false;
-
+int n, k, s = 0;
+int a[21];
+int x[21];
+bool used[101];
 void init()
 {
     cin >> n >> k;
     for (int i = 1; i <= n; i++)
+    {
         cin >> a[i];
-}
-
-// 112233
-
-bool check()
-{
-    map<int, int> mp;
-    for (int i = 1; i <= n; i++)
-    {
-        mp[b[i]] += a[i];
+        s += a[i];
     }
+}
 
-    ll sum = mp.begin()->second;
-    for (auto x : mp)
+int cnt = 0;
+bool ok = false;
+void Try(int i, int start, int sum, int cnt)
+{
+    if (cnt == k)
     {
-        if (x.second != sum)
-            return false;
+        ok = true;
+        return;
     }
+    if (ok)
+        return;
 
-    return true;
-}
-
-void print()
-{
-    for (int i = 1; i <= n; i++)
-        cout << b[i];
-
-    cout << endl;
-}
-
-map<int, int> mp;
-void Try(int i, int cnt)
-{
-    for (int j = cnt; j <= n; j++)
+    for (int j = start; j <= n; j++)
     {
-        b[i] = j;
-        mp[j]++;
-        if (i == n)
+        if (sum + a[j] <= s && !used[j])
         {
-            print();
-            if (mp.size() == k)
-                if (check())
-                    ok = true;
+            used[j] = true;
+            x[i] = a[j];
+
+            if (sum + a[j] == s)
+            {
+                Try(i + 1, 1, 0, cnt + 1);
+            }
+            else
+            {
+                Try(i + 1, j + 1, sum + a[j], cnt);
+            }
+            used[j] = false;
         }
-        else
-        {
-            Try(i + 1, j + 1); // ko hieu sao dung
-        }
-        mp[j]--;
-        if (mp[j] == 0)
-            mp.erase(j);
     }
 }
 
 void run_case()
 {
     init();
-    Try(1, 1);
-    if (!ok)
-        cout << 0;
+    if (s % k == 0)
+    {
+        s /= k;
+        Try(1, 1, 0, 0);
+        cout << ok;
+    }
     else
-        cout << 1;
+    {
+        cout << 0;
+    }
 }
 
 int main()

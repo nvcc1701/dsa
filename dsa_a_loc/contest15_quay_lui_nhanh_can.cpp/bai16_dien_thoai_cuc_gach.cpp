@@ -11,52 +11,34 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
 int n;
-int c[21];
-int a[21];
+string s;
+string a[10] = {"0", "0", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
 
-vector<string> res;
-void print(int i)
+string tmp = "";
+void Try(int i)
 {
-    string s = "";
-    for (int k = 1; k <= i; k++)
+    int idx = s[i] - '0';
+    for (int j = 0; j < a[idx].size(); j++)
     {
-        if (k != i)
-            s += to_string(a[k]) + " ";
-        else
-            s += to_string(a[k]);
-    }
-    res.push_back(s);
-}
-
-void Try(int i, int start)
-{
-    for (int j = start; j <= n; j++)
-    {
-        if (c[j] > a[i - 1])
+        tmp.push_back(a[idx][j]);
+        if (tmp.size() == n)
         {
-            a[i] = c[j];
-            if (i >= 2)
-            {
-                print(i);
-            }
-            Try(i + 1, j + 1);
+            cout << tmp << " ";
         }
+        else
+        {
+            Try(i + 1);
+        }
+        tmp.pop_back();
     }
 }
 
 void run_case()
 {
-    cin >> n;
-    for (int i = 1; i <= n; i++)
-        cin >> c[i];
-
-    Try(1, 1);
-    sort(res.begin(), res.end());
-    for (auto x : res)
-    {
-
-        cout << x << endl;
-    }
+    cin >> s;
+    sort(s.begin(), s.end());
+    n = s.size();
+    Try(0);
 }
 
 int main()

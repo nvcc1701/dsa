@@ -10,53 +10,60 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n;
-int c[21];
-int a[21];
+string s;
 
-vector<string> res;
-void print(int i)
+vector<string> v;
+vector<int> tmp;
+void check()
 {
-    string s = "";
-    for (int k = 1; k <= i; k++)
+    string ss = s;
+    bool ok = true;
+    for (int i = 0; i < tmp.size(); i++)
     {
-        if (k != i)
-            s += to_string(a[k]) + " ";
-        else
-            s += to_string(a[k]);
+        if (isdigit(s[i]) && tmp[i] == 1)
+            ok = false;
+
+        if (isalpha(s[i]))
+        {
+            if (tmp[i] == 1)
+            {
+                ss[i] = toupper(ss[i]);
+            }
+            else
+            {
+                ss[i] = tolower(ss[i]);
+            }
+        }
     }
-    res.push_back(s);
+    if (ok)
+        v.push_back(ss);
 }
 
-void Try(int i, int start)
+void Try()
 {
-    for (int j = start; j <= n; j++)
+    for (int j = 0; j <= 1; j++)
     {
-        if (c[j] > a[i - 1])
+        tmp.push_back(j);
+        if (tmp.size() == s.size())
         {
-            a[i] = c[j];
-            if (i >= 2)
-            {
-                print(i);
-            }
-            Try(i + 1, j + 1);
+            check();
         }
+        else
+        {
+            Try();
+        }
+        tmp.pop_back();
     }
 }
 
 void run_case()
 {
-    cin >> n;
-    for (int i = 1; i <= n; i++)
-        cin >> c[i];
+    cin >> s;
+    Try();
 
-    Try(1, 1);
-    sort(res.begin(), res.end());
-    for (auto x : res)
-    {
-
+    sort(v.begin(), v.end());
+    for (auto x : v)
         cout << x << endl;
-    }
 }
 
 int main()
