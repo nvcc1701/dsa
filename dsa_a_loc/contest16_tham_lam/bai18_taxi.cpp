@@ -10,43 +10,38 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n;
-vector<string> v;
-bool check(string s)
-{
-    ll tong = 0;
-    for (auto x : s)
-    {
-        tong += stoll(string(1, x));
-    }
-
-    if (tong == n)
-    {
-        v.push_back(s);
-        cout << s << endl;
-    }
-
-    return tong > n;
-}
-
 void run_case()
 {
+    int n;
     cin >> n;
+    int a[n];
+    for (int &x : a)
+        cin >> x;
 
-    queue<string> q;
-    q.push("7");
-    q.push("4");
-    while (!q.empty())
+    sort(a, a + n, greater<int>());
+    bool used[n] = {false};
+
+    int cnt = 0;
+    for (int i = 0; i < n; i++)
     {
-        string s = q.front();
-        q.pop();
-        if (check(s))
+        if (!used[i])
         {
-            break;
+            int sum = 0;
+            sum += a[i];
+            used[i] = true;
+            cnt++;
+            for (int j = i + 1; j < n; j++)
+            {
+                if (!used[j] && sum + a[j] <= 4)
+                {
+                    sum += a[j];
+                    used[j] = true;
+                }
+            }
         }
-        q.push(s + "7");
-        q.push(s + "4");
     }
+
+    cout << cnt;
 }
 
 int main()

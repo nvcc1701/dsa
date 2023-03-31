@@ -10,43 +10,41 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n;
-vector<string> v;
-bool check(string s)
-{
-    ll tong = 0;
-    for (auto x : s)
-    {
-        tong += stoll(string(1, x));
-    }
-
-    if (tong == n)
-    {
-        v.push_back(s);
-        cout << s << endl;
-    }
-
-    return tong > n;
-}
-
 void run_case()
 {
+    int n;
     cin >> n;
+    int a[n];
 
-    queue<string> q;
-    q.push("7");
-    q.push("4");
-    while (!q.empty())
+    int cnt_chan = 0, cnt_le = 0;
+    for (auto &x : a)
     {
-        string s = q.front();
-        q.pop();
-        if (check(s))
-        {
-            break;
-        }
-        q.push(s + "7");
-        q.push(s + "4");
+        cin >> x;
+        if (x % 2 == 0)
+            cnt_chan++;
+        else
+            cnt_le++;
     }
+
+    // kiem tra tinh chan le
+    if (cnt_chan % 2 == 0 && cnt_le % 2 == 0)
+    {
+        cout << "YES";
+        return;
+    }
+
+    // kiem tra cac so cach nhau 1 don vi
+    sort(a, a + n);
+    for (int i = 1; i < n; i++) // check 2 so mot
+    {
+        if (abs(a[i] - a[i - 1]) != 1)
+        {
+            cout << "NO";
+            return;
+        }
+    }
+
+    cout << "YES";
 }
 
 int main()

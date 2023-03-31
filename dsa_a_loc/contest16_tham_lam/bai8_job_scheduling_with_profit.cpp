@@ -10,43 +10,41 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n;
-vector<string> v;
-bool check(string s)
+struct job
 {
-    ll tong = 0;
-    for (auto x : s)
-    {
-        tong += stoll(string(1, x));
-    }
-
-    if (tong == n)
-    {
-        v.push_back(s);
-        cout << s << endl;
-    }
-
-    return tong > n;
-}
+    int id, deadline, profit;
+};
 
 void run_case()
 {
+    int n;
     cin >> n;
-
-    queue<string> q;
-    q.push("7");
-    q.push("4");
-    while (!q.empty())
+    vector<job> v;
+    int x, y, z;
+    for (int i = 0; i < n; i++)
     {
-        string s = q.front();
-        q.pop();
-        if (check(s))
-        {
-            break;
-        }
-        q.push(s + "7");
-        q.push(s + "4");
+        cin >> x >> y >> z;
+        v.push_back({x, y, z});
     }
+
+    sort(v.begin(), v.end(), [](job a, job b) { return a.profit > b.profit; });
+
+    bool time[n] = {false};
+    ll total = 0;
+    for (int i = 0; i < v.size(); i++)
+    {
+        for (int j = v[i].deadline - 1; j >= 0; j--)
+        {
+            if (!time[j])
+            {
+                total += v[i].profit;
+                time[j] = true;
+                break;
+            }
+        }
+    }
+
+    cout << total;
 }
 
 int main()
