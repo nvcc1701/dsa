@@ -10,50 +10,45 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int k;
-string s;
+struct job
+{
+    int id, fi, se;
+    float delta;
+};
+
 void run_case()
 {
-    cin >> k >> s;
+    int n;
+    cin >> n;
 
-    // for (int i = 0; i < s.size(); i++)
-    // {
-    //     s[i] = toupper(s[i]);
-    // }
-
-    map<char, int> mp;
-    for (int i = 0; i < s.size(); i++)
+    vector<job> v(n);
+    for (int i = 0; i < n; i++)
     {
-        mp[s[i]]++;
+        v[i].id = i + 1;
+        cin >> v[i].fi;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cin >> v[i].se;
+        v[i].delta = (float)v[i].fi / v[i].se;
     }
 
-    ll xx = 0;
-    priority_queue<ll> q;
-    for (auto x : mp)
-    {
-        q.push(x.second);
-    }
-
-    ll x;
-    while (k--)
-    {
-        x = q.top();
-        if (x == 0)
-            break;
-        q.pop();
-        --x;
-        q.push(x);
-    }
+    sort(v.begin(), v.end(), [](job a, job b) { return a.delta > b.delta; });
 
     ll sum = 0;
-    while (!q.empty())
+    ll se = 0;
+    for (int i = 0; i < v.size(); i++)
     {
-        x = q.top();
-        sum += x * x;
-        q.pop();
+        se += v[i].se;
+        sum += v[i].fi * se;
     }
 
     cout << sum << endl;
+
+    for (int i = 0; i < v.size(); i++)
+    {
+        cout << v[i].id << " ";
+    }
 }
 
 int main()
@@ -71,8 +66,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    cin >> Test;
-    // cin.ignore();
+    // cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();
