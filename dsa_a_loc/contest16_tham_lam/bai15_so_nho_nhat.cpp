@@ -10,21 +10,41 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int s, d;
-
-// s=1
 void run_case()
 {
+    int s, d;
     cin >> s >> d;
-    // 12/1 = 12 
-    // 12/2 = 6 -> du 0
-    // 12/3 = 4 -> du 0
-    // 12/4 = 3 -> du 0
-    // 12/5 = 2 -> du 2
-    // 12/6 = 2
-    // 12/7 = 1 -> du 5
-    // 12/8 = 1 -> du 4
-    // 12/9 = 1 -> du 3
+
+    if (d * 9 < s)
+    {
+        cout << -1;
+        return;
+    }
+
+    string res = string(d, '0');
+    for (int i = d - 1; i >= 0; i--)
+    {
+        if (s > 9)
+        {
+            res[i] = '9';
+            s -= 9;
+        }
+        else
+        {
+            if (i == 0)
+            {
+                res[i] = s;
+            }
+            else
+            {
+                res[0] = '1';
+                res[i] += s - 1;
+            }
+            break;
+        }
+    }
+
+    cout << res;
 }
 
 int main()

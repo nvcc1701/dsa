@@ -12,27 +12,38 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
+
     int n;
     cin >> n;
-    multiset<int> S;
-    multiset<int> S1;
-
-    int x;
-    for (int i = 0; i < n; i++)
-    {
+    int a[n];
+    for (auto &x : a)
         cin >> x;
-        if (x >= 0)
-            S.insert(x);
+
+    int b[n];
+    b[0] = 1;
+    for (int i = 1; i < n; i++)
+    {
+        if (a[i] > a[i - 1])
+        {
+            b[i] = b[i - 1] + 1;
+        }
         else
-            S1.insert(x);
+        {
+            b[i] = 1;
+        }
     }
 
-    ll res = -INF;
-    if (S1.size() >= 2)
+    ll res = b[n - 1];
+    for (int i = n - 2; i >= 0; i--)
     {
-        ll tmp = (ll)*S1.rbegin() * (*(S1.rbegin() - 1));
-        res = max(res, tmp);
+        if (a[i] > a[i + 1])
+        {
+            b[i] = max(b[i], b[i + 1] + 1);
+        }
+        res += b[i];
     }
+
+    cout << res;
 }
 
 int main()

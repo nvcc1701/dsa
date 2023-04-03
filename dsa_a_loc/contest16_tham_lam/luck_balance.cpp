@@ -12,27 +12,40 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int n;
-    cin >> n;
-    multiset<int> S;
-    multiset<int> S1;
+    int n, k;
+    cin >> n >> k;
+    ll luck = 0;
 
-    int x;
+    vector<int> v;
+    int x, y;
     for (int i = 0; i < n; i++)
     {
-        cin >> x;
-        if (x >= 0)
-            S.insert(x);
+        cin >> x >> y;
+        if (y == 1)
+        {
+            v.push_back(x);
+        }
         else
-            S1.insert(x);
+        {
+            luck += x;
+        }
     }
 
-    ll res = -INF;
-    if (S1.size() >= 2)
+    sort(v.begin(), v.end(), greater<int>());
+
+    for (int i = 0; i < v.size(); i++)
     {
-        ll tmp = (ll)*S1.rbegin() * (*(S1.rbegin() - 1));
-        res = max(res, tmp);
+        if (i < k)
+        {
+            luck += v[i];
+        }
+        else
+        {
+            luck -= v[i];
+        }
     }
+
+    cout << luck;
 }
 
 int main()

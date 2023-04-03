@@ -14,25 +14,28 @@ void run_case()
 {
     int n;
     cin >> n;
-    multiset<int> S;
-    multiset<int> S1;
-
-    int x;
+    vector<string> v;
+    string s;
     for (int i = 0; i < n; i++)
     {
-        cin >> x;
-        if (x >= 0)
-            S.insert(x);
-        else
-            S1.insert(x);
+        cin >> s;
+        v.push_back(s);
+        sort(v[i].begin(), v[i].end());
     }
 
-    ll res = -INF;
-    if (S1.size() >= 2)
+    for (int i = 0; i < n; i++)
     {
-        ll tmp = (ll)*S1.rbegin() * (*(S1.rbegin() - 1));
-        res = max(res, tmp);
+        for (int j = 1; j < n; j++)
+        {
+            if (v[j][i] < v[j - 1][i])
+            {
+                cout << "NO\n";
+                return;
+            }
+        }
     }
+
+    cout << "YES\n";
 }
 
 int main()
@@ -50,7 +53,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();
