@@ -14,25 +14,22 @@ void run_case()
 {
     int n;
     cin >> n;
-    multiset<int> S;
-    multiset<int> S1;
-
+    vector<int> v;
     int x;
     for (int i = 0; i < n; i++)
     {
         cin >> x;
-        if (x >= 0)
-            S.insert(x);
-        else
-            S1.insert(x);
+        v.push_back(x);
     }
 
-    ll res = -INF;
-    if (S1.size() >= 2)
-    {
-        ll tmp = (ll)*S1.rbegin() * (*(S1.rbegin() - 1));
-        res = max(res, tmp);
-    }
+    sort(v.begin(), v.end());
+
+    ll mul2 = 1ll * v[0] * v[1];
+    ll mul3 = 1ll * v[n - 1] * v[n - 2];
+    ll mul1 = 1ll * v[0] * v[1] * v[n - 1]; // co dau am
+    ll mul4 = 1ll * v[n - 1] * v[n - 2] * v[n - 3];
+
+    cout << max({mul1, mul2, mul3, mul4});
 }
 
 int main()
