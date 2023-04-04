@@ -12,51 +12,40 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
+
     int n;
     cin >> n;
-    int a[n];
 
-    vector<int> odd;
-    vector<int> even;
-
-    for (auto &x : a)
+    map<int, int> mp;
+    int x;
+    for (int i = 0; i < n; i++)
     {
         cin >> x;
-        if (x % 2 == 0)
-            even.push_back(x);
-        else
-            odd.push_back(x);
+        mp[x]++;
     }
 
-    int O = odd.size(), E = even.size();
+    vector<pair<int, int>> v;
+    for (auto x : mp)
+        v.push_back(x);
 
-    // kiem tra tinh chan le
-    if (O % 2 == 0 && E % 2 == 0)
+    sort(v.begin(), v.end(), [](pair<int, int> a, pair<int, int> b) {
+        if (a.second == b.second)
+            return a.first < b.first;
+        return a.second > b.second;
+    });
+
+    ll waitting = v[0].first * v[0].second;
+    ll res = v[0].second;
+    for (int i = 1; i < v.size(); i++)
     {
-        cout << "YES";
-        return;
-    }
-
-    // kiem tra cac so cach nhau 1 don vi
-    sort(even.begin(), even.end());
-    sort(odd.begin(), odd.end());
-
-    int i = 0, j = 0;
-    while (i < E && j < O)
-    {
-        if (abs(even[i] - odd[j]) == 1)
+        if (waitting < v[i].first)
         {
-            cout << "YES";
-            return;
+            res += v[i].second;
+            waitting += v[i].first * v[i].second;
         }
-
-        if (even[i] < odd[j])
-            i++;
-        else
-            j++;
     }
 
-    cout << "NO";
+    cout << res;
 }
 
 int main()

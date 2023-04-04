@@ -12,51 +12,25 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int n;
-    cin >> n;
-    int a[n];
+    string s;
+    cin >> s;
 
-    vector<int> odd;
-    vector<int> even;
-
-    for (auto &x : a)
+    // chi can dem xem co bao nhieu dau ngoac de sai vi tri, dung 1 phep di cuyen chan chan se dua no ve vi tri dung
+    int cnt = 0;
+    int ans = 0;
+    for (int i = 0; i < s.size(); i++)
     {
-        cin >> x;
-        if (x % 2 == 0)
-            even.push_back(x);
+        if (cnt == 0 && s[i] == ')')
+            ans++;
         else
-            odd.push_back(x);
-    }
-
-    int O = odd.size(), E = even.size();
-
-    // kiem tra tinh chan le
-    if (O % 2 == 0 && E % 2 == 0)
-    {
-        cout << "YES";
-        return;
-    }
-
-    // kiem tra cac so cach nhau 1 don vi
-    sort(even.begin(), even.end());
-    sort(odd.begin(), odd.end());
-
-    int i = 0, j = 0;
-    while (i < E && j < O)
-    {
-        if (abs(even[i] - odd[j]) == 1)
         {
-            cout << "YES";
-            return;
+            if (s[i] == '(')
+                cnt++;
+            else
+                cnt--;
         }
-
-        if (even[i] < odd[j])
-            i++;
-        else
-            j++;
     }
-
-    cout << "NO";
+    cout << ans;
 }
 
 int main()
