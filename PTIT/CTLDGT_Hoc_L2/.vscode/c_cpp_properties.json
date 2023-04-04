@@ -1,0 +1,31 @@
+{
+  "configurations": [
+    {
+      "name": "Win32",
+      "includePath": [
+        "${workspaceFolder}",
+        "C:/Users/anhnguyen/scoop/apps/mingw/current/lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++",
+        "C:/Users/anhnguyen/scoop/apps/mingw/current/include/*",
+        "C:/Users/anhnguyen/scoop/apps/mingw/current/lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/x86_64-w64-mingw32",
+        "C:/Users/anhnguyen/scoop/apps/mingw/current/lib/gcc/x86_64-w64-mingw32/12.2.0/include"
+      ],
+      "defines": ["_DEBUG", "UNICODE", "_UNICODE"],
+      "intelliSenseMode": "clang-x64",
+      "browse": {
+        "path": [
+          "${workspaceFolder}",
+          "C:/Users/anhnguyen/scoop/apps/mingw/current/lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++",
+          "C:/Users/anhnguyen/scoop/apps/mingw/current/lib/gcc/x86_64-w64-mingw32/12.2.0/include",
+          "C:/Users/anhnguyen/scoop/apps/mingw/current/include/*",
+          "C:/Users/anhnguyen/scoop/apps/mingw/current/lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/x86_64-w64-mingw32"
+        ],
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": ""
+      },
+      "compilerPath": "C:/Users/anhnguyen/scoop/apps/mingw/current/bin/gcc.exe",
+      "cStandard": "c11",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
+}
