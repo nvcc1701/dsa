@@ -12,47 +12,55 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int n, k;
-    cin >> n >> k;
-    ll a[n];
-    bool c[n] = {false}; // check xem phan tu o vi tri nay da lon nhat chua
+    int n;
+    cin >> n;
 
-    auto cmp = [](pair<ll, ll> &a, pair<ll, ll> &b) { return a.second < b.second; };
-    priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, decltype(cmp)> PQ(cmp);
-
-    for (int i = 0; i < n; i++)
+    vector<int> d;
+    for (int i = 2; i <= sqrt(n); i++)
     {
-        cin >> a[i];
-        PQ.push({i, a[i]});
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        if (k > 0)
+        if (n % i == 0)
         {
-            auto x = PQ.top();
-            if (x.first != i && !c[x.first])
-            {
-                swap(a[x.first], a[i]);
-                c[i] = true;
-                k--;
-                PQ.pop();
-            }
-            else if (x.first == i)
-            {
-                PQ.pop();
-            }
-        }
-        else
-        {
-            break;
+            d.push_back(i);
+            n /= i;
         }
     }
 
-    for (int i = 0; i < n; i++)
+    if (n != 1)
+        d.push_back(n);
+
+    if (d.size() >= 3)
     {
-        cout << a[i] << " ";
+        cout << "YES";
     }
+    else
+        cout << "NO";
+
+    // int x = 1, y = 1, z = 1;
+
+    // for (int &u : d)
+    // {
+    //     if (x == 1)
+    //         x *= u;
+    //     else if (y == 1 || x == y)
+    //         y *= u;
+    //     else
+    //         z *= u;
+    // }
+
+    // if (x == 1 || y == 1 || z == 1)
+    // {
+    //     cout << "NO\n";
+    //     return;
+    // }
+
+    // if (x == y || x == z || y == z)
+    // {
+    //     cout << "NO\n";
+    //     return;
+    // }
+    // cout << "YES\n";
+
+    cout << "\n";
 }
 
 int main()
@@ -61,7 +69,7 @@ int main()
 #define LOCAL
 
 #ifdef LOCAL
-    freopen("input.txt ", "r", stdin);
+    freopen("test.txt ", "r", stdin);
     freopen("output2.txt ", "w", stdout);
     auto start = chrono::high_resolution_clock::now();
 #endif
@@ -74,14 +82,13 @@ int main()
     for (int test = 1; test <= Test; test++)
     {
         run_case();
-        cout << endl;
     }
 
 #ifdef LOCAL
     auto end = chrono::high_resolution_clock::now();
     auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
     auto startT = chrono::system_clock::to_time_t(start);
-    // cout << "\n\n" << ctime(&startT) << (double)duration.count() / 1000 << " seconds\n";
+    cout << "\n\n" << ctime(&startT) << (double)duration.count() / 1000 << " seconds\n";
 #endif
 
     return 0;

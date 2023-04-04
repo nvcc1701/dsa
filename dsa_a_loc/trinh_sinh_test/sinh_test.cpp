@@ -15,24 +15,27 @@ void generate_test(int t)
     input_file << t << '\n';
     while (t--)
     {
-        int n = rand_int(1, 20);
-        int k = rand_int(1, 200);
-        input_file << n << ' ' << k << '\n';
-        vector<int> digits(n);
-        iota(digits.begin(), digits.end(), 1);
-        shuffle(digits.begin(), digits.end(), rng);
-        for (int i = 0; i < n; i++)
-        {
-            input_file << digits[i] << " ";
-        }
-        input_file << '\n';
+        int n = rand_int(1, 100);
+        // int k = rand_int(1, 200);
+        // input_file << n << ' ' << k << '\n';
+
+        input_file << n  << '\n';
+
+        // vector<int> digits(n);
+        // iota(digits.begin(), digits.end(), 1);
+        // shuffle(digits.begin(), digits.end(), rng);
+        // for (int i = 0; i < n; i++)
+        // {
+        //     input_file << digits[i] << " ";
+        // }
+        // input_file << '\n';
     }
     input_file.close();
 }
 
 int main()
 {
-    int t = 10;
+    int t = 10000;
     generate_test(t);
     return 0;
 }
