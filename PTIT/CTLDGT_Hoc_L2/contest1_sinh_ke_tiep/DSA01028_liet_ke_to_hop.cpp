@@ -10,38 +10,70 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-void run_case()
+int n, k;
+int a[20];
+int c[20];
+bool final;
+
+void init()
 {
-    int n;
-    cin >> n;
-
-    vector<string> res;
-	
-    queue<string> q;
-    q.push("00");
-    q.push("11");
-    while (q.size() > 0)
+    int b;
+    cin >> b >> k;
+    set<int> se;
+    int x;
+    for (int i = 0; i < b; i++)
     {
-        string s = q.front();
-        q.pop();
-
-        if (s.size() == n)
-            res.push_back(s);
-
-        if (s.size() > n)
-            break;
-
-        q.push("0" + s + "0");
-        q.push("1" + s + "1");
+        cin >> x;
+        se.insert(x);
     }
 
-    sort(res.begin(), res.end());
-
-    for (auto x : res)
+    n = se.size();
+    auto it = se.begin();
+    for (int i = 1; i <= n; i++)
     {
-        for (int i = 0; i < x.size(); i++)
-            cout << x[i] << " ";
-        cout << endl;
+        c[i] = *it;
+        it++;
+    }
+
+    final = false;
+    for (int i = 1; i <= k; i++)
+        a[i] = i;
+}
+
+void generate()
+{
+
+    // 1 2 3 5 6
+    int i = k;
+    while (i >= 1 && a[i] == n - k + i)
+        i--;
+
+    if (i == 0)
+        final = true;
+    else
+    {
+        a[i]++;
+        for (int j = i + 1; j <= k; j++)
+            a[j] = a[j - 1] + 1;
+    }
+}
+
+void print()
+{
+    for (int i = 1; i <= k; i++)
+    {
+        cout << c[a[i]] << " ";
+    }
+    cout << endl;
+}
+
+void run_case()
+{
+    init();
+    while (!final)
+    {
+        print();
+        generate();
     }
 }
 

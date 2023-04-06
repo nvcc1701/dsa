@@ -10,39 +10,49 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+int n, k;
+int a[41];
+int cnt;
+map<int, int> mp;
+void next_combanation()
+{
+    // n = 6
+    // 1 2 5 6 // kiem tra tu duoi ve dau xem so do da la max chua
+
+    int i = k;
+    while (i >= 1 && a[i] == n - k + i)
+        i--;
+
+    if (i == 0)
+        cnt = k;
+    else
+    {
+        a[i]++;
+        cnt++;
+        mp[a[i]]++;
+        for (int j = i + 1; j <= k; j++)
+        {
+            a[j] = a[j - 1] + 1;
+            mp[a[j]]++;
+            if (mp[a[j]] == 1)
+                cnt++;
+        }
+    }
+}
+
 void run_case()
 {
-    int n;
-    cin >> n;
-
-    vector<string> res;
-	
-    queue<string> q;
-    q.push("00");
-    q.push("11");
-    while (q.size() > 0)
+    cin >> n >> k;
+    cnt = 0;
+    for (int i = 1; i <= k; i++)
     {
-        string s = q.front();
-        q.pop();
-
-        if (s.size() == n)
-            res.push_back(s);
-
-        if (s.size() > n)
-            break;
-
-        q.push("0" + s + "0");
-        q.push("1" + s + "1");
+        cin >> a[i];
+        mp[a[i]]++;
     }
 
-    sort(res.begin(), res.end());
-
-    for (auto x : res)
-    {
-        for (int i = 0; i < x.size(); i++)
-            cout << x[i] << " ";
-        cout << endl;
-    }
+    next_combanation();
+    cout << cnt << endl;
+    mp.clear();
 }
 
 int main()
@@ -60,7 +70,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

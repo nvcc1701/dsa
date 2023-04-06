@@ -10,39 +10,70 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+int n;
+
+bool check(string s)
+{
+    if (s.size() != n)
+        return false;
+
+    if (s[0] != '8')
+        return false;
+
+    if (s[s.size() - 1] != '6')
+        return false;
+
+    int cnt8 = 0, cnt6 = 0;
+
+    for (int i = 0; i < s.size(); i++)
+    {
+        if (s[i] == '8')
+        {
+            cnt8++;
+            if (cnt8 >= 2)
+                return false;
+        }
+        else
+            cnt8 = 0;
+
+        if (s[i] == '6')
+        {
+            cnt6++;
+            if (cnt6 >= 4)
+                return false;
+        }
+        else
+            cnt6 = 0;
+    }
+
+    return true;
+}
+
 void run_case()
 {
-    int n;
     cin >> n;
+    queue<string> q;
+    q.push("8");
+    q.push("6");
 
     vector<string> res;
-	
-    queue<string> q;
-    q.push("00");
-    q.push("11");
     while (q.size() > 0)
     {
         string s = q.front();
         q.pop();
 
-        if (s.size() == n)
-            res.push_back(s);
-
         if (s.size() > n)
             break;
 
-        q.push("0" + s + "0");
-        q.push("1" + s + "1");
-    }
+        if (check(s))
+            res.push_back(s);
 
-    sort(res.begin(), res.end());
+        q.push(s + "6");
+        q.push(s + "8");
+    }
 
     for (auto x : res)
-    {
-        for (int i = 0; i < x.size(); i++)
-            cout << x[i] << " ";
-        cout << endl;
-    }
+        cout << x << endl;
 }
 
 int main()

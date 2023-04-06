@@ -10,39 +10,57 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+int n;
+bool check(string s)
+{
+    if (s.size() != n)
+        return false;
+
+    if (s[s.size() - 1] != 'A')
+        return false;
+
+    int cnt = 0;
+    for (auto x : s)
+    {
+
+        if (x == 'H')
+            cnt++;
+        else
+            cnt = 0;
+
+        if (cnt > 1)
+            return false;
+    }
+
+    return true;
+}
+
 void run_case()
 {
-    int n;
     cin >> n;
 
-    vector<string> res;
-	
     queue<string> q;
-    q.push("00");
-    q.push("11");
+    q.push("HA");
+    vector<string> res;
+
     while (q.size() > 0)
     {
         string s = q.front();
         q.pop();
 
-        if (s.size() == n)
-            res.push_back(s);
-
         if (s.size() > n)
             break;
+        if (check(s))
+            res.push_back(s);
 
-        q.push("0" + s + "0");
-        q.push("1" + s + "1");
+        q.push(s + "A");
+        q.push(s + "H");
     }
-
-    sort(res.begin(), res.end());
 
     for (auto x : res)
-    {
-        for (int i = 0; i < x.size(); i++)
-            cout << x[i] << " ";
-        cout << endl;
-    }
+        cout << x << endl;
+
+    res.clear();
 }
 
 int main()
@@ -60,7 +78,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

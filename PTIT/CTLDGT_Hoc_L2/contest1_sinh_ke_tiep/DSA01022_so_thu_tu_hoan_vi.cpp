@@ -10,45 +10,63 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+int n;
+string s1, s;
+bool final;
+
+void generate()
+{
+    // 1 2 3 6 9 8 7 5 4;
+    int i = n - 1;
+    while (i >= 1 && s[i] > s[i + 1])
+        i--;
+
+    if (i == 0)
+    {
+        final = true;
+    }
+    else
+    {
+        int j = n;
+        while (s[i] > s[j])
+            j--;
+        swap(s[i], s[j]);
+        reverse(s.begin() + 1 + i, s.end());
+    }
+}
+
 void run_case()
 {
-    int n;
     cin >> n;
+    int x;
+    s1 = "0";
+    s = "0";
+    final = false;
 
-    vector<string> res;
-	
-    queue<string> q;
-    q.push("00");
-    q.push("11");
-    while (q.size() > 0)
+    for (int i = 1; i <= n; i++)
     {
-        string s = q.front();
-        q.pop();
-
-        if (s.size() == n)
-            res.push_back(s);
-
-        if (s.size() > n)
-            break;
-
-        q.push("0" + s + "0");
-        q.push("1" + s + "1");
+        cin >> x;
+        s1 += to_string(x);
+        s += to_string(i);
     }
 
-    sort(res.begin(), res.end());
-
-    for (auto x : res)
+    int cnt = 1;
+    while (!final)
     {
-        for (int i = 0; i < x.size(); i++)
-            cout << x[i] << " ";
-        cout << endl;
+        if (s == s1)
+        {
+            cout << cnt << endl;
+            return;
+        }
+        generate();
+        cnt++;
     }
 }
 
 int main()
 {
 
-// #define LOCAL
+    // #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
@@ -60,7 +78,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

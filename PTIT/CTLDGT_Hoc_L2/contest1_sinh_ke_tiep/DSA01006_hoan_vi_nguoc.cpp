@@ -10,39 +10,59 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+int n;
+bool final;
+int a[10];
+
+void init()
+{
+    cin >> n;
+    final = false;
+    for (int i = 1; i <= n; i++)
+        a[i] = i;
+}
+
+void generate()
+{
+    // 1 2 3 6 9 8 7 5 4
+    int i = n - 1;
+    while (i >= 1 && a[i] > a[i + 1])
+        i--;
+    if (i == 0)
+    {
+        final = true;
+    }
+    else
+    {
+        int j = n;
+        while (a[i] > a[j])
+            j--;
+        swap(a[i], a[j]);
+        reverse(a + i + 1, a + n + 1);
+    }
+}
+
 void run_case()
 {
-    int n;
-    cin >> n;
-
+    init();
     vector<string> res;
-	
-    queue<string> q;
-    q.push("00");
-    q.push("11");
-    while (q.size() > 0)
+    while (!final)
     {
-        string s = q.front();
-        q.pop();
+        string s = "";
+        for (int i = 1; i <= n; i++)
+        {
+            s += to_string(a[i]);
+        }
+        res.push_back(s);
 
-        if (s.size() == n)
-            res.push_back(s);
-
-        if (s.size() > n)
-            break;
-
-        q.push("0" + s + "0");
-        q.push("1" + s + "1");
+        generate();
     }
 
-    sort(res.begin(), res.end());
-
-    for (auto x : res)
+    for (int i = res.size() - 1; i >= 0; i--)
     {
-        for (int i = 0; i < x.size(); i++)
-            cout << x[i] << " ";
-        cout << endl;
+        cout << res[i] << " ";
     }
+    cout << endl;
 }
 
 int main()
@@ -60,7 +80,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();
