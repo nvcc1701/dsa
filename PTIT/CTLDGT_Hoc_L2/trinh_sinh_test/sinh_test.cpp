@@ -16,8 +16,9 @@ void generate_test(int t)
     while (t--)
     {
         int n = rand_int(1, 20);
-        int k = rand_int(1, 200);
-        input_file << n << ' ' << k << '\n';
+        // int k = rand_int(1, 100);
+        // input_file << n << ' ' << k << '\n';
+        input_file << n << '\n';
         vector<int> digits(n);
         iota(digits.begin(), digits.end(), 1);
         shuffle(digits.begin(), digits.end(), rng);
