@@ -10,56 +10,50 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-struct job
+ll n, m;
+string s;
+
+ll bipow(ll a, ll b)
 {
-    int id, fi, se;
-    float delta;
-};
+    if (b == 0)
+        return 1;
+
+    if (b % 2 == 1)
+    {
+        ll x = bipow(a, b / 2);
+        x %= MOD;
+
+        x = ((x % MOD) * (x % MOD)) % MOD;
+        return (x * a) % MOD;
+    }
+    else
+    {
+        ll x = bipow(a, b / 2);
+        x %= MOD;
+
+        x = ((x % MOD) * (x % MOD)) % MOD;
+        return (x) % MOD;
+    }
+}
 
 void run_case()
 {
-    int n;
-    cin >> n;
+    cin >> s;
+    n = stoll(s);
+    reverse(s.begin(), s.end());
+    m = stoll(s);
 
-    vector<job> v(n);
-    for (int i = 0; i < n; i++)
-    {
-        v[i].id = i + 1;
-        cin >> v[i].fi;
-    }
-    for (int i = 0; i < n; i++)
-    {
-        cin >> v[i].se;
-        v[i].delta = (float)v[i].fi / v[i].se;
-    }
-
-    sort(v.begin(), v.end(), [](job a, job b) { return a.delta > b.delta; });
-
-    ll sum = 0;
-    ll se = 0;
-    for (int i = 0; i < v.size(); i++)
-    {
-        se += v[i].se;
-        sum += v[i].fi * se;
-    }
-
-    cout << sum << endl;
-
-    for (int i = 0; i < v.size(); i++)
-    {
-        cout << v[i].id << " ";
-    }
+    cout << bipow(n, m);
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
     freopen("../output.txt ", "w", stdout);
-    auto start = chrono::high_resolution_clock::now();
 #endif
 
     ios::sync_with_stdio(false);
@@ -71,13 +65,6 @@ int main()
     {
         run_case();
     }
-
-#ifdef LOCAL
-    auto end = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-    auto startT = chrono::system_clock::to_time_t(start);
-    cout << "\n\n" << ctime(&startT) << (double)duration.count() / 1000 << " seconds\n";
-#endif
 
     return 0;
 }
