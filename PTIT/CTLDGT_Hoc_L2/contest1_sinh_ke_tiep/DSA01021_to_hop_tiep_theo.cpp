@@ -10,47 +10,55 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+int n, k;
+int a[41];
+int cnt;
+map<int, int> mp;
+void next_combanation()
+{
+    // n = 6
+    // 1 2 5 6 // kiem tra tu duoi ve dau xem so do da la max chua
+
+    int i = k;
+    while (i >= 1 && a[i] == n - k + i)
+        i--;
+
+    if (i == 0)
+        cnt = k;
+    else
+    {
+        a[i]++;
+        cnt++;
+        mp[a[i]]++;
+        for (int j = i + 1; j <= k; j++)
+        {
+            a[j] = a[j - 1] + 1;
+            mp[a[j]]++;
+            if (mp[a[j]] == 1)
+                cnt++;
+        }
+    }
+}
+
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
-
-    if (d * 9 < s)
+    cin >> n >> k;
+    cnt = 0;
+    for (int i = 1; i <= k; i++)
     {
-        cout << -1;
-        return;
+        cin >> a[i];
+        mp[a[i]]++;
     }
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
-    }
-
-    cout << res;
+    next_combanation();
+    cout << cnt << endl;
+    mp.clear();
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
@@ -62,7 +70,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

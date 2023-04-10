@@ -10,41 +10,39 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+int n;
+vector<int> v;
+
+void selection_sort()
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        int min_index = i;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (v[j] < v[min_index])
+                min_index = j;
+        }
+
+        swap(v[min_index], v[i]);
+    }
+}
+
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
-
-    if (d * 9 < s)
+    // nhap
+    cin >> n;
+    int x;
+    for (int i = 0; i < n; i++)
     {
-        cout << -1;
-        return;
+        cin >> x;
+        v.push_back(x);
     }
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
-    }
+    selection_sort();
 
-    cout << res;
+    for (auto x : v)
+        cout << x << " ";
 }
 
 int main()

@@ -12,39 +12,26 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    int n;
+    cin >> n;
+    int a[n];
+    for (auto &x : a)
+        cin >> x;
 
-    if (d * 9 < s)
-    {
-        cout << -1;
-        return;
-    }
+    sort(a, a + n);
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
+    ll container_sum = a[0] + 4;
+    int cnt = 1;
+    for (int i = 0; i < n; i++)
     {
-        if (s > 9)
+        if (a[i] > container_sum)
         {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
+            cnt++;
+            container_sum = a[i] + 4;
         }
     }
 
-    cout << res;
+    cout << cnt;
 }
 
 int main()

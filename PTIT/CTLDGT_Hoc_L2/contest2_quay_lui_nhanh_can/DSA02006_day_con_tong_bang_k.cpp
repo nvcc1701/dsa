@@ -10,59 +10,80 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-void run_case()
+int n, k;
+int b[20];
+vector<int> v;
+bool ok;
+
+void init()
 {
-    int n;
-    cin >> n;
-    int a[n];
+    cin >> n >> k;
+    for (int i = 0; i < n; i++)
+        cin >> b[i];
+    sort(b, b + n);
+    ok = false;
+}
 
-    vector<int> odd;
-    vector<int> even;
-
-    for (auto &x : a)
+void check()
+{
+    int sum = 0;
+    for (int i = 0; i < n; i++)
     {
-        cin >> x;
-        if (x % 2 == 0)
-            even.push_back(x);
-        else
-            odd.push_back(x);
+        if (v[i])
+            sum += b[i];
     }
 
-    int O = odd.size(), E = even.size();
-
-    // kiem tra tinh chan le
-    if (O % 2 == 0 && E % 2 == 0)
+    if (sum == k)
     {
-        cout << "YES";
-        return;
-    }
-
-    // kiem tra cac so cach nhau 1 don vi
-    sort(even.begin(), even.end());
-    sort(odd.begin(), odd.end());
-
-    int i = 0, j = 0;
-    while (i < E && j < O)
-    {
-        if (abs(even[i] - odd[j]) == 1)
+        ok = true;
+        string s = "";
+        s += "[";
+        for (int i = 0; i < v.size(); i++)
         {
-            cout << "YES";
+            if (v[i])
+            {
+                s += to_string(b[i]) + " ";
+            }
+        }
+        s.pop_back();
+        s += "]";
+        s += " ";
+
+        cout << s;
+    }
+}
+
+void Try()
+{
+    for (int j = 1; j >= 0; j--)
+    {
+        if (v.size() == n)
+        {
+            check();
             return;
         }
-
-        if (even[i] < odd[j])
-            i++;
         else
-            j++;
+        {
+            v.push_back(j);
+            Try();
+            v.pop_back();
+        }
     }
+}
 
-    cout << "NO";
+void run_case()
+{
+    init();
+    Try();
+    if (!ok)
+        cout << -1;
+    cout << endl;
 }
 
 int main()
 {
 
-#define LOCAL
+    // #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
@@ -74,7 +95,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

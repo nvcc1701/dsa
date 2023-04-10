@@ -12,45 +12,46 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    int n;
+    cin >> n;
 
-    if (d * 9 < s)
+    if (n == 1)
     {
-        cout << -1;
+        cout << "-1\n";
         return;
     }
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
+    int x;
+    set<int> se;
+    for (int i = 0; i < n; i++)
     {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
+        cin >> x;
+        se.insert(x);
     }
 
-    cout << res;
+    if (se.size() == 1)
+    {
+        cout << "-1\n";
+        return;
+    }
+
+    auto i = se.begin();
+    cout << *i << " ";
+    i++;
+    cout << *i << "\n";
+
+    // int a[n];
+    // for (auto &x : a)
+    //     cin >> x;
+
+    // sort(a, a + n);
+    // cout << a[0] << " " << a[1] << endl;
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
@@ -62,7 +63,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

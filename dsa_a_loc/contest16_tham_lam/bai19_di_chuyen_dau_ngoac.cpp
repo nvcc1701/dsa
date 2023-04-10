@@ -12,39 +12,25 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    string s;
+    cin >> s;
 
-    if (d * 9 < s)
+    // chi can dem xem co bao nhieu dau ngoac de sai vi tri, dung 1 phep di cuyen chan chan se dua no ve vi tri dung
+    int cnt = 0;
+    int ans = 0;
+    for (int i = 0; i < s.size(); i++)
     {
-        cout << -1;
-        return;
-    }
-
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
+        if (cnt == 0 && s[i] == ')')
+            ans++;
         else
         {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
+            if (s[i] == '(')
+                cnt++;
             else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
+                cnt--;
         }
     }
-
-    cout << res;
+    cout << ans;
 }
 
 int main()

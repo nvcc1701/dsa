@@ -10,47 +10,69 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+char c;
+int check[200];
+int n;
+string s;
+
+void init()
+{
+    cin >> c;
+    n = c - 'A';
+    n++;
+    memset(check, 0, sizeof(check));
+}
+
+bool Check()
+{
+    if (s.find("AE") != string::npos)
+        return true;
+    if (s.find("EA") != string::npos)
+        return true;
+    if (s[0] != 'A' && s[s.size() - 1] != 'A')
+        return false;
+
+    if (s.find("E") != string::npos)
+    {
+        if (s.find("E") != 0 && s.find("E") != s.size() - 1)
+            return false;
+    }
+
+    return true;
+}
+
+void Try()
+{
+    for (char j = 'A'; j <= c; j++)
+    {
+        if (s.size() == n)
+        {
+            if (Check())
+                cout << s << endl;
+            return;
+        }
+
+        if (!check[j])
+        {
+            check[j] = 1;
+            s.push_back(j);
+            Try();
+            s.pop_back();
+            check[j] = 0;
+        }
+    }
+}
+
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
-
-    if (d * 9 < s)
-    {
-        cout << -1;
-        return;
-    }
-
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
-    }
-
-    cout << res;
+    init();
+    Try();
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);

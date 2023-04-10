@@ -12,39 +12,53 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    int n;
+    cin >> n;
 
-    if (d * 9 < s)
+    set<int> d;
+    for (int i = 2; i <= sqrt(n); i++)
     {
-        cout << -1;
-        return;
-    }
-
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
+        if (n % i == 0)
         {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
+            d.insert(i);
+            n /= i;
         }
     }
 
-    cout << res;
+    if (n != 1)
+        d.insert(n);
+
+    if (d.size() >= 3)
+    {
+        cout << "YES";
+    }
+    else
+        cout << "NO";
+
+    // int x = 1, y = 1, z = 1;
+
+    // for (int &u : d)
+    // {
+    //     if (x == 1)
+    //         x *= u;
+    //     else if (y == 1 || x == y)
+    //         y *= u;
+    //     else
+    //         z *= u;
+    // }
+
+    // if (x == 1 || y == 1 || z == 1)
+    // {
+    //     cout << "NO\n";
+    //     return;
+    // }
+
+    // if (x == y || x == z || y == z)
+    // {
+    //     cout << "NO\n";
+    //     return;
+    // }
+    // cout << "YES\n";
 }
 
 int main()

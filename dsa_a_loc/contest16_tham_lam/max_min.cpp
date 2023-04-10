@@ -12,40 +12,38 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    int n, k;
+    cin >> n >> k;
 
-    if (d * 9 < s)
-    {
-        cout << -1;
-        return;
-    }
+    int a[n + 1];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
+    sort(a + 1, a + n + 1);
+
+    int MinI = 1;
+    int Min = a[k] - a[1];
+    for (int i = k + 1; i <= n; i++)
     {
-        if (s > 9)
+        int tmp = a[i] - a[i - k + 1];
+        if (tmp < Min)
         {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
+            Min = tmp;
+            MinI = i;
         }
     }
 
-    cout << res;
+    cout << Min;
 }
+
+// k = 3
+// 1 10
+// 2 20
+// 3 30
+// 4 100 i
+// 200
+// 300
+// 1000
 
 int main()
 {

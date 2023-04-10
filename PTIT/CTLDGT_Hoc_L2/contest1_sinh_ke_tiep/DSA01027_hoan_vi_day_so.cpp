@@ -10,47 +10,63 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+int n;
+int c[10], a[10];
+bool final;
+
+void init()
+{
+    final = false;
+    cin >> n;
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> c[i];
+        a[i] = i;
+    }
+    sort(c + 1, c + n + 1);
+}
+
+void generate()
+{
+    // 1 2 3 6 9 8 7 5 4
+    int i = n - 1;
+    while (i >= 1 && a[i] > a[i + 1])
+        i--;
+
+    if (i == 0)
+        final = true;
+    else
+    {
+        int j = n;
+        while (a[i] > a[j])
+            j--;
+        swap(a[i], a[j]);
+        reverse(a + i + 1, a + n + 1);
+    }
+}
+
+void print()
+{
+    for (int i = 1; i <= n; i++)
+        cout << c[a[i]] << " ";
+    cout << endl;
+}
+
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    init();
 
-    if (d * 9 < s)
+    while (!final)
     {
-        cout << -1;
-        return;
+        print();
+        generate();
     }
-
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
-    }
-
-    cout << res;
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);

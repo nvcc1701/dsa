@@ -10,47 +10,71 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+int n, k;
+int a[15], b[15];
+int cnt;
+bool final;
+
+bool check()
+{
+    for (int i = 1; i <= k; i++)
+    {
+        if (a[i] != b[i])
+            return false;
+    }
+
+    return true;
+}
+
+void generate()
+{
+    // 1 2 3 6
+    // 1 2 4 5
+
+    int i = k;
+    while (i >= 1 && a[i] == n - k + i)
+        i--;
+
+    if (i == 0)
+    {
+        final = true;
+    }
+    else
+    {
+        a[i]++;
+        for (int j = i + 1; j <= k; j++)
+            a[j] = a[j - 1] + 1;
+    }
+}
+
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
-
-    if (d * 9 < s)
+    cin >> n >> k;
+    final = false;
+    cnt = 0;
+    for (int i = 1; i <= k; i++)
     {
-        cout << -1;
-        return;
+        cin >> b[i];
+        a[i] = i;
     }
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
+    while (!final)
     {
-        if (s > 9)
+        cnt++;
+        if (check())
         {
-            res[i] = '9';
-            s -= 9;
+            cout << cnt << endl;
+            return;
         }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
-    }
 
-    cout << res;
+        generate();
+    }
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
@@ -62,7 +86,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

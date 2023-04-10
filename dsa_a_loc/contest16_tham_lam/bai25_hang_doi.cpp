@@ -12,35 +12,36 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
 
-    if (d * 9 < s)
+    int n;
+    cin >> n;
+
+    map<int, int> mp;
+    int x;
+    for (int i = 0; i < n; i++)
     {
-        cout << -1;
-        return;
+        cin >> x;
+        mp[x]++;
     }
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
+    vector<pair<int, int>> v;
+    for (auto x : mp)
+        v.push_back(x);
+
+    sort(v.begin(), v.end(), [](pair<int, int> a, pair<int, int> b) {
+        if (a.second == b.second)
+            return a.first < b.first;
+        return a.second > b.second;
+    });
+
+    ll waitting = v[0].first * v[0].second;
+    ll res = v[0].second;
+    for (int i = 1; i < v.size(); i++)
     {
-        if (s > 9)
+        if (waitting < v[i].first)
         {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
+            res += v[i].second;
+            waitting += v[i].first * v[i].second;
         }
     }
 

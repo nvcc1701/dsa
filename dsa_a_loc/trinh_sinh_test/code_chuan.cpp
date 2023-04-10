@@ -12,49 +12,62 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    int n;
+    cin >> n;
 
-    if (d * 9 < s)
+    vector<int> d;
+    for (int i = 2; i <= sqrt(n); i++)
     {
-        cout << -1;
+        if (n % i == 0)
+        {
+            d.push_back(i);
+            n /= i;
+        }
+    }
+
+    if (n != 1)
+        d.push_back(n);
+
+    // if (d.size() > 3)
+    // {
+    //     cout << "YES";
+    // }
+    // else
+    //     cout << "NO";
+
+    int x = 1, y = 1, z = 1;
+
+    for (int &u : d)
+    {
+        if (x == 1)
+            x *= u;
+        else if (y == 1 || x == y)
+            y *= u;
+        else
+            z *= u;
+    }
+
+    if (x == 1 || y == 1 || z == 1)
+    {
+        cout << "NO\n";
         return;
     }
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
+    if (x == y || x == z || y == z)
     {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
+        cout << "NO\n";
+        return;
     }
-
-    cout << res;
+    cout << "YES\n";
 }
 
 int main()
 {
-
 #define LOCAL
 
 #ifdef LOCAL
-    freopen("../input.txt ", "r", stdin);
-    freopen("../output.txt ", "w", stdout);
+    freopen("test.txt ", "r", stdin);
+    freopen("output1.txt ", "w", stdout);
     auto start = chrono::high_resolution_clock::now();
 #endif
 
@@ -62,7 +75,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

@@ -14,49 +14,53 @@ void run_case()
 {
     int n;
     cin >> n;
-    int a[n];
 
-    vector<int> odd;
-    vector<int> even;
-
-    for (auto &x : a)
+    vector<int> d;
+    for (int i = 2; i <= sqrt(n); i++)
     {
-        cin >> x;
-        if (x % 2 == 0)
-            even.push_back(x);
-        else
-            odd.push_back(x);
+        if (n % i == 0)
+        {
+            d.push_back(i);
+            n /= i;
+        }
     }
 
-    int O = odd.size(), E = even.size();
+    if (n != 1)
+        d.push_back(n);
 
-    // kiem tra tinh chan le
-    if (O % 2 == 0 && E % 2 == 0)
+    if (d.size() >= 3)
     {
         cout << "YES";
-        return;
     }
+    else
+        cout << "NO";
 
-    // kiem tra cac so cach nhau 1 don vi
-    sort(even.begin(), even.end());
-    sort(odd.begin(), odd.end());
+    // int x = 1, y = 1, z = 1;
 
-    int i = 0, j = 0;
-    while (i < E && j < O)
-    {
-        if (abs(even[i] - odd[j]) == 1)
-        {
-            cout << "YES";
-            return;
-        }
+    // for (int &u : d)
+    // {
+    //     if (x == 1)
+    //         x *= u;
+    //     else if (y == 1 || x == y)
+    //         y *= u;
+    //     else
+    //         z *= u;
+    // }
 
-        if (even[i] < odd[j])
-            i++;
-        else
-            j++;
-    }
+    // if (x == 1 || y == 1 || z == 1)
+    // {
+    //     cout << "NO\n";
+    //     return;
+    // }
 
-    cout << "NO";
+    // if (x == y || x == z || y == z)
+    // {
+    //     cout << "NO\n";
+    //     return;
+    // }
+    // cout << "YES\n";
+
+    cout << "\n";
 }
 
 int main()
@@ -65,8 +69,8 @@ int main()
 #define LOCAL
 
 #ifdef LOCAL
-    freopen("../input.txt ", "r", stdin);
-    freopen("../output.txt ", "w", stdout);
+    freopen("test.txt ", "r", stdin);
+    freopen("output2.txt ", "w", stdout);
     auto start = chrono::high_resolution_clock::now();
 #endif
 
@@ -74,7 +78,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

@@ -10,47 +10,77 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+int n, k;
+int a[20];
+int c[20];
+bool final;
+
+void init()
+{
+    int b;
+    cin >> b >> k;
+    set<int> se;
+    int x;
+    for (int i = 0; i < b; i++)
+    {
+        cin >> x;
+        se.insert(x);
+    }
+
+    n = se.size();
+    auto it = se.begin();
+    for (int i = 1; i <= n; i++)
+    {
+        c[i] = *it;
+        it++;
+    }
+
+    final = false;
+    for (int i = 1; i <= k; i++)
+        a[i] = i;
+}
+
+void generate()
+{
+
+    // 1 2 3 5 6
+    int i = k;
+    while (i >= 1 && a[i] == n - k + i)
+        i--;
+
+    if (i == 0)
+        final = true;
+    else
+    {
+        a[i]++;
+        for (int j = i + 1; j <= k; j++)
+            a[j] = a[j - 1] + 1;
+    }
+}
+
+void print()
+{
+    for (int i = 1; i <= k; i++)
+    {
+        cout << c[a[i]] << " ";
+    }
+    cout << endl;
+}
+
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
-
-    if (d * 9 < s)
+    init();
+    while (!final)
     {
-        cout << -1;
-        return;
+        print();
+        generate();
     }
-
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
-    }
-
-    cout << res;
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);

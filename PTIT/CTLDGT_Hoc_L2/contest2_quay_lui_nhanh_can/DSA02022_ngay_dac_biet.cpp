@@ -10,47 +10,72 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-void run_case()
+int n;
+string s;
+void init()
 {
-    int s, d;
-    cin >> s >> d;
+    n = 7;
+    s = "";
+    // 22022022
+    // 00001000
+}
 
-    if (d * 9 < s)
-    {
-        cout << -1;
+void check()
+{
+    string s1 = s;
+    s1.insert(s1.begin() + 4, '2');
+
+    if (s1[1] == '0' && s1[0] == '0')
         return;
-    }
+    if (s1[2] != '0' || s1[3] == '0')
+        return;
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
+    // int i = 0, j = 7;
+    // while (i < j)
+    // {
+    //     if (s1[i] != s1[j])
+    //         return;
+    //     i++;
+    //     j--;
+    // }
+
+    s1.insert(s1.begin() + 2, '/');
+    s1.insert(s1.begin() + 5, '/');
+
+    cout << s1 << endl;
+}
+
+void Try()
+{
+    for (int j = 0; j <= 1; j++)
     {
-        if (s > 9)
+        if (s.size() == n)
         {
-            res[i] = '9';
-            s -= 9;
+            check();
+            return;
         }
         else
         {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
+            if (j == 0)
+                s.push_back(static_cast<char>(j + '0'));
             else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
+                s.push_back('2');
+            Try();
+            s.pop_back();
         }
     }
+}
 
-    cout << res;
+void run_case()
+{
+    init();
+    Try();
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);

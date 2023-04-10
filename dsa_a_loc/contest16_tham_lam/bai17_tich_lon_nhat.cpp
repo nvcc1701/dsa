@@ -14,28 +14,22 @@ void run_case()
 {
     int n;
     cin >> n;
-    vector<ll> v(n);
+    vector<int> v;
+    int x;
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
+        cin >> x;
+        v.push_back(x);
     }
 
     sort(v.begin(), v.end());
 
-    ll res = 1;
-    if (v.size() > 2)
-    {
-        res = max(res, v[0] * v[1]);
-        res = max(res, v[n - 1] * v[n - 2]);
-    }
+    ll mul2 = 1ll * v[0] * v[1];
+    ll mul3 = 1ll * v[n - 1] * v[n - 2];
+    ll mul1 = 1ll * v[0] * v[1] * v[n - 1]; // co dau am
+    ll mul4 = 1ll * v[n - 1] * v[n - 2] * v[n - 3];
 
-    if (v.size() > 3)
-    {
-        res = max(res, v[0] * v[1] * v[2]);
-        res = max(res, v[n - 1] * v[n - 2] * v[n - 3]);
-    }
-
-    cout << res;
+    cout << max({mul1, mul2, mul3, mul4});
 }
 
 int main()
@@ -68,4 +62,3 @@ int main()
 
     return 0;
 }
-

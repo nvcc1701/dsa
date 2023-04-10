@@ -12,45 +12,44 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    int n;
+    cin >> n;
+    vector<pair<int, int>> v;
 
-    if (d * 9 < s)
+    int x;
+    for (int i = 1; i <= n; i++)
     {
-        cout << -1;
-        return;
+        cin >> x;
+        v.push_back({i, x});
     }
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
+    sort(v.begin(), v.end(), [](pair<int, int> a, pair<int, int> b) { return a.second < b.second; });
+
+    int i = 0, j = v.size() - 1;
+    int Max = -INF, Min = INF;
+    while (i < j)
     {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
+        Min = min(Min, v[i].first);
+        Max = max(Max, v[j].first);
+        i++;
+        j--;
     }
 
-    cout << res;
+    if (Min >= Max)
+        cout << "-1\n";
+    else
+        cout << Max - Min << "\n";
+
+    // 1 2 3 8 10 30 33 34 80
+    // 9
+    // 34 8 10 3 2 80 30 33 1
+    //    i              j
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
@@ -62,7 +61,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

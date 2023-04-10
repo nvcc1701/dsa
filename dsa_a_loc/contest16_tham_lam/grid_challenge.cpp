@@ -12,39 +12,30 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
-
-    if (d * 9 < s)
+    int n;
+    cin >> n;
+    vector<string> v;
+    string s;
+    for (int i = 0; i < n; i++)
     {
-        cout << -1;
-        return;
+        cin >> s;
+        v.push_back(s);
+        sort(v[i].begin(), v[i].end());
     }
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
+    for (int i = 0; i < n; i++)
     {
-        if (s > 9)
+        for (int j = 1; j < n; j++)
         {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
+            if (v[j][i] < v[j - 1][i])
             {
-                res[i] = s;
+                cout << "NO\n";
+                return;
             }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
         }
     }
 
-    cout << res;
+    cout << "YES\n";
 }
 
 int main()
@@ -62,7 +53,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

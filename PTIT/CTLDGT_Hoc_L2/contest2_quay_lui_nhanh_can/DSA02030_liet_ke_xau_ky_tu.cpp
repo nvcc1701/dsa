@@ -10,47 +10,42 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-void run_case()
+char c;
+int k;
+void init()
 {
-    int s, d;
-    cin >> s >> d;
+    cin >> c >> k;
+}
 
-    if (d * 9 < s)
+string s;
+void Try(char start)
+{
+    for (char j = start; j <= c; j++)
     {
-        cout << -1;
-        return;
-    }
-
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
+        if (s.size() == k)
         {
-            res[i] = '9';
-            s -= 9;
+            cout << s << endl;
+            return;
         }
         else
         {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
+            s.push_back(j);
+            Try(j);
+            s.pop_back();
         }
     }
+}
 
-    cout << res;
+void run_case()
+{
+    init();
+    Try('A');
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);

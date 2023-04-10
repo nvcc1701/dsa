@@ -10,47 +10,66 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-void run_case()
+int n, k;
+int a[200];
+bool ok;
+int sum;
+// 1 5 5 11
+void Try(int start)
 {
-    int s, d;
-    cin >> s >> d;
-
-    if (d * 9 < s)
+    if (sum == k)
     {
-        cout << -1;
+        ok = true;
         return;
     }
+    if (ok)
+        return;
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
+    for (int j = start; j < n; j++)
     {
-        if (s > 9)
+        if (sum < k)
         {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
+            sum += a[j];
+            Try(j + 1);
+            sum -= a[j];
         }
     }
+}
 
-    cout << res;
+void run_case()
+{
+    cin >> n;
+    int total = 0;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        total += a[i];
+    }
+
+    if (total % 2 == 1)
+    {
+        cout << "NO\n";
+        return;
+    }
+    else
+    {
+        k = total / 2;
+        sum = 0;
+        ok = false;
+        sort(a, a + n);
+        Try(0);
+
+        if (ok)
+            cout << "YES\n";
+        else
+            cout << "NO\n";
+    }
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
@@ -62,7 +81,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

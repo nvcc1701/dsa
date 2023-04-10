@@ -8,49 +8,37 @@ using ll = long long;
 const ll LINF = 1e18 + 5;
 const int INF = 1e9;
 const int MOD = 1e9 + 7;
-const int MAX = 1e6 + 5;
+const int MAX = 1e5 + 5;
 
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    int n;
+    cin >> n;
 
-    if (d * 9 < s)
+    int c[MAX];
+    vector<int> v;
+
+    int x;
+    for (int i = 0; i < n; i++)
     {
-        cout << -1;
-        return;
+        cin >> x;
+        v.push_back(x);
     }
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
+    for (auto num : v)
     {
-        if (s > 9)
+        if (c[num] == 0)
         {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
+            cout << num << " ";
+            c[num] = 1;
         }
     }
-
-    cout << res;
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);

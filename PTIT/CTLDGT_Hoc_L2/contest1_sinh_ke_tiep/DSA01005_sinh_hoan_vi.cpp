@@ -10,47 +10,58 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+int n;
+int a[MAX];
+bool final;
+
+void next_premutation()
+{
+    // 1 2 3 6 9 8 7 5 4
+    int i = n - 1;
+    while (i >= 1 && a[i] > a[i + 1])
+        i--;
+
+    if (i == 0)
+    {
+        final = true;
+    }
+    else
+    {
+        int j = n;
+        while (a[i] > a[j])
+            j--;
+        swap(a[i], a[j]);
+        reverse(a + i + 1, a + n + 1);
+    }
+}
+
+void print()
+{
+    for (int i = 1; i <= n; i++)
+        cout << a[i];
+    cout << " ";
+}
+
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    cin >> n;
+    for (int i = 1; i <= n; i++)
+        a[i] = i;
+    final = false;
 
-    if (d * 9 < s)
+    while (!final)
     {
-        cout << -1;
-        return;
+        print();
+        next_premutation();
     }
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
-    }
-
-    cout << res;
+    cout << endl;
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
@@ -62,7 +73,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

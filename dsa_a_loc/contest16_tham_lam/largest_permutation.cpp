@@ -12,39 +12,39 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    int n, k;
+    cin >> n >> k;
+    int a[n + 1], pos[n + 1];
 
-    if (d * 9 < s)
+    for (int i = 1; i <= n; i++)
     {
-        cout << -1;
-        return;
+        cin >> a[i];
+        pos[a[i]] = i;
     }
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
+    // doi vi tri lon nhat co the
+    //  doi ca positon
+    //  2 6 1 5 4 3
+    //  1 2 3 4 5 6
+    //  6 2
+    //  1 2
+    for (int i = 1; i <= n; i++)
     {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
+        if (!k)
             break;
+
+        if (a[i] != n - i + 1)
+        {
+            k--;
+            a[pos[n - i + 1]] = a[i];   // a[pos[6]] = 2;
+            pos[a[i]] = pos[n - i + 1]; // pos[2] = pos[6]
+            a[i] = n - i + 1;           // a[i] = 6;
+            pos[a[i]] = i;              // pos[6] = 1
         }
     }
 
-    cout << res;
+    for (int i = 1; i <= n; i++)
+        cout << a[i] << " ";
 }
 
 int main()

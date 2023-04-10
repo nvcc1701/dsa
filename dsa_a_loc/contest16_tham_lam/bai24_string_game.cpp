@@ -12,39 +12,31 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    string s;
+    cin >> s;
 
-    if (d * 9 < s)
+    map<char, int> mp;
+    for (int i = 0; i < s.size(); i++)
     {
-        cout << -1;
+        mp[s[i]]++;
+    }
+
+    int cnt = 0; // dem so cac ki tu co lan xuat hien le
+    for (auto [fi, se] : mp)
+    {
+        if (se % 2 == 1)
+            cnt++;
+    }
+
+    // abbba
+    if (cnt == 1)
+    {
+        cout << "1\n";
         return;
     }
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
-    }
-
-    cout << res;
+    // abbbccca
+    cout << ((cnt & 1) ? "1\n" : "2\n");
 }
 
 int main()

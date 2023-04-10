@@ -10,21 +10,24 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n, s, m;
-
 void run_case()
 {
+    int n, s, m;
     cin >> n >> s >> m;
-    int mua_max = n * m;
     int mua_du = s * m;
 
-    if (mua_du > mua_max)
-    {
-        cout << -1;
-        return;
-    }
+    int dicho = (mua_du + n - 1) / n;
+    int dicho;
+    if (mua_du % n == 0)
+        dicho = mua_du / n;
+    else
+        dicho = mua_du / n + 1;
 
-    cout << m - (mua_max - mua_du) / n;
+    int dichotoida = s / 7 * 6 + s % 7;
+    if (dicho <= dichotoida)
+        cout << dicho;
+    else
+        cout << -1;
 }
 
 int main()

@@ -10,47 +10,28 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+int n;
+vector<int> v = {1, 2, 5, 10, 20, 50, 100, 200, 500, 1000};
+int res;
+
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    cin >> n;
+    res = 0;
 
-    if (d * 9 < s)
+    for (int i = v.size() - 1; i >= 0; i--)
     {
-        cout << -1;
-        return;
+        res += n / v[i];
+        n = n % v[i];
     }
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
-    }
-
-    cout << res;
+    cout << res << endl;
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
@@ -62,7 +43,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

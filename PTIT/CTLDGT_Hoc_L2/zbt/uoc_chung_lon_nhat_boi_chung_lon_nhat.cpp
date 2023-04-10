@@ -10,41 +10,29 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+// int gcd(int a, int b)
+// {
+//     if (b == 0)
+//         return a;
+//     else
+//         return gcd(b, a % b);
+// }
+
+int gcd(int a, int b)
+{
+    for (int i = max(a, b); i >= 0; i--)
+    {
+        if (a % i == 0 && b % i == 0)
+            return i;
+    }
+}
+
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    int a, b;
+    cin >> a >> b;
 
-    if (d * 9 < s)
-    {
-        cout << -1;
-        return;
-    }
-
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
-    }
-
-    cout << res;
+    cout << gcd(a, b) << " " << (a * b) / gcd(a, b) << endl;
 }
 
 int main()
@@ -62,7 +50,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

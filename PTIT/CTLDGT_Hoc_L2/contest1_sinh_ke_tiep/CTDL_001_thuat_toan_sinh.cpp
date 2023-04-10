@@ -12,45 +12,43 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    int n;
+    cin >> n;
 
-    if (d * 9 < s)
+    vector<string> res;
+	
+    queue<string> q;
+    q.push("00");
+    q.push("11");
+    while (q.size() > 0)
     {
-        cout << -1;
-        return;
-    }
+        string s = q.front();
+        q.pop();
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
+        if (s.size() == n)
+            res.push_back(s);
+
+        if (s.size() > n)
             break;
-        }
+
+        q.push("0" + s + "0");
+        q.push("1" + s + "1");
     }
 
-    cout << res;
+    sort(res.begin(), res.end());
+
+    for (auto x : res)
+    {
+        for (int i = 0; i < x.size(); i++)
+            cout << x[i] << " ";
+        cout << endl;
+    }
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);

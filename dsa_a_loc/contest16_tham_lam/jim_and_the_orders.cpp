@@ -12,39 +12,33 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    int n;
+    cin >> n;
 
-    if (d * 9 < s)
+    ll x, y;
+
+    vector<tuple<ll, ll, ll>> v;
+    for (int i = 1; i <= n; i++)
     {
-        cout << -1;
-        return;
+        cin >> x >> y;
+        v.push_back({i, x, y});
     }
 
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
-    }
+    sort(v.begin(), v.end(), [](tuple<ll, ll, ll> a, tuple<ll, ll, ll> b) {
+        int sum1 = get<1>(a) + get<2>(a);
+        int sum2 = get<1>(b) + get<2>(b);
 
-    cout << res;
+        if (sum1 == sum2)
+        {
+            return get<0>(a) < get<0>(b);
+        }
+        return sum1 < sum2;
+    });
+
+    for (auto x : v)
+    {
+        cout << get<0>(x) << " ";
+    }
 }
 
 int main()

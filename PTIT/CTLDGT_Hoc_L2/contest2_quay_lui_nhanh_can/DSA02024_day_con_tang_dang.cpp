@@ -10,47 +10,61 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+int n;
+int a[200];
+vector<string> res;
+vector<int> v;
+
+void init()
+{
+    cin >> n;
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+    v.push_back(-INF);
+}
+
+void update()
+{
+    string s = "";
+    for (int i = 1; i < v.size(); i++)
+    {
+        if (i == v.size() - 1)
+            s += to_string(v[i]);
+        else
+            s += to_string(v[i]) + " ";
+    }
+    res.push_back(s);
+}
+
+void Try(int start)
+{
+    for (int j = start; j < n; j++)
+    {
+        if (a[j] > *v.rbegin())
+        {
+            v.push_back(a[j]);
+            if (v.size() > 2)
+                update();
+            Try(j + 1);
+            v.pop_back();
+        }
+    }
+}
+
 void run_case()
 {
-    int s, d;
-    cin >> s >> d;
+    init();
+    Try(0);
 
-    if (d * 9 < s)
-    {
-        cout << -1;
-        return;
-    }
-
-    string res = string(d, '0');
-    for (int i = d - 1; i >= 0; i--)
-    {
-        if (s > 9)
-        {
-            res[i] = '9';
-            s -= 9;
-        }
-        else
-        {
-            if (i == 0)
-            {
-                res[i] = s;
-            }
-            else
-            {
-                res[0] = '1';
-                res[i] += s - 1;
-            }
-            break;
-        }
-    }
-
-    cout << res;
+    sort(res.begin(), res.end());
+    for (auto x : res)
+        cout << x << endl;
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);

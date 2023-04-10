@@ -10,44 +10,30 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n;
-vector<string> v;
-bool check(string s)
-{
-    ll tong = 0;
-    for (auto x : s)
-    {
-        tong += stoll(string(1, x));
-    }
-
-    if (tong == n)
-    {
-        v.push_back(s);
-        cout << s << endl;
-    }
-
-    return tong > n;
-}
-
 void run_case()
 {
+    int n;
     cin >> n;
 
-    queue<string> q;
-    q.push("7");
-    q.push("4");
-    while (!q.empty())
+    // xem co the tao ra so co max bao nhieu so 7
+    // duyet nguoc lai xem so co so luong so7 la bao nhieu thi thoa man bai toan
+    for (int d7 = n / 7; d7 >= 0; d7--)
     {
-        string s = q.front();
-        q.pop();
-        if (check(s))
+        int d4 = n - d7 * 7;
+        if (d4 % 4 == 0)
         {
-            break;
+            for (int i = 0; i < d4 / 4; i++)
+                cout << 4;
+            for (int i = 0; i < d7; i++)
+                cout << 7;
+
+            return;
         }
-        q.push(s + "7");
-        q.push(s + "4");
     }
+    cout << -1;
 }
+
+// 16/7 = 2 -> du 2
 
 int main()
 {
