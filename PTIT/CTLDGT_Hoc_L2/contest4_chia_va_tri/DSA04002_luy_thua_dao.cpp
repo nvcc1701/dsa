@@ -10,32 +10,31 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-ll n;
+ll n, r;
+string s;
+
+ll bipow(ll a, ll b)
+{
+    if (b == 0)
+        return 1;
+
+    ll x = bipow(a, b / 2);
+    x %= MOD;
+
+    if (b % 2)
+        return ((x * x) % MOD * a) % MOD;
+    else
+        return (x * x) % MOD;
+}
+
 void run_case()
 {
-    cin >> n;
-    // be nhat -> nhieu so 7 nhat
+    cin >> s;
+    n = stoll(s);
+    reverse(s.begin(), s.end());
+    r = stoll(s);
 
-    bool ok = false;
-    for (int d7 = n / 7; d7 >= 0; d7--) // so luong chu so 7
-    {
-        int n4 = n - d7 * 7;
-        if (n4 % 4 == 0)
-        {
-            ok = true;
-            int d4 = n4 / 4;
-            for (int i = 0; i < d4; i++)
-                cout << 4;
-            for (int i = 0; i < d7; i++)
-                cout << 7;
-            cout << endl;
-            return;
-        }
-    }
-
-    if (!ok)
-        cout << -1;
-    cout << endl;
+    cout << bipow(n, r) << endl;
 }
 
 int main()

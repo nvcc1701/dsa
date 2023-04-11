@@ -10,32 +10,24 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-ll n;
+int n;
 void run_case()
 {
     cin >> n;
-    // be nhat -> nhieu so 7 nhat
+    int a[n];
+    for (auto &x : a)
+        cin >> x;
 
-    bool ok = false;
-    for (int d7 = n / 7; d7 >= 0; d7--) // so luong chu so 7
+    ll res = 0, sum = 0;
+    for (auto x : a)
     {
-        int n4 = n - d7 * 7;
-        if (n4 % 4 == 0)
-        {
-            ok = true;
-            int d4 = n4 / 4;
-            for (int i = 0; i < d4; i++)
-                cout << 4;
-            for (int i = 0; i < d7; i++)
-                cout << 7;
-            cout << endl;
-            return;
-        }
+        sum += x;
+        res = max(res, sum);
+        if (sum < 0)
+            sum = 0;
     }
 
-    if (!ok)
-        cout << -1;
-    cout << endl;
+    cout << res << endl;
 }
 
 int main()

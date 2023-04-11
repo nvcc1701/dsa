@@ -10,32 +10,33 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-ll n;
+ll n, k;
+ll f[100];
+
+void init()
+{
+    f[1] = f[2] = 1;
+    for (int i = 3; i <= 92; i++)
+        f[i] = f[i - 2] + f[i - 1];
+}
+
+char fibo(ll n, ll k)
+{
+    if (n == 1)
+        return '0';
+    if (n == 2)
+        return '1';
+
+    if (k <= f[n - 2])
+        return fibo(n - 2, k);
+    else
+        return fibo(n - 1, k - f[n - 2]);
+}
+
 void run_case()
 {
-    cin >> n;
-    // be nhat -> nhieu so 7 nhat
-
-    bool ok = false;
-    for (int d7 = n / 7; d7 >= 0; d7--) // so luong chu so 7
-    {
-        int n4 = n - d7 * 7;
-        if (n4 % 4 == 0)
-        {
-            ok = true;
-            int d4 = n4 / 4;
-            for (int i = 0; i < d4; i++)
-                cout << 4;
-            for (int i = 0; i < d7; i++)
-                cout << 7;
-            cout << endl;
-            return;
-        }
-    }
-
-    if (!ok)
-        cout << -1;
-    cout << endl;
+    cin >> n >> k;
+    cout << fibo(n, k) << endl;
 }
 
 int main()
@@ -53,6 +54,7 @@ int main()
 
     int Test = 1;
     cin >> Test;
+    init();
     for (int test = 1; test <= Test; test++)
     {
         run_case();

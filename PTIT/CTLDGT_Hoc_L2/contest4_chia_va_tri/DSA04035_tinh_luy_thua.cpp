@@ -10,32 +10,32 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-ll n;
+ll a, b;
+
+ll bipow(ll a, ll b)
+{
+    if (b == 0)
+        return 1;
+
+    ll x = bipow(a, b / 2);
+    x %= MOD;
+
+    if (b % 2)
+        return ((x * x) % MOD * a) % MOD;
+    else
+        return (x * x) % MOD;
+}
+
 void run_case()
 {
-    cin >> n;
-    // be nhat -> nhieu so 7 nhat
-
-    bool ok = false;
-    for (int d7 = n / 7; d7 >= 0; d7--) // so luong chu so 7
+    while (true)
     {
-        int n4 = n - d7 * 7;
-        if (n4 % 4 == 0)
-        {
-            ok = true;
-            int d4 = n4 / 4;
-            for (int i = 0; i < d4; i++)
-                cout << 4;
-            for (int i = 0; i < d7; i++)
-                cout << 7;
-            cout << endl;
+        cin >> a >> b;
+        if (a == 0 && b == 0)
             return;
-        }
-    }
 
-    if (!ok)
-        cout << -1;
-    cout << endl;
+        cout << bipow(a, b) << endl;
+    }
 }
 
 int main()
@@ -52,7 +52,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    cin >> Test;
+    // cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

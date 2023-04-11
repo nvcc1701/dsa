@@ -10,32 +10,38 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-ll n;
+int n;
+
+bool check(vector<int> a, int n)
+{
+    for (auto x : a)
+        if (x / n == x / (n + 1))
+            return false;
+
+    return true;
+}
+
 void run_case()
 {
     cin >> n;
-    // be nhat -> nhieu so 7 nhat
+    vector<int> a(n), c;
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+    c = a;
 
-    bool ok = false;
-    for (int d7 = n / 7; d7 >= 0; d7--) // so luong chu so 7
+    ll min = *min_element(a.begin(), a.end());
+    int i;
+    for (i = min; i > 0; i--)
+        if (check(a, i))
+            break;
+
+    int sum = 0;
+    for (int j = 0; j < n; j++)
     {
-        int n4 = n - d7 * 7;
-        if (n4 % 4 == 0)
-        {
-            ok = true;
-            int d4 = n4 / 4;
-            for (int i = 0; i < d4; i++)
-                cout << 4;
-            for (int i = 0; i < d7; i++)
-                cout << 7;
-            cout << endl;
-            return;
-        }
+        c[j] = a[j] / (i + 1) + 1;
+        sum += c[j];
     }
-
-    if (!ok)
-        cout << -1;
-    cout << endl;
+    cout << sum;
 }
 
 int main()
@@ -52,7 +58,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    cin >> Test;
+    // cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();
