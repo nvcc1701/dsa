@@ -10,7 +10,7 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-// int gcd(int a, int b)
+// int gcd(int a, int b) O(N)
 // {
 //     if (b == 0)
 //         return a;
@@ -18,7 +18,7 @@ const int MAX = 1e6 + 5;
 //         return gcd(b, a % b);
 // }
 
-int gcd(int a, int b)
+int gcd(int a, int b) //O(n)
 {
     for (int i = max(a, b); i >= 0; i--)
     {
@@ -43,7 +43,6 @@ int main()
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
     freopen("../output.txt ", "w", stdout);
-    auto start = chrono::high_resolution_clock::now();
 #endif
 
     ios::sync_with_stdio(false);
@@ -55,13 +54,6 @@ int main()
     {
         run_case();
     }
-
-#ifdef LOCAL
-    auto end = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-    auto startT = chrono::system_clock::to_time_t(start);
-    cout << "\n\n" << ctime(&startT) << (double)duration.count() / 1000 << " seconds\n";
-#endif
 
     return 0;
 }

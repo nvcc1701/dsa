@@ -10,41 +10,26 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n;
-vector<pair<int, int>> v;
-
-void factorize()
-{
-    for (int i = 2; i <= sqrt(n); i++)
-    {
-        if (n % i == 0)
-        {
-            int cnt = 0;
-            while (n % i == 0)
-            {
-                n /= i;
-                cnt++;
-            }
-            v.push_back({i, cnt});
-        }
-    }
-
-    if (n != 1)
-        v.push_back({n, 1});
-}
-
+string s;
 void run_case()
 {
-    cin >> n;
-    factorize();
+    getline(cin, s);
 
-    for (auto x : v)
+    stringstream ss(s);
+    string res = "";
+
+    while (ss >> s)
     {
-        cout << x.first << "(" << x.second << ") ";
+        for (int i = 0; i < s.size(); i++)
+        {
+            if (i == 0)
+                res.push_back(toupper(s[i]));
+            else
+                res.push_back(tolower(s[i]));
+        }
+        res.push_back(' ');
     }
-    cout << endl;
-
-    v.clear();
+    cout << res << endl;
 }
 
 int main()
@@ -62,9 +47,9 @@ int main()
 
     int Test = 1;
     cin >> Test;
+    cin.ignore();
     for (int test = 1; test <= Test; test++)
     {
-        cout << "Test " << test << ": ";
         run_case();
     }
 
