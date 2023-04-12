@@ -10,28 +10,33 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-ll n, k;
+ll n, l, r;
 
-// 1
-// 1 2 1
-ll solve(ll n, ll k)
+int search(ll n, ll k)
 {
-    ll m = pow(2, n) / 2;
+    ll x = log2(n) + 1;
+    ll m = pow(2, x) / 2;
+
     if (k == m)
-        return n;
+        return n % 2;
 
     if (k < m)
-        return solve(n - 1, k);
-    else
-        return solve(n - 1, k - m);
+        return search(n / 2, k);
+    else if (k > m)
+        return search(n / 2, k - m);
 }
 
 void run_case()
 {
-    cin >> n >> k;
-    char c = 'A';
-    c += solve(n, k) - 1;
-    cout << c << endl;
+    cin >> n >> l >> r;
+
+    ll cnt = 0;
+    for (ll i = l; i <= r; i++)
+    {
+        cnt += search(n, i);
+    }
+
+    cout << cnt << endl;
 }
 
 int main()
