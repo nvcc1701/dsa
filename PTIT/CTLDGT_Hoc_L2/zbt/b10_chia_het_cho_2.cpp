@@ -12,17 +12,6 @@ const int MAX = 1e6 + 5;
 
 int n;
 
-bool isPrime(int n)
-{
-    for (int i = 2; i <= sqrt(n); i++)
-    {
-        if (n % i == 0)
-            return false;
-    }
-
-    return n > 1;
-}
-
 void run_case()
 {
     cin >> n;
@@ -30,7 +19,7 @@ void run_case()
     int cnt = 0;
     for (int i = 1; i <= n; i++)
     {
-        if (isPrime(i))
+        if (n % i == 0 && i % 2 == 0)
             cnt++;
     }
 
@@ -40,7 +29,7 @@ void run_case()
 int main()
 {
 
-// #define LOCAL
+    #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
