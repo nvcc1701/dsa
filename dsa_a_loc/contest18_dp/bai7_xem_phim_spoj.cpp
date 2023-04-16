@@ -12,36 +12,29 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int N, V;
-    cin >> N >> V;
-    int w[N + 1], v[N + 1];
+    int n, c;
+    cin >> c >> n;
 
-    for (int i = 1; i <= N; i++)
-        cin >> w[i];
+    int a[n + 1];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
 
-    for (int i = 1; i <= N; i++)
-        cin >> v[i];
-
-    int f[N + 1][V + 1];
+    int f[n + 1][c + 1]; // voi khong luon la j, duoc chon n con bo dau tien, thi max la
     memset(f, 0, sizeof(f));
+    f[0][0] = 0;
 
-
-    for (int i = 1; i <= N; i++)
+    for (int i = 1; i <= n; i++) // chon i con bo
     {
-        for (int j = 1; j <= V; j++)
+        for (int j = 1; j <= c; j++) // khoi luong
         {
-            if (w[i] <= j)
-            {
-                f[i][j] = max(v[i] + f[i - 1][j - w[i]], f[i - 1][j]);
-            }
+            if (a[i] <= j)
+                f[i][j] = max(f[i - 1][j], f[i - 1][j - a[i]] + a[i]);
             else
-            {
                 f[i][j] = f[i - 1][j];
-            }
         }
     }
 
-    cout << f[N][V];
+    cout << f[n][c];
 }
 
 int main()
