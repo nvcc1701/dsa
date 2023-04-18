@@ -12,28 +12,36 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int n, x;
-    cin >> n >> x;
+    int n;
+    cin >> n;
     int a[n + 1];
-    int f[x + 1]; // tong so dong xu = i thi co bao nhieu cach tao ra
-    memset(f, 0, sizeof(f));
+    int s = 0;
 
     for (int i = 1; i <= n; i++)
+    {
         cin >> a[i];
+        s += a[i];
+    }
+
+    int f[s + 1]; // co the tao duoc tong i khong?
+    memset(f, 0, sizeof(f));
 
     f[0] = 1;
 
-    for (int i = 1; i <= x; i++)
+    for (int i = 1; i <= n; i++)
     {
-        for (int j = 1; j <= n; j++)
+        for (int j = s; j >= 1; j--)
         {
-            if (i - a[j] >= 0)
-                f[i] += f[i - a[j]];
-            f[i] %= MOD;
+            if (f[j - a[i]] == 1)
+                f[j] = 1;
         }
     }
 
-    cout << f[x];
+    for (int i = 0; i <= s; i++)
+    {
+        if (f[i])
+            cout << i << " ";
+    }
 }
 
 int main()

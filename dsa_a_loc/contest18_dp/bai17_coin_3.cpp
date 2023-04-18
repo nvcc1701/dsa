@@ -12,34 +12,40 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int n, x;
-    cin >> n >> x;
-    int a[n + 1];
-    int f[x + 1]; // tong so dong xu = i thi co bao nhieu cach tao ra
-    memset(f, 0, sizeof(f));
+    int n, s;
+    cin >> n >> s;
 
+    int a[n + 1];
     for (int i = 1; i <= n; i++)
         cin >> a[i];
 
+    int f[s + 1];
+    memset(f, 0, sizeof(f));
+
     f[0] = 1;
 
-    for (int i = 1; i <= x; i++)
+    for (int i = 1; i <= n; i++)
     {
-        for (int j = 1; j <= n; j++)
+        for (int j = 1; j <= s; j++)
         {
-            if (i - a[j] >= 0)
-                f[i] += f[i - a[j]];
-            f[i] %= MOD;
+            if (j >= a[i])
+            {
+                f[j] += f[j - a[i]];
+            }
+            else
+                f[j] = f[j];
+
+            f[j] %= MOD;
         }
     }
 
-    cout << f[x];
+    cout << f[s];
 }
 
 int main()
 {
 
-// #define LOCAL
+#define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);

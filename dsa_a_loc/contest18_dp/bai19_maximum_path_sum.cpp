@@ -8,32 +8,32 @@ using ll = long long;
 const ll LINF = 1e18 + 5;
 const int INF = 1e9;
 const int MOD = 1e9 + 7;
-const int MAX = 1e6 + 5;
+const int MAX = 1000;
+
+ll f[MAX][MAX];
+ll a[MAX][MAX];
 
 void run_case()
 {
-    int n, x;
-    cin >> n >> x;
-    int a[n + 1];
-    int f[x + 1]; // tong so dong xu = i thi co bao nhieu cach tao ra
-    memset(f, 0, sizeof(f));
+    int n, m;
+    cin >> n >> m;
 
     for (int i = 1; i <= n; i++)
-        cin >> a[i];
+        for (int j = 1; j <= m; j++)
+            cin >> a[i][j];
 
-    f[0] = 1;
-
-    for (int i = 1; i <= x; i++)
-    {
-        for (int j = 1; j <= n; j++)
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= m; j++)
         {
-            if (i - a[j] >= 0)
-                f[i] += f[i - a[j]];
-            f[i] %= MOD;
+            if (i == 1 && j == 1)
+                f[i][j] = a[i][j];
+            else
+            {
+                f[i][j] = a[i][j] + max(f[i - 1][j], f[i][j - 1]);
+            }
         }
-    }
 
-    cout << f[x];
+    cout << f[n][m];
 }
 
 int main()
