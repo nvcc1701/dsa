@@ -12,28 +12,24 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    string s;
-    cin >> s;
-    int n = s.size();
-    s = "0" + s;
+    ll n;
+    cin >> n;
 
     ll f[n + 1];
     memset(f, 0, sizeof(f));
 
     for (int i = 1; i <= n; i++)
     {
-        f[i] = s[i] - '0';
-        ll sum = s[i] - '0';
-        ll p = 10;
-        for (int j = i - 1; j >= 1; j--)
+        ll d = i;
+        f[i] = INF;
+        while (d > 0)
         {
-            sum += p * (s[j] - '0');
-            p *= 10;
-            f[i] += sum;
+            f[i] = min(f[i], f[i - (d % 10)] + 1);
+            d /= 10;
         }
     }
-    cout << accumulate(f + 1, f + n + 1, 0ll);
-    // // f[i] = f[i-1]*10+s[i]
+
+    cout << f[n];
 }
 
 int main()
