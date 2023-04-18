@@ -19,16 +19,16 @@ void run_case()
 
     ll f[n + 1];
     memset(f, 0, sizeof(f));
-    f[1] = s[1] - '0';
 
-    for (int i = 2; i <= n; i++)
+    for (int i = 1; i <= n; i++)
     {
-        for (int j = 1; j < i; j++)
+        f[i] = s[i] - '0';
+        for (int j = i - 1; j < i; j++)
         {
-            f[i] += s[j] * pow(10, j) + (s[i] - '0');
+            f[i] += pow(10, j) * (s[j] - '0') + (s[i] - '0');
         }
     }
-    cout << "";
+    cout << accumulate(f + 1, f + n + 1, 0);
     // // f[i] = f[i-1]*10+s[i]
 }
 
