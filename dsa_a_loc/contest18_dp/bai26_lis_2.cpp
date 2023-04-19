@@ -39,7 +39,7 @@ void run_case()
 int main()
 {
 
-    // #define LOCAL
+    #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);

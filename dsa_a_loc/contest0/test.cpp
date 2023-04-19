@@ -10,46 +10,36 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-ll n, m;
-string s;
-
-ll bipow(ll a, ll b)
-{
-    if (b == 0)
-        return 1;
-
-    if (b % 2 == 1)
-    {
-        ll x = bipow(a, b / 2);
-        x %= MOD;
-
-        x = ((x % MOD) * (x % MOD)) % MOD;
-        return (x * a) % MOD;
-    }
-    else
-    {
-        ll x = bipow(a, b / 2);
-        x %= MOD;
-
-        x = ((x % MOD) * (x % MOD)) % MOD;
-        return (x) % MOD;
-    }
-}
-
 void run_case()
 {
-    cin >> s;
-    n = stoll(s);
-    reverse(s.begin(), s.end());
-    m = stoll(s);
+    int n;
+    cin >> n;
+    ll a[n + 1];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
 
-    cout << bipow(n, m);
+    vector<ll> f;
+    for (int i = 1; i <= n; i++)
+    {
+        if (f.empty())
+            f.push_back(a[i]);
+        else
+        {
+            auto iter = upper_bound(f.begin(), f.end(), a[i]);
+            if (iter != f.end())
+                *iter = a[i];
+            if (a[i] > f.back())
+                f.push_back(a[i]);
+        }
+    }
+
+    cout << f.size();
 }
 
 int main()
 {
 
-// #define LOCAL
+#define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
