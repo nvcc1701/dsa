@@ -12,34 +12,28 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    string s;
-    cin >> s;
-    int n = s.size();
-    s = "0" + s;
+    int n;
+    cin >> n;
 
-    ll f[n + 1];
+    int f[n + 1]; // o tong = i  thi can bao nhieu so binh phuong
     memset(f, 0, sizeof(f));
 
     for (int i = 1; i <= n; i++)
     {
-        f[i] = s[i] - '0';
-        ll sum = s[i] - '0';
-        ll p = 10;
-        for (int j = i - 1; j >= 1; j--)
+        f[i] = i;                        // truong hop co so neu khong co bp nao thoa man thi se co i so 1
+        for (int j = 1; j * j <= i; j++) // xay dung truong hop co so va cap nhat ket qua toi uu @thamlam
         {
-            sum += p * (s[j] - '0');
-            p *= 10;
-            f[i] += sum;
+            f[i] = min(f[i], f[i - j * j] + 1);
         }
     }
-    cout << accumulate(f + 1, f + n + 1, 0ll);
-    // // f[i] = f[i-1]*10+s[i]
+
+    cout << f[n];
 }
 
 int main()
 {
 
-// #define LOCAL
+#define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
