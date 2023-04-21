@@ -10,33 +10,45 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
+vector<int> a[1000 + 1];
+bool visited[1001];
+
+void dfs(int x)
+{
+    if (visited[x])
+        return;
+
+    cout << x << " ";
+    visited[x] = true;
+    for (auto x1 : a[x])
+    {
+        dfs(x1);
+    }
+}
+
 void run_case()
 {
-    int n, k;
-    cin >> n >> k;
-    int a[n + 1];
-    for (int i = 1; i <= n; i++)
-        cin >> a[i];
+    memset(a, 0, sizeof(a));
+    memset(visited, false, sizeof(visited));
 
-    int f[k + 1];
-    memset(f, 0, sizeof(f));
+    int v, e, x;
+    cin >> v >> e >> x;
 
-    for (int i = 1; i <= k; i++)
+    int x1, y;
+    for (int i = 0; i < e; i++)
     {
-        for (int j = 1; j <= n; j++)
-        {
-            if (i - a[j] >= 0)
-                f[i] += f[i - a[j]];
-        }
+        cin >> x1 >> y;
+        a[x1].push_back(y);
+        a[y].push_back(x1);
     }
-
-    cout << f[k] << endl;
+    dfs(x);
+    cout << endl;
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);

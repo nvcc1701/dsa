@@ -12,31 +12,31 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    int n, k;
-    cin >> n >> k;
-    int a[n + 1];
-    for (int i = 1; i <= n; i++)
-        cin >> a[i];
+    int v, e;
+    cin >> v >> e;
+    vector<int> a[v + 1];
 
-    int f[k + 1];
-    memset(f, 0, sizeof(f));
-
-    for (int i = 1; i <= k; i++)
+    int x, y;
+    for (int i = 0; i < e; i++)
     {
-        for (int j = 1; j <= n; j++)
-        {
-            if (i - a[j] >= 0)
-                f[i] += f[i - a[j]];
-        }
+        cin >> x >> y;
+        a[x].push_back(y);
+        a[y].push_back(x);
     }
 
-    cout << f[k] << endl;
+    for (int i = 1; i <= v; i++)
+    {
+        cout << i << ": ";
+        for (auto x : a[i])
+            cout << x << " ";
+        cout << endl;
+    }
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
