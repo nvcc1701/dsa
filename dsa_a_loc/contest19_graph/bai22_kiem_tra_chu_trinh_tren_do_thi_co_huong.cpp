@@ -11,25 +11,25 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
 set<int> ke[1001];
-bool visited[1001];
-bool check = false;
+int color[1001];
 
-bool dfs(int s, int par)
+bool dfs(int s)
 {
-    visited[s] = true;
+    color[s] = 1;
 
     for (auto x : ke[s])
     {
-        if (!visited[x])
+        if (color[x] == 0)
         {
-            if (dfs(x, s))
+            if (dfs(x))
                 return true;
         }
-        else if (visited[x] && x != par)
+        else if (color[x] == 1)
         {
-            return true;
+            return true; // co duong di tu x->s
         }
     }
+    color[s] = 2;
     return false;
 }
 
@@ -43,15 +43,15 @@ void run_case()
         int x, y;
         cin >> x >> y;
         ke[x].insert(y);
-        ke[y].insert(x);
     }
 
-    memset(visited, false, sizeof(visited));
+    memset(color, 0, sizeof(color));
+
     for (int i = 1; i <= v; i++)
     {
-        if (!visited[i])
+        if (color[i] == 0)
         {
-            if (dfs(i, 0))
+            if (dfs(i))
             {
                 cout << 1;
                 return;
@@ -60,6 +60,7 @@ void run_case()
     }
 
     cout << 0;
+    return;
 }
 
 int main()

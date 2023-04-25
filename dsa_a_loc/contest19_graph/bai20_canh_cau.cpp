@@ -10,27 +10,21 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-set<int> ke[1001];
 bool visited[1001];
-bool check = false;
+vector<int> ke[1001];
+vector<pair<int, int>> canh;
 
-bool dfs(int s, int par)
+void dfs(int u, int s, int t)
 {
-    visited[s] = true;
+    visited[u] = true;
 
-    for (auto x : ke[s])
+    for (auto v : ke[u])
     {
-        if (!visited[x])
-        {
-            if (dfs(x, s))
-                return true;
-        }
-        else if (visited[x] && x != par)
-        {
-            return true;
-        }
+        if ((u == s && v == t) || (u == t && v == s))
+            continue;
+        if (!visited[v])
+            dfs(v, s, t);
     }
-    return false;
 }
 
 void run_case()
@@ -42,24 +36,43 @@ void run_case()
     {
         int x, y;
         cin >> x >> y;
-        ke[x].insert(y);
-        ke[y].insert(x);
+        canh.push_back({x, y});
+        ke[x].push_back(y);
+        ke[y].push_back(x);
     }
 
     memset(visited, false, sizeof(visited));
+
+    int tplt = 0;
     for (int i = 1; i <= v; i++)
     {
         if (!visited[i])
         {
-            if (dfs(i, 0))
-            {
-                cout << 1;
-                return;
-            }
+            tplt++;
+            dfs(i, 0, 0);
         }
     }
 
-    cout << 0;
+    int res = 0;
+    for (auto [x, y] : canh)
+    {
+        memset(visited, false, sizeof(visited));
+        int cnt = 0;
+        for (int j = 1; j <= v; j++)
+        {
+            if (!visited[j])
+            {
+                dfs(j, x, y);
+                cnt++;
+            }
+        }
+        if (cnt > tplt)
+        {
+            res++;
+            // cout << x << " " << y << " " << cnt << endl;
+        }
+    }
+    cout << res;
 }
 
 int main()

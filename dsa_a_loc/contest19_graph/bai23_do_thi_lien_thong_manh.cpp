@@ -10,22 +10,29 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-set<int> ke[1001];
+vector<int> ke[1001];
 bool visited[1001];
-bool check = false;
+int tplt;
 
-bool dfs(int s, int par)
+void dfs(int u)
 {
-    visited[s] = true;
+    visited[u] = true;
+    for (auto v : ke[u])
+        if (!visited[v])
+            dfs(v);
+}
 
-    for (auto x : ke[s])
+bool dfs2(int u, int par)
+{
+    visited[u] = true;
+    for (auto v : ke[u])
     {
-        if (!visited[x])
+        if (!visited[v])
         {
-            if (dfs(x, s))
+            if (dfs2(v, u))
                 return true;
         }
-        else if (visited[x] && x != par)
+        else if (v != par)
         {
             return true;
         }
@@ -37,13 +44,35 @@ void run_case()
 {
     int v, e;
     cin >> v >> e;
-
     for (int i = 0; i < e; i++)
     {
         int x, y;
         cin >> x >> y;
-        ke[x].insert(y);
-        ke[y].insert(x);
+        ke[x].push_back(y);
+        ke[y].push_back(x);
+    }
+
+    if (e != v - 1)
+    {
+        cout << 0;
+        return;
+    }
+
+    memset(visited, false, sizeof(visited));
+    tplt = 0;
+    for (int i = 1; i <= v; i++)
+    {
+        if (!visited[i])
+        {
+            dfs(i);
+            tplt++;
+        }
+    }
+
+    if (tplt > 1)
+    {
+        cout << 0;
+        return;
     }
 
     memset(visited, false, sizeof(visited));
@@ -51,15 +80,14 @@ void run_case()
     {
         if (!visited[i])
         {
-            if (dfs(i, 0))
+            if (dfs2(i, 0))
             {
-                cout << 1;
+                cout << 0;
                 return;
             }
         }
     }
-
-    cout << 0;
+    cout << 1;
 }
 
 int main()

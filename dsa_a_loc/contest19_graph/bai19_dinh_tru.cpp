@@ -10,14 +10,12 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-bool visited[1001];
-set<int> ke[1001];
-int tplt_cnt = 0;
+bool visited[1005];
+vector<int> ke[1005];
 
 void dfs(int s)
 {
     visited[s] = true;
-
     for (auto x : ke[s])
     {
         if (!visited[x])
@@ -34,11 +32,12 @@ void run_case()
     {
         int x, y;
         cin >> x >> y;
-        ke[x].insert(y);
-        ke[y].insert(x);
+        ke[x].push_back(y);
+        ke[y].push_back(x);
     }
-
     memset(visited, false, sizeof(visited));
+
+    int tplt_cnt = 0;
     for (int i = 1; i <= v; i++)
     {
         if (!visited[i])
@@ -54,8 +53,6 @@ void run_case()
         memset(visited, false, sizeof(visited));
         visited[i] = true;
         int tplt = 0;
-        if (i == 6)
-            cout << "";
 
         for (int j = 1; j <= v; j++)
         {
@@ -63,16 +60,13 @@ void run_case()
             {
                 dfs(j);
                 tplt++;
-                if (tplt > tplt_cnt)
-                {
-                    dinhtru++;
-                    break;
-                }
             }
         }
+        if (tplt > tplt_cnt)
+            ++dinhtru;
     }
 
-    cout << dinhtru;
+    cout << dinhtru << endl;
 }
 
 int main()
