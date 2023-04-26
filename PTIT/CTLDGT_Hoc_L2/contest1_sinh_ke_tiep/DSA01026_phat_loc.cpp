@@ -53,23 +53,23 @@ void run_case()
 {
     cin >> n;
     queue<string> q;
-    q.push("8");
-    q.push("6");
+    q.push("8"); //khoi tao
+    q.push("6"); //khoi tao
 
     vector<string> res;
-    while (q.size() > 0)
+    while (q.size() > 0) //lap
     {
         string s = q.front();
         q.pop();
 
-        if (s.size() > n)
+        if (s.size() > n) //dieu kien dung
             break;
 
         if (check(s))
             res.push_back(s);
 
-        q.push(s + "6");
-        q.push(s + "8");
+        q.push(s + "6"); //sinh ra xau tiep theo
+        q.push(s + "8"); //sinh ra xau tiep theo
     }
 
     for (auto x : res)

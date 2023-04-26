@@ -40,20 +40,20 @@ void run_case()
     cin >> n;
 
     queue<string> q;
-    q.push("HA");
+    q.push("HA"); // khoi tao
     vector<string> res;
 
-    while (q.size() > 0)
+    while (q.size() > 0) // lap
     {
         string s = q.front();
         q.pop();
 
-        if (s.size() > n)
+        if (s.size() > n)// neu la cau hinh cuoi thi dung lai
             break;
         if (check(s))
             res.push_back(s);
 
-        q.push(s + "A");
+        q.push(s + "A"); //tao ra cau hinh ke tiep
         q.push(s + "H");
     }
 

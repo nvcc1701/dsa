@@ -38,12 +38,12 @@ void Try()
 {
     for (int i = 1; i <= n; i++)
     {
-        if (s.size() == n)
+        if (s.size() == n) // dieu kien dung
         {
             check();
             return;
         }
-        if (!c[i])
+        if (!c[i]) // khong phai dieu kien dung
         {
             s += to_string(i);
             c[i] = 1;
@@ -63,12 +63,11 @@ void run_case()
 int main()
 {
 
-// #define LOCAL
+    // #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
     freopen("../output.txt ", "w", stdout);
-    auto start = chrono::high_resolution_clock::now();
 #endif
 
     ios::sync_with_stdio(false);
@@ -80,13 +79,6 @@ int main()
     {
         run_case();
     }
-
-#ifdef LOCAL
-    auto end = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-    auto startT = chrono::system_clock::to_time_t(start);
-    cout << "\n\n" << ctime(&startT) << (double)duration.count() / 1000 << " seconds\n";
-#endif
 
     return 0;
 }

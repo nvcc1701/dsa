@@ -36,9 +36,9 @@ void check()
 
 void Try()
 {
-    for (int i = 1; i <= n; i++)
+    for (int i = 1; i <= n; i++) // duyet qua cac kha nang
     {
-        if (s.size() == n)
+        if (s.size() == n) //chap nhan kha nang
         {
             check();
             return;
@@ -47,9 +47,9 @@ void Try()
         {
             s += to_string(i);
             c[i] = 1;
-            Try();
-            s.pop_back();
-            c[i] = 0;
+            Try(); // quay lui
+            s.pop_back(); // quay lui
+            c[i] = 0; // quay lui
         }
     }
 }
@@ -68,7 +68,6 @@ int main()
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
     freopen("../output.txt ", "w", stdout);
-    auto start = chrono::high_resolution_clock::now();
 #endif
 
     ios::sync_with_stdio(false);
@@ -80,13 +79,6 @@ int main()
     {
         run_case();
     }
-
-#ifdef LOCAL
-    auto end = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-    auto startT = chrono::system_clock::to_time_t(start);
-    cout << "\n\n" << ctime(&startT) << (double)duration.count() / 1000 << " seconds\n";
-#endif
 
     return 0;
 }

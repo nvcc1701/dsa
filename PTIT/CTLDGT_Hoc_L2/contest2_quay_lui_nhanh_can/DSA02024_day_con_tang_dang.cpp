@@ -38,14 +38,14 @@ void update()
 
 void Try(int start)
 {
-    for (int j = start; j < n; j++)
+    for (int j = start; j < n; j++) // duyet qua cac kha nang
     {
         if (a[j] > *v.rbegin())
         {
             v.push_back(a[j]);
-            if (v.size() > 2)
+            if (v.size() > 2) //chap nhan kha nang
                 update();
-            Try(j + 1);
+            Try(j + 1); //back track
             v.pop_back();
         }
     }
@@ -64,12 +64,11 @@ void run_case()
 int main()
 {
 
-// #define LOCAL
+    // #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
     freopen("../output.txt ", "w", stdout);
-    auto start = chrono::high_resolution_clock::now();
 #endif
 
     ios::sync_with_stdio(false);
@@ -81,13 +80,6 @@ int main()
     {
         run_case();
     }
-
-#ifdef LOCAL
-    auto end = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-    auto startT = chrono::system_clock::to_time_t(start);
-    cout << "\n\n" << ctime(&startT) << (double)duration.count() / 1000 << " seconds\n";
-#endif
 
     return 0;
 }
