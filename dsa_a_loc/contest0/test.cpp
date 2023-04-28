@@ -1,60 +1,67 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-using ll = long long;
 
-#define endl '\n';
+int n, k;
+set<string> se;
+string kytu[30];
 
-const ll LINF = 1e18 + 5;
-const int INF = 1e9;
-const int MOD = 1e9 + 7;
-const int MAX = 1e6 + 5;
+vector<int> tmp;
+// 123
+// 124
 
-void run_case()
+void print()
 {
-    int n;
-    cin >> n;
-    ll a[n + 1];
-    for (int i = 1; i <= n; i++)
-        cin >> a[i];
-
-    vector<ll> f;
-    for (int i = 1; i <= n; i++)
+    for (auto x : tmp)
     {
-        if (f.empty())
-            f.push_back(a[i]);
+        cout << kytu[x] << " ";
+        // cout << x << " ";
+    }
+    cout << endl;
+}
+
+void Try(int i)
+{
+    for (int j = i; j <= n; j++)
+    {
+        tmp.push_back(j);
+        if (tmp.size() == k)
+        {
+            print();
+        }
         else
         {
-            auto iter = upper_bound(f.begin(), f.end(), a[i]);
-            if (iter != f.end())
-                *iter = a[i];
-            if (a[i] > f.back())
-                f.push_back(a[i]);
+            Try(j + 1);
         }
+        tmp.pop_back(); // backtrack
     }
-
-    cout << f.size();
 }
 
 int main()
 {
-
-#define LOCAL
+    // #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
     freopen("../output.txt ", "w", stdout);
 #endif
 
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    int Test = 1;
-    // cin >> Test;
-    for (int test = 1; test <= Test; test++)
+    cin >> n >> k;
+    for (int i = 1; i <= n; i++)
     {
-        run_case();
+        string s;
+        cin >> s;
+        se.insert(s); // loai bo cac string giong nhau
     }
 
-    return 0;
+    n = se.size(); // cap nhat lai n de sinh to hop
+
+    int i = 1;
+    for (auto x : se)
+    {
+        kytu[i] = x;
+        i++;
+    }
+
+    Try(1);
 }
