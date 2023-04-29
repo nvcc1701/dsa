@@ -10,28 +10,18 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n;
 void run_case()
 {
-    cin >> n;
-    int a[n];
+    string t, s;
+    cin >> t >> s;
+    bool c = next_permutation(s.begin(), s.end());
 
-    for (auto &x : a)
-        cin >> x;
-
-    int i = 0, j = n - 1;
-    while (i < j) // O(N)
-    {
-        if (a[i] != a[j])
-        {
-            cout << "NO\n";
-            return;
-        }
-        i++;
-        j--;
-    }
-
-    cout << "YES\n";
+    cout << t << " ";
+    if (!c)
+        cout << "BIGGEST";
+    else
+        cout << s;
+    cout << endl;
 }
 
 int main()

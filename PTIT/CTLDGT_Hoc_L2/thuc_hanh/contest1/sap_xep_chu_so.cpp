@@ -10,43 +10,33 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-string s;
 void run_case()
 {
+    int n;
+    cin >> n;
+    cin.ignore();
+    string s;
     getline(cin, s);
     stringstream ss(s);
+    set<int> se;
 
-    ss >> s;
-
-    for (auto &x : s)
-        x = toupper(x);
-    string s2 = s;
-
-    string s1 = "";
     while (ss >> s)
     {
-        for (int i = 0; i < s.size(); i++)
+        for (auto x : s)
         {
-            if (i == 0)
-                s1.push_back(toupper(s[i]));
-            else
-                s1.push_back(tolower(s[i]));
+            se.insert(stoi(string(1, x)));
         }
-        if (ss.tellg() == -1 || ss.peek() == '\n')// kiem tra xem con tro o vi tri cuoi cung chua/ phan tu ke tiep la \n chua
-        {
-            s1.push_back(',');
-        }
-        else
-            s1.push_back(' ');
     }
 
-    cout << s1 << " " << s2 << endl;
+    for (auto x : se)
+        cout << x << " ";
+    cout << endl;
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
@@ -58,7 +48,6 @@ int main()
 
     int Test = 1;
     cin >> Test;
-    cin.ignore();
     for (int test = 1; test <= Test; test++)
     {
         run_case();

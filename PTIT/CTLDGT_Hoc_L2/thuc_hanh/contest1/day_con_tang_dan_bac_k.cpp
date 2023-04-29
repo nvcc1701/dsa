@@ -10,32 +10,41 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-string s;
+int n, k;
+int a[101];
+int cnt = 0;
+vector<int> v;
+
+void Try(int start)
+{
+    for (int j = start; j <= n; j++)
+    {
+        if (a[j] > v.back())
+        {
+            v.push_back(a[j]);
+            if (v.size() == k + 1)
+                cnt++;
+            else
+                Try(j + 1);
+            v.pop_back();
+        }
+    }
+}
+
 void run_case()
 {
-    getline(cin, s);
-
-    stringstream ss(s);
-    string res = "";
-
-    while (ss >> s)
-    {
-        for (int i = 0; i < s.size(); i++)
-        {
-            if (i == 0)
-                res.push_back(toupper(s[i]));
-            else
-                res.push_back(tolower(s[i]));
-        }
-        res.push_back(' ');
-    }
-    cout << res << endl;
+    cin >> n >> k;
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
+    v.push_back(-1);
+    Try(1);
+    cout << cnt << endl;
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
@@ -46,8 +55,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    cin >> Test;
-    cin.ignore();
+    // cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

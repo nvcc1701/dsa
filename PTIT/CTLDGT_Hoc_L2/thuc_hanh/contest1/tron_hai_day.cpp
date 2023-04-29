@@ -10,16 +10,21 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-void run_case() //O(1)
+void run_case()
 {
-    string s1, s2;
-    int a, b, c;
+    multiset<int> se;
+    int n, m;
+    cin >> n >> m;
+    for (int i = 0; i < n + m; i++)
+    {
+        int x;
+        cin >> x;
+        se.insert(x);
+    }
 
-    cin >> a >> s1 >> b >> s2 >> c;
-    if (a + b == c)
-        cout << "YES\n";
-    else
-        cout << "NO\n";
+    for (auto x : se)
+        cout << x << " ";
+    cout << endl;
 }
 
 int main()
@@ -36,7 +41,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    // cin >> Test;
+    cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

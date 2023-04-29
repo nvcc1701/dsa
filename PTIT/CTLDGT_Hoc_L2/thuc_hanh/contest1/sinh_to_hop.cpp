@@ -10,47 +10,41 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int n;
-vector<pair<int, int>> v;
+int n, k;
 
-void factorize() // O(N)
+vector<int> v;
+
+void print()
 {
-    for (int i = 2; i <= sqrt(n); i++)
-    {
-        if (n % i == 0)
-        {
-            int cnt = 0;
-            while (n % i == 0)
-            {
-                n /= i;
-                cnt++;
-            }
-            v.push_back({i, cnt});
-        }
-    }
+    for (auto x : v)
+        cout << x;
+    cout << " ";
+}
 
-    if (n != 1)
-        v.push_back({n, 1});
+void Try(int start)
+{
+    for (int j = start; j <= n; j++)
+    {
+        v.push_back(j);
+        if (v.size() == k)
+            print();
+        else
+            Try(j + 1);
+        v.pop_back();
+    }
 }
 
 void run_case()
 {
-    cin >> n;
-    factorize();
-
-    for (auto x : v)
-    {
-        cout << x.first << "(" << x.second << ") ";
-    }
+    cin >> n >> k;
+    Try(1);
     cout << endl;
-
-    v.clear();
 }
 
 int main()
 {
 
-#define LOCAL
+// #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
@@ -64,7 +58,6 @@ int main()
     cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
-        cout << "Test " << test << ": ";
         run_case();
     }
 

@@ -11,23 +11,34 @@ const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
 string s;
-void run_case() 
+ll k, n;
+
+char Try(ll k, ll n)
 {
-    cin >> s;
-    int tang = 0, giam = 0;
-    for (int i = 1; i < s.size(); i++) //O(N)
-    {
-        if (s[i] >= s[i - 1])
-            tang++;
+    if (k <= s.size())
+        return s[k];
+    if (k < n / 2)
+        return Try(k, n / 2);
+    if (k == n / 2)
+        return Try(k - 1, n / 2);
+    if (k > n / 2)
+        return Try(k - n / 2 - 1, n / 2);
+}
 
-        if (s[i] <= s[i - 1])
-            giam++;
-    }
-
-    if (tang == s.size() - 1 || giam == s.size() - 1)
-        cout << "YES\n";
-    else
-        cout << "NO\n";
+void run_case()
+{
+    // COW
+    // 123
+    // COWWCO
+    // 123312
+    // 12345
+    cin >> s >> k;
+    n = s.size();
+    s = "0" + s;
+    while (n <= k)
+        n *= 2;
+    cout << Try(k, n);
+    cout << endl;
 }
 
 int main()
