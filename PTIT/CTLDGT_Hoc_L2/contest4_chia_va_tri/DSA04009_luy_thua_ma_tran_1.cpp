@@ -41,10 +41,10 @@ Matrix bipow(Matrix A, ll n)
         return A;
 
     Matrix X = bipow(A, n / 2);
-    if (n % 2)
-        return X * X * A;
-    else
-        return X * X;
+    if (n % 2) //chia
+        return X * X * A; // tri
+    else //chia
+        return X * X; // tri
 }
 
 void run_case()

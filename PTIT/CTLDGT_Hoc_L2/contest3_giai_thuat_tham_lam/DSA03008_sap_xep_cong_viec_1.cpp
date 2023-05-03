@@ -28,15 +28,15 @@ void run_case()
         v[i].second = x;
     }
 
-    sort(v.begin(), v.end(), [](pair<int, int> a, pair<int, int> b) { return a.second < b.second; });
+    sort(v.begin(), v.end(), [](pair<int, int> a, pair<int, int> b) { return a.second < b.second; }); // tap ung vien
 
     int end = -1;
     int cnt = 0;
     for (auto x : v)
     {
-        if (x.first >= end)
+        if (x.first >= end) //ham thuc thi
         {
-            cnt++;
+            cnt++; // ham lua chon
             end = x.second;
         }
     }
@@ -47,12 +47,11 @@ void run_case()
 int main()
 {
 
-// #define LOCAL
+    // #define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
     freopen("../output.txt ", "w", stdout);
-    auto start = chrono::high_resolution_clock::now();
 #endif
 
     ios::sync_with_stdio(false);
@@ -64,13 +63,6 @@ int main()
     {
         run_case();
     }
-
-#ifdef LOCAL
-    auto end = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-    auto startT = chrono::system_clock::to_time_t(start);
-    cout << "\n\n" << ctime(&startT) << (double)duration.count() / 1000 << " seconds\n";
-#endif
 
     return 0;
 }
