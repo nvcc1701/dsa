@@ -1,7 +1,9 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+
 using ll = long long;
+using ii = pair<int, int>;
 
 #define endl '\n';
 
@@ -10,42 +12,32 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e6 + 5;
 
-int v, e;
+int v, e, s;
 vector<int> ke[1001];
 bool visited[1001];
-int parent[1001];
-
-int last;
-bool ok;
+vector<ii> res;
 
 void dfs(int u)
 {
     visited[u] = true;
+
     for (int v : ke[u])
     {
-        if (ok)
-            return;
         if (!visited[v])
         {
-            parent[v] = u;
-            last = v;
+            res.push_back({u, v});
             dfs(v);
         }
-        else if (v != parent[u] && v == 1)
-            ok = true;
     }
 }
 
 void run_case()
 {
-    memset(visited, false, sizeof(visited));
-    memset(ke, 0, sizeof(ke));
-    memset(parent, -1, sizeof(parent));
+    cin >> v >> e >> s;
+    int x, y;
 
-    cin >> v >> e;
     for (int i = 0; i < e; i++)
     {
-        int x, y;
         cin >> x >> y;
         ke[x].push_back(y);
         ke[y].push_back(x);
@@ -54,34 +46,18 @@ void run_case()
     for (int i = 1; i <= v; i++)
         sort(ke[i].begin(), ke[i].end());
 
-    ok = false;
+    dfs(s);
 
-    vector<int> res;
-    dfs(1);
-    if (ok)
+    for (auto [x, y] : res)
     {
-        int s = 1, t = last;
-        while (t != s)
-        {
-            res.push_back(t);
-            t = parent[t];
-        }
-        res.push_back(s);
-
-        reverse(res.begin(), res.end());
-
-        for (auto x : res)
-            cout << x << " ";
-        cout << s << endl;
+        cout << x << "->" << y << endl;
     }
-    else
-        cout << "NO\n";
 }
 
 int main()
 {
 
-// #define LOCAL
+#define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
@@ -92,7 +68,7 @@ int main()
     cin.tie(nullptr);
 
     int Test = 1;
-    cin >> Test;
+    // cin >> Test;
     for (int test = 1; test <= Test; test++)
     {
         run_case();

@@ -1,44 +1,82 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+
 using ll = long long;
+using ii = pair<int, int>;
 
 #define endl '\n';
 
 const ll LINF = 1e18 + 5;
 const int INF = 1e9;
 const int MOD = 1e9 + 7;
-const int MAX = 1e6 + 5;
+const int MAX = 1001;
 
-vector<int> ke[1001];
-bool visited[1001];
+int v, e;
+int parent[MAX];
+int counts[MAX];
+int sz[MAX];
+vector<ii> canh;
 
-void dfs(int u)
+void init()
 {
-    visited[u] = true;
-
-    for (auto v : ke[u])
+    for (int i = 1; i <= v; i++)
     {
-        if (!visited[v])
-            dfs(v);
+        parent[i] = i;
+        sz[i] = 1;
     }
 }
 
+int Find(int u)
+{
+    if (u == parent[u])
+        return u;
+
+    return parent[u] = Find(parent[u]);
+}
+
+void Union(int x, int y)
+{
+    x = Find(x);
+    y = Find(y);
+
+    if (x != y)
+    {
+        if (counts[x] > counts[y] || (counts[x] == counts[y] && x < y))
+            parent[y] = x;
+        else
+            parent[x] = y;
+    }
+}
+
+bool check[1001];
+
 void run_case()
 {
-    int v, e;
+    // memset(counts, 0, sizeof(counts));
+
     cin >> v >> e;
+    int x, y;
     for (int i = 0; i < e; i++)
     {
-        int x, y;
         cin >> x >> y;
-        ke[x].push_back(y);
-        ke[y].push_back(x);
+        canh.push_back({x, y});
+        counts[x]++;
+        counts[y]++;
     }
 
-    memset(visited, false, sizeof(visited));
+    init();
 
+    for (auto [x, y] : canh)
+    {
+        Union(x, y);
+    }
 
+    for (int i = 1; i <= v; i++)
+    {
+        if (i == parent[i])
+            cout << i << " ";
+    }
 }
 
 int main()
