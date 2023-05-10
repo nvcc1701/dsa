@@ -14,7 +14,6 @@ const int MAX = 1e6 + 5;
 
 ll s, t;
 set<ll> se;
-bool used[MAX];
 
 bool isValid(ll x)
 {
@@ -34,9 +33,9 @@ void bfs()
         auto [x, y] = q.front();
         q.pop();
 
-        if (x == t)
+        if (x == 1 || x == 2)
         {
-            cout << y << endl;
+            cout << y - 1 + x << endl;
             return;
         }
 
@@ -53,7 +52,7 @@ void bfs()
         {
             if (x % i == 0)
             {
-                xnew = max(i, x / i);
+                xnew = x / i;
                 if (isValid(xnew))
                 {
                     q.push({xnew, ynew});
@@ -68,8 +67,8 @@ void run_case()
 {
     cin >> s;
     t = 1;
-    memset(used, false, sizeof(used));
-
+    se.clear();
+    
     bfs();
 }
 
