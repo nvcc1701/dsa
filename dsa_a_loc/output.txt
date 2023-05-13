@@ -1,1 +1,17 @@
-YES
+Diem co dinh: 1
+(0:0)(1:1)(2147483647:0)(2147483647:0)(2147483647:0)(2147483647:-1234101584)
+Diem co dinh: 2
+(0:0)(1:1)(6:2)(3:2)(2147483647:0)(8:2)
+Diem co dinh: 4
+(0:0)(1:1)(6:2)(3:2)(2147483647:0)(3:4)
+Diem co dinh: 6
+(0:0)(1:1)(3:6)(3:2)(4:6)(3:4)
+Diem co dinh: 3
+(0:0)(1:1)(3:6)(3:2)(4:6)(3:4)
+0 1 6 2 6 4 
+khoang cach tu diem 1 den 1 la 0
+khoang cach tu diem 1 den 2 la 1
+khoang cach tu diem 1 den 3 la 3
+khoang cach tu diem 1 den 4 la 3
+khoang cach tu diem 1 den 5 la 4
+khoang cach tu diem 1 den 6 la 3

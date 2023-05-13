@@ -19,34 +19,30 @@ void run_case()
 
     stack<char> stk;
 
-    int cnt = 0;
     for (auto x : s)
     {
-        if (x == '(')
+        if (x != ')')
             stk.push(x);
         else
         {
-            if (!stk.empty())
+            bool ok = false;
+            while (stk.top() != '(')
             {
+                if (stk.top() == '+' || stk.top() == '-' || stk.top() == '*' || stk.top() == '/')
+                    ok = true;
                 stk.pop();
             }
-            else
-                cnt++;
+            stk.pop();
+
+            if (ok == false)
+            {
+                cout << "YES\n";
+                return;
+            }
         }
     }
 
-    int res = 0;
-    int sz = stk.size();
-
-    res += sz / 2;
-    sz -= (sz/2) * 2;
-
-    res += cnt / 2;
-    cnt -= (cnt/2) * 2;
-    
-    res += cnt + sz;
-
-    cout << res;
+    cout << "NO";
 }
 
 int main()
