@@ -10,40 +10,44 @@ using ii = pair<int, int>;
 const ll LINF = 1e18 + 5;
 const int INF = 1e9;
 const int MOD = 1e9 + 7;
-const int MAX = 1e3 + 5;
+const int MAX = 100000 + 5;
 
-int n, k, a[MAX];
-ll f[MAX];
+int n, a[MAX];
 
 void run_case()
 {
-    cin >> n >> k;
+    cin >> n;
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
+
+    vector<ll> f(n + 1, 1);
+    vector<ll> f2(n + 1, 1);
+
+    for (int i = 2; i <= n; i++)
+    {
+        if (a[i] > a[i - 1])
+            f[i] = f[i - 1] + 1;
+    }
+
+    for (int i = n - 1; i >= 1; i--)
+    {
+        if (a[i] > a[i + 1])
+            f2[i] = f2[i + 1] + 1;
+    }
+
+    ll res = 0;
     for (int i = 1; i <= n; i++)
     {
-        cin >> a[i];
-    }
-    memset(f, 0, sizeof(f));
-    f[0] = 1;
-
-    for (int i = 1; i <= k; i++)
-    {
-        for (int j = 1; j <= n; j++) // de n o trong de dc lap nhieu lan
-        {
-            if (i - a[j] >= 0)
-            {
-                f[i] += f[i - a[j]];
-                f[i] %= MOD;
-            }
-        }
+        res = max(res, f[i] + f2[i] - 1);
     }
 
-    cout << f[k] << endl;
+    cout << res << endl;
 }
 
 int main()
 {
 
-    // #define LOCAL
+#define LOCAL
 
 #ifdef LOCAL
     freopen("../input.txt ", "r", stdin);
