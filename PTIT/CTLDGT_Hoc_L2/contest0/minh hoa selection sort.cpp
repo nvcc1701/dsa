@@ -1,77 +1,78 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
-using ll = long long;
 
-#define endl '\n';
+const int N=1e5+5;
 
-const ll LINF = 1e18 + 5;
-const int INF = 1e9;
-const int MOD = 1e9 + 7;
-const int MAX = 1e6 + 5;
+vector<int> adj[N];
+vector<int> radj[N];
+bool vis[N];
 
-int n;
-vector<int> v;
-
-void selection_sort()
-{
-    for (int i = 0; i < n - 1; i++)
-    {
-        int min_index = i;
-        for (int j = i + 1; j < n; j++)
-        {
-            if (v[j] < v[min_index])
-                min_index = j;
+void dfs(int u) {
+    vis[u] = true;
+    for (int v : adj[u]) {
+        if (!vis[v]) {
+            dfs(v);
         }
-
-        swap(v[min_index], v[i]);
     }
 }
 
-void run_case()
-{
-    // nhap
-    cin >> n;
-    int x;
-    for (int i = 0; i < n; i++)
-    {
-        cin >> x;
-        v.push_back(x);
+void rdfs(int u) {
+    vis[u] = true;
+    for (int v : radj[u]) {
+        if (!vis[v]) {
+            rdfs(v);
+        }
     }
-
-    selection_sort();
-
-    for (auto x : v)
-        cout << x << " ";
 }
 
-int main()
-{
+bool isStronglyConnected(int n) {
+    memset(vis, false, sizeof(vis));
+    dfs(1);
+    for (int i = 1; i <= n; i++) {
+        if (!vis[i]) {
+            return false;
+        }
+    }
+    memset(vis, false, sizeof(vis));
+    rdfs(1);
+    for (int i = 1; i <= n; i++) {
+        if (!vis[i]) {
+            return false;
+        }
+    }
+    return true;
+}
 
-#define LOCAL
+bool isWeaklyConnected(int n) {
+    memset(vis, false, sizeof(vis));
+    dfs(1);
+    for (int i = 1; i <= n; i++) {
+        if (!vis[i]) {
+            return false;
+        }
+    }
+    return true;
+}
 
-#ifdef LOCAL
-    freopen("../input.txt ", "r", stdin);
-    freopen("../output.txt ", "w", stdout);
-    auto start = chrono::high_resolution_clock::now();
-#endif
+int main() {
+    int n, m;
+    cin >> n >> m;
 
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    int Test = 1;
-    // cin >> Test;
-    for (int test = 1; test <= Test; test++)
-    {
-        run_case();
+    // đọc dữ liệu đồ thị
+    for (int i = 0; i < m; i++) {
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+        radj[v].push_back(u);
     }
 
-#ifdef LOCAL
-    auto end = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-    auto startT = chrono::system_clock::to_time_t(start);
-    cout << "\n\n" << ctime(&startT) << (double)duration.count() / 1000 << " seconds\n";
-#endif
+    if (isStronglyConnected(n)) {
+        cout << "The graph is strongly connected." << endl;
+    } else if (isWeaklyConnected(n)) {
+        cout << "The graph is weakly connected." << endl;
+    } else {
+        cout << "The graph is not connected." << endl;
+    }
 
     return 0;
 }
