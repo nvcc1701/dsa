@@ -1,5 +1,6 @@
 {
     "configurations": [
+
         {
             "name": "C/C++: g++.exe build and debug active file",
             "type": "cppdbg",
@@ -11,7 +12,7 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:\\Users\\anhnguyen\\scoop\\apps\\mingw\\current\\bin\\gdb.exe",
+            "miDebuggerPath": "C:\\Users\\nvcc\\scoop\\apps\\mingw\\current\\bin\\gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",

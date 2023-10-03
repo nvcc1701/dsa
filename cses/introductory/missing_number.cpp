@@ -14,23 +14,33 @@ const int MAX = 1e6 + 5;
 
 void run_case()
 {
-    ll n;
+    int n;
     cin >> n;
-    cout << n << " ";
-    while (n != 1)
+    vector<int> v;
+    int x;
+    for (int i = 0; i < n; i++)
     {
-        if (n % 2 == 0)
+        cin >> x;
+        v.push_back(x);
+    }
+
+    sort(v.begin(), v.end());
+
+    int fi = 0;
+    for (auto x : v)
+    {
+        if (x - fi > 1)
         {
-            n /= 2;
-            cout << n << " ";
+            cout << x - 1;
+            return;
         }
         else
         {
-            n *= 3;
-            n += 1;
-            cout << n << " ";
+            fi = x;
         }
     }
+
+    cout << n;
 }
 
 int main()
