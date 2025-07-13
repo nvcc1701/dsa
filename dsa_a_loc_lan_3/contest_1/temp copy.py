@@ -1,14 +1,12 @@
 import sys
+import math
 from os import path
 
 
 def solve():
-    r = int(input())
-    res = 2 * r * 3.14
-    res2 = r * r * 3.14
-
-    print("%.4f %.4f" % (res, res2))
-
+    x1, y1, x2, y2 = map(int, input().split())
+    res = math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
+    print(f"{res:.2f}")
     pass
 
 
