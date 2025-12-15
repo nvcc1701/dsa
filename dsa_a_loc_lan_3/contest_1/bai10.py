@@ -3,11 +3,12 @@ from os import path
 
 
 def solve():
-    c = int(input())
-    res = (c * 9 / 5) + 32
-    print("%.2f" % res)
-
-    pass
+    a,b,c = map(int, input().split())
+    
+    if (a > 0 and b >0 and c > 0) and ((a+b)>c and (a+c)>b and (b+c)>a):
+        print("YES")
+    else: 
+        print("NO")
 
 
 if __name__ == "__main__":
@@ -19,5 +20,3 @@ if __name__ == "__main__":
     # test = int(input())
     for _ in range(test):
         solve()
-
-    pass

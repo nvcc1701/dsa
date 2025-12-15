@@ -1,12 +1,19 @@
 import sys
-import math
 from os import path
 
 
 def solve():
-    x1, y1, x2, y2 = map(int, input().split())
-    res = math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
-    print(f"{res:.2f}")
+    a, b = map(int, input().split())
+    x1, x2 = 0, 0
+
+    x1 = a // b * b
+
+    if a % b == 0:
+        x2 = a
+    else: 
+        x2 = (a//b +1)*b
+
+    print(x1, x2, sep = ' ')
     pass
 
 
@@ -19,5 +26,3 @@ if __name__ == "__main__":
     # test = int(input())
     for _ in range(test):
         solve()
-
-    pass
